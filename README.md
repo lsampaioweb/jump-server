@@ -1,4 +1,4 @@
-# Setup the Ubuntu Desktop 22.04 as my jump server for my HomeLab using Ansible
+# Setup the Ubuntu Desktop 22.04 as a jump server for my HomeLab using Ansible
 
 The playbook can setup an Ubuntu Desktop 22.04.
 

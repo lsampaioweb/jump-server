@@ -1,0 +1,8 @@
+---
+- name: Disabling IPV6
+  lineinfile:
+    path: "/etc/default/grub"
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"'
+    line: 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash ipv6.disable=1"'
+  notify:
+    - "Generating Grub File" 

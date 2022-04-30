@@ -1,0 +1,15 @@
+---
+- name: Disabling IPV6 on the server
+  import_tasks: 01-disable-ipv6.yml
+
+- name: Removing unnecessary packages
+  import_tasks: 02-removing-packages.yml
+
+- name: Installing required packages
+  import_tasks: 03-installing-packages.yml
+
+- name: Setting up Brazilian timezone
+  import_tasks: 04-timezone.yml
+
+- name: Setting up Brazilian NTP Servers
+  import_tasks: 05-ntp-servers.yml

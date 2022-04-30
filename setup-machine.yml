@@ -1,0 +1,7 @@
+---
+- name: Setting up the machine
+  hosts: "localhost"
+  become: True
+
+  roles:
+    - setup-machine
