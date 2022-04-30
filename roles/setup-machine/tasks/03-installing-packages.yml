@@ -19,6 +19,7 @@
       - { name: "qemu-guest-agent" } # To enhance Proxmox integration with the VM.
       - { name: "ethtool" } # To enable Wake-on-Lan.
       - { name: "xrdp" } # To enable Microsoft Remote Connection.
+      - { name: "chrome-gnome-shell" } # To enable Microsoft Remote Connection multiple logins.      
       - { name: "ansible" }
       - { name: "ansible-lint" }
       - { name: "git" }
