@@ -1,0 +1,3 @@
+[org/gnome/shell]
+# Snippet sets the favorite applications in the dock
+favorite-apps = ['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'code_code.desktop', 'postman_postman.desktop', 'org.gnome.Terminal.desktop', 'gnome-system-monitor.desktop', 'gnome-control-center.desktop', 'org.gnome.seahorse.Application.desktop']

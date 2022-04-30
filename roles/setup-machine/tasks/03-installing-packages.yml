@@ -19,12 +19,21 @@
       - { name: "qemu-guest-agent" } # To enhance Proxmox integration with the VM.
       - { name: "ethtool" } # To enable Wake-on-Lan.
       - { name: "xrdp" } # To enable Microsoft Remote Connection.
-      - { name: "chrome-gnome-shell" } # To enable Microsoft Remote Connection multiple logins.      
+      - { name: "chrome-gnome-shell" } # To enable Microsoft Remote Connection multiple logins.
       - { name: "ansible" }
       - { name: "ansible-lint" }
       - { name: "git" }
       - { name: "pip" }
       - { name: "google-chrome-stable" }
+
+- name: Installing snap packages
+  import_tasks: "roles/common/tasks/packages/snap.yml"
+  vars:
+    packages:
+      - { name: "code", classic: "yes" }
+      - { name: "postman" }
+      - { name: "packer" }
+      # - { name: "docker" }
 
 - name: Setting up the XRDP package
   import_tasks: "roles/common/tasks/packages/xrdp.yml"
@@ -36,14 +45,8 @@
       - { scope: "global", name: "user.name", value: "{{ git_user_name }}" }
       - { scope: "global", name: "user.email", value: "{{ git_user_email }}" }
 
-- name: Installing snap packages
-  import_tasks: "roles/common/tasks/packages/snap.yml"
-  vars:
-    packages:
-      - { name: "code", classic: "yes" }
-      - { name: "postman" }
-      - { name: "packer" }
-      # - { name: "docker" }
+- name: Setting up VSCode
+  import_tasks: "roles/common/tasks/packages/vscode.yml"
 
 - name: Checking if a reboot is needed
   stat:

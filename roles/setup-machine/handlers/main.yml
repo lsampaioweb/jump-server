@@ -18,3 +18,7 @@
 - name: Generating Grub File
   become: true
   command: "update-grub"
+
+- name: Update dconf
+  become: true
+  command: "dconf update"

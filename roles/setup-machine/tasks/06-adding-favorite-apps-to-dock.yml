@@ -1,0 +1,22 @@
+---
+- name: Copying the user's profile that point to the favorite applications
+  copy:
+    src: "user"
+    dest: "/etc/dconf/profile/user"
+  notify: "Update dconf"
+
+- name: Creating the dconf directory if it does not exists
+  file:
+    path: "/etc/dconf/db/local.d/"
+    state: "directory"
+    
+- name: Adding the favorite applications in the Dock
+  copy:
+    src: "00-favorite-apps"
+    dest: "/etc/dconf/db/local.d/00-favorite-apps"
+  notify: "Update dconf"
+
+# - name: Update dconf
+#   become: true
+#   shell: gsettings set org.gnome.shell favorite-apps "['gnome-control-center.desktop', 'org.gnome.seahorse.Application.desktop']"
+#   notify: "Update dconf"

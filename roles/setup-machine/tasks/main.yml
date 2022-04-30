@@ -13,3 +13,6 @@
 
 - name: Setting up Brazilian NTP Servers
   import_tasks: 05-ntp-servers.yml
+
+- name: Adding the favorite applications in the Dock
+  import_tasks: 06-adding-favorite-apps-to-dock.yml
