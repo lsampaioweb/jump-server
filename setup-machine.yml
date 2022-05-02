@@ -4,4 +4,4 @@
   become: True
 
   roles:
-    - setup-machine
+    - "setup-machine"

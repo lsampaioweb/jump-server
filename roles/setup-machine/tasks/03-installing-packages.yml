@@ -26,6 +26,12 @@
       - { name: "pip" }
       - { name: "google-chrome-stable" }
 
+- name: Installing pip packages
+  import_tasks: "roles/common/tasks/packages/pip.yml"
+  vars:
+    packages:
+      - { name: "psutil" } # Required for the community.general.dconf module.
+
 - name: Installing snap packages
   import_tasks: "roles/common/tasks/packages/snap.yml"
   vars:

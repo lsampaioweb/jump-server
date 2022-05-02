@@ -1,6 +1,6 @@
 ---
 - name: Setting git config
-  become: false
+  become: False
   git_config:
     scope: "{{ item.scope | default(omit) }}"
     repo: "{{ item.repo   | default(omit) }}"

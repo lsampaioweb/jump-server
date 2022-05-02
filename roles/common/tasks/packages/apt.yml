@@ -1,6 +1,5 @@
 ---
 - name: Apt packages
-  become: yes
   apt:
     name: "{{ item.name }}"
     state: "{{ item.state | default(omit) }}"

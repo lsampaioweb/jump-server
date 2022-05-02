@@ -1,6 +1,5 @@
 ---
 - name: Snap packages
-  become: yes
   snap:
     name: "{{ item.name }}"
     classic: "{{ item.classic | default(omit) }}"
