@@ -48,8 +48,8 @@
   import_tasks: "roles/common/tasks/packages/git.yml"
   vars:
     config:
-      - { scope: "global", name: "user.name", value: "{{ git_user_name }}" }
-      - { scope: "global", name: "user.email", value: "{{ git_user_email }}" }
+      - { scope: "global", name: "user.name", value: "{{ git_user_name | b64decode }}" }
+      - { scope: "global", name: "user.email", value: "{{ git_user_email | b64decode }}" }
 
 - name: Setting up VSCode
   import_tasks: "roles/common/tasks/packages/vscode.yml"
