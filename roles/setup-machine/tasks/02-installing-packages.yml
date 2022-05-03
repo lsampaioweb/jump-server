@@ -53,19 +53,3 @@
 
 - name: Setting up VSCode
   import_tasks: "roles/common/tasks/packages/vscode.yml"
-
-- name: Checking if a reboot is needed
-  stat:
-    path: "/var/run/reboot-required"
-    get_md5: "no"
-  register: "reboot_required"
-
-- name: Rebooting the host if kernel was updated
-  reboot:
-    msg: "Reboot initiated by Ansible for kernel updates."
-    connect_timeout: 5
-    reboot_timeout: 120
-    pre_reboot_delay: 0
-    post_reboot_delay: 30
-    test_command: "whoami"
-  when: reboot_required.stat.exists
