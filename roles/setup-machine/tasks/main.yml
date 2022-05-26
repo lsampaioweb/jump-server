@@ -16,3 +16,6 @@
 
 - name: Adding the favorite applications in the Dock
   import_tasks: 06-adding-favorite-apps-to-dock.yml
+
+- name: Setting the dark theme
+  import_tasks: 07-dark-theme.yml
