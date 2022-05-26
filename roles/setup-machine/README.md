@@ -22,6 +22,12 @@ Run the command in the terminal:
 ## 5. Setup Brazilian NTP Servers.
   1. Set Brazilian NTP servers.
 
+## 6. Add favorite applications in the Dock.
+  1. Add Google Chrome, VSCode and other applications.
+
+## 7. Set the dark theme.
+  1. Set the color-scheme to 'prefer-dark'.
+
 # Created by: 
 
 1. Luciano Sampaio.
