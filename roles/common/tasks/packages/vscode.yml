@@ -1,6 +1,6 @@
 ---
 - name: Managing vscode extentions
-  become: False
+  become: false
   import_tasks: "roles/common/tasks/packages/vscode-extention.yml"
   vars:
     extentions:

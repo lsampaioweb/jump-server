@@ -12,7 +12,7 @@
       - 'org.gnome.seahorse.Application.desktop'
 
 - name: Adding the favorite applications in the Dock
-  become: False
+  become: false
   community.general.dconf:
     key: "/org/gnome/shell/favorite-apps"
     value: "{{ favorite_applications | string }}"
