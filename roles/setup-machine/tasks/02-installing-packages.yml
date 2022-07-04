@@ -28,6 +28,7 @@
       - { name: "google-chrome-stable" }
       - { name: "nikto" } # To run vulnerabilidade scans.
       - { name: "net-tools" }
+      - { name: "curl" }
 
 - name: Installing pip packages
   import_tasks: "roles/common/tasks/packages/pip.yml"
