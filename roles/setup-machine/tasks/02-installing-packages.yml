@@ -19,13 +19,13 @@
       - { name: "qemu-guest-agent" } # To enhance Proxmox integration with the VM.
       - { name: "pip" }
       - { name: "git" }
+      - { name: "ansible-lint" }
+      - { name: "sshpass" }
+      - { name: "libsecret-tools" }
       - { name: "ethtool" } # To enable Wake-on-Lan.
       - { name: "xrdp" } # To enable Microsoft Remote Connection.
       - { name: "traceroute" } # It helps debug network problems.
       - { name: "chrome-gnome-shell" } # To enable Microsoft Remote Connection multiple logins.
-      - { name: "ansible-lint" }
-      - { name: "sshpass" }
-      - { name: "libsecret-tools" }
       - { name: "google-chrome-stable" }
       - { name: "nikto" } # To run vulnerabilidade scans.
       - { name: "net-tools" }
