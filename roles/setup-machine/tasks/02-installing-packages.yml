@@ -30,7 +30,6 @@
       - { name: "nikto" } # To run vulnerabilidade scans.
       - { name: "net-tools" }
       - { name: "curl" }
-      - { name: "libsecret-tools" }
 
 - name: Installing pip packages
   import_tasks: "roles/common/tasks/packages/pip.yml"
