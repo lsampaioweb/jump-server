@@ -64,6 +64,11 @@
           name: "user.email",
           value: "{{ git_user_email | b64decode }}",
         }
+      - {
+          scope: "global",
+          name: "pull.rebase",
+          value: "false",
+        }
 
 - name: Setting up VSCode
   import_tasks: "roles/common/tasks/packages/vscode.yml"
