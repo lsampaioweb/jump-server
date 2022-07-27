@@ -4,6 +4,23 @@ The playbook can setup an Ubuntu Desktop 22.04.
 
 Run the command in the terminal:
 ```bash
+  01 - Install SSH.
+  sudo apt install openssh-server
+
+  02 - Install Git.
+  sudo apt install git
+
+  03 - Install Pip.
+  sudo apt install python3-pip
+
+  04 - Install Ansible.
+  sudo -i
+  python3 -m pip install ansible
+
+  05 - Download the repository.
+  git clone https://github.com/lsampaioweb/proxmox-ubuntu-jump-server.git
+
+  06 - Execute the playbook.
   ansible-playbook site.yml -K
 ```
 
