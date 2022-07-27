@@ -10,15 +10,15 @@ Run the command in the terminal:
   02 - Install Git.
   sudo apt install git
 
-  03 - Install Pip.
+  03 - Download the repository.
+  git clone https://github.com/lsampaioweb/proxmox-ubuntu-jump-server.git
+
+  04 - Install Pip.
   sudo apt install python3-pip
 
-  04 - Install Ansible.
+  05 - Install Ansible.
   sudo -i
   python3 -m pip install ansible
-
-  05 - Download the repository.
-  git clone https://github.com/lsampaioweb/proxmox-ubuntu-jump-server.git
 
   06 - Execute the playbook.
   ansible-playbook site.yml -K
