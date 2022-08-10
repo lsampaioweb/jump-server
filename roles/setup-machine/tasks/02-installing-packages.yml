@@ -45,6 +45,7 @@
       - { name: "code", classic: "yes" }
       - { name: "postman" }
       - { name: "packer" }
+      - { name: "terraform", classic: "yes" }
       # - { name: "docker" }
 
 - name: Setting up the XRDP package

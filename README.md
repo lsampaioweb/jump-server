@@ -1,5 +1,10 @@
 # Setup the Ubuntu Desktop 22.04 as a jump server for my HomeLab using Ansible
 
+Run the command in the terminal:
+```bash
+  ansible-playbook site.yml -K (--ask-become-pass)
+```
+
 The playbook can setup an Ubuntu Desktop 22.04.
 
 Run the command in the terminal:
@@ -7,14 +12,14 @@ Run the command in the terminal:
   01 - Install SSH.
   sudo apt install openssh-server
 
-  02 - Install Git.
+  02 - Install Pip.
+  sudo apt install python3-pip
+
+  03 - Install Git.
   sudo apt install git
 
-  03 - Download the repository.
+  04 - Download the repository.
   git clone https://github.com/lsampaioweb/proxmox-ubuntu-jump-server.git
-
-  04 - Install Pip.
-  sudo apt install python3-pip
 
   05 - Install Ansible.
   sudo -i
