@@ -16,3 +16,11 @@
     packages:
       - { name: "packer", update_cache: true }
       - { name: "terraform", update_cache: true }
+
+- name: Installing auto completition for Terraform
+  command: "terraform -install-autocomplete"
+  when: "apt_output.changed"
+  register: "terraform_output"
+  changed_when:
+    - "terraform_output.rc == 0"
+    - "'already installed' not in terraform_output.stdout"
