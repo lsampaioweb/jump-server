@@ -7,9 +7,6 @@
   apt:
     upgrade: "dist"
 
-- name: Adding Google Chrome signing key so it can be installed by apt-get
-  import_tasks: "roles/common/tasks/packages/google-chrome.yml"
-
 - name: Installing apt packages
   import_tasks: "roles/common/tasks/packages/apt.yml"
   vars:
@@ -17,17 +14,16 @@
       - { name: "sudo" } # To enable elevated command.
       - { name: "openssh-server" } # To enable SSH.
       - { name: "qemu-guest-agent" } # To enhance Proxmox integration with the VM.
+      - { name: "ethtool" } # To enable Wake-on-Lan.
+      - { name: "xrdp" } # To enable Microsoft Remote Connection.
+      - { name: "traceroute" } # It helps debug network problems.
+      - { name: "nikto" } # To run vulnerabilidade scans.
+      - { name: "chrome-gnome-shell" } # To enable Microsoft Remote Connection multiple logins.
       - { name: "pip" }
       - { name: "git" }
       - { name: "ansible-lint" }
       - { name: "sshpass" }
       - { name: "libsecret-tools" }
-      - { name: "ethtool" } # To enable Wake-on-Lan.
-      - { name: "xrdp" } # To enable Microsoft Remote Connection.
-      - { name: "traceroute" } # It helps debug network problems.
-      - { name: "chrome-gnome-shell" } # To enable Microsoft Remote Connection multiple logins.
-      - { name: "google-chrome-stable" }
-      - { name: "nikto" } # To run vulnerabilidade scans.
       - { name: "net-tools" }
       - { name: "curl" }
 
@@ -35,7 +31,7 @@
   import_tasks: "roles/common/tasks/packages/pip.yml"
   vars:
     packages:
-      - { name: "ansible" }      
+      - { name: "ansible" }
       - { name: "psutil" } # Required for the community.general.dconf module.
 
 - name: Installing snap packages
@@ -44,12 +40,18 @@
     packages:
       - { name: "code", classic: "yes" }
       - { name: "postman" }
-      - { name: "packer" }
-      - { name: "terraform", classic: "yes" }
-      # - { name: "docker" }
 
 - name: Setting up the XRDP package
   import_tasks: "roles/common/tasks/packages/xrdp.yml"
+
+- name: Setting up the Google packages
+  import_tasks: "roles/common/tasks/packages/google-chrome.yml"
+
+- name: Setting up VSCode application
+  import_tasks: "roles/common/tasks/packages/vscode.yml"
+
+- name: Setting up the HashiCorp packages
+  import_tasks: "roles/common/tasks/packages/hashicorp.yml"
 
 - name: Setting up the Git package
   import_tasks: "roles/common/tasks/packages/git.yml"
@@ -65,11 +67,8 @@
           name: "user.email",
           value: "{{ git_user_email | b64decode }}",
         }
-      - {
-          scope: "global",
-          name: "pull.rebase",
-          value: "false",
+      - { 
+          scope: "global", 
+          name: "pull.rebase", 
+          value: "false" 
         }
-
-- name: Setting up VSCode
-  import_tasks: "roles/common/tasks/packages/vscode.yml"

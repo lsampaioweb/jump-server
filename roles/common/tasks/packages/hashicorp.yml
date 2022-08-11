@@ -1,0 +1,18 @@
+---
+- name: Adding HashiCorp signing key
+  get_url:
+    url: "https://apt.releases.hashicorp.com/gpg"
+    dest: "/etc/apt/trusted.gpg.d/hashicorp.asc"
+
+- name: Adding repository into sources list
+  apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/hashicorp.asc]  https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    filename: "hashicorp"
+    state: "present"
+
+- name: Installing apt packages
+  import_tasks: "roles/common/tasks/packages/apt.yml"
+  vars:
+    packages:
+      - { name: "packer", update_cache: true }
+      - { name: "terraform", update_cache: true }

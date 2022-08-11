@@ -3,4 +3,5 @@
   apt:
     name: "{{ item.name }}"
     state: "{{ item.state | default(omit) }}"
+    update_cache: "{{ item.update_cache | default(omit) }}"
   loop: "{{ packages }}"
