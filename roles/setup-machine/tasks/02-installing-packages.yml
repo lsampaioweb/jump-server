@@ -72,3 +72,8 @@
           name: "pull.rebase", 
           value: "false" 
         }
+      - { 
+          scope: "global", 
+          name: "init.defaultBranch",
+          value: "main" 
+        }

@@ -19,7 +19,7 @@ Run the command in the terminal:
   sudo apt install git
 
   04 - Download the repository.
-  git clone https://github.com/lsampaioweb/proxmox-ubuntu-jump-server.git
+  git clone https://github.com/lsampaioweb/jump-server-ubuntu.git
 
   05 - Install Ansible.
   sudo -i
