@@ -17,10 +17,16 @@
       - { name: "packer", update_cache: true }
       - { name: "terraform", update_cache: true }
 
-- name: Installing auto completition for Terraform
-  command: "terraform -install-autocomplete"
+- name: Installing auto completition for the HashiCorp packages
+  become: false
+  command: "{{ item }}"
+  register: "autocomplete_output"
+  loop:
+    - "packer -autocomplete-install"
+    - "terraform -install-autocomplete"
   when: "apt_output.changed"
-  register: "terraform_output"
+  failed_when:
+    - "autocomplete_output.rc != 0"
+    - "'already installed' not in autocomplete_output.stderr"
   changed_when:
-    - "terraform_output.rc == 0"
-    - "'already installed' not in terraform_output.stdout"
+    - "autocomplete_output.rc == 0"
