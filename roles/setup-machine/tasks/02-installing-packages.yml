@@ -19,6 +19,7 @@
       - { name: "traceroute" } # It helps debug network problems.
       - { name: "nikto" } # To run vulnerabilidade scans.
       - { name: "chrome-gnome-shell" } # To enable Microsoft Remote Connection multiple logins.
+      - { name: "whois" } # To enable mkpasswd command.
       - { name: "pip" }
       - { name: "git" }
       - { name: "ansible-lint" }
