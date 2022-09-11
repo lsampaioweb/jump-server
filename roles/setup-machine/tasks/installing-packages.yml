@@ -1,14 +1,10 @@
 ---
-- name: Updating apt repository and cache
-  apt:
-    update_cache: yes
-
 - name: Upgrading full distro packages
   apt:
     upgrade: "dist"
 
-- name: Installing apt packages
-  import_tasks: "roles/common/tasks/packages/apt.yml"
+- name: Installing required packages
+  import_tasks: "roles/common/tasks/debian/packages/apt.yml"
   vars:
     packages:
       - { name: "sudo" } # To enable elevated command.
@@ -30,33 +26,33 @@
       - { name: "tree" }
 
 - name: Installing pip packages
-  import_tasks: "roles/common/tasks/packages/pip.yml"
+  import_tasks: "roles/common/tasks/debian/packages/pip.yml"
   vars:
     packages:
       - { name: "ansible" }
       - { name: "psutil" } # Required for the community.general.dconf module.
 
 - name: Installing snap packages
-  import_tasks: "roles/common/tasks/packages/snap.yml"
+  import_tasks: "roles/common/tasks/debian/packages/snap.yml"
   vars:
     packages:
       - { name: "code", classic: "yes" }
       - { name: "postman" }
 
 - name: Setting up the XRDP package
-  import_tasks: "roles/common/tasks/packages/xrdp.yml"
+  import_tasks: "roles/common/tasks/debian/packages/xrdp.yml"
 
 - name: Setting up the Google packages
-  import_tasks: "roles/common/tasks/packages/google-chrome.yml"
+  import_tasks: "roles/common/tasks/debian/packages/google-chrome.yml"
 
 - name: Setting up VSCode application
-  import_tasks: "roles/common/tasks/packages/vscode.yml"
+  import_tasks: "roles/common/tasks/debian/packages/vscode.yml"
 
 - name: Setting up the HashiCorp packages
-  import_tasks: "roles/common/tasks/packages/hashicorp.yml"
+  import_tasks: "roles/common/tasks/debian/packages/hashicorp.yml"
 
 - name: Setting up the Git package
-  import_tasks: "roles/common/tasks/packages/git.yml"
+  import_tasks: "roles/common/tasks/debian/packages/git.yml"
   vars:
     config:
       - {
@@ -69,13 +65,5 @@
           name: "user.email",
           value: "{{ git_user_email | b64decode }}",
         }
-      - { 
-          scope: "global", 
-          name: "pull.rebase", 
-          value: "false" 
-        }
-      - { 
-          scope: "global", 
-          name: "init.defaultBranch",
-          value: "main" 
-        }
+      - { scope: "global", name: "pull.rebase", value: "false" }
+      - { scope: "global", name: "init.defaultBranch", value: "main" }

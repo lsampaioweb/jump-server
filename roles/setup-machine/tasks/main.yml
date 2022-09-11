@@ -1,21 +1,21 @@
 ---
-- name: Disabling IPV6 on the server
-  import_tasks: 01-disable-ipv6.yml
+# - name: Disabling IPV6 on the server
+#   import_tasks: "roles/common/tasks/debian/network/ipv6-disable.yml"
 
-- name: Installing required packages
-  import_tasks: 02-installing-packages.yml
+# - name: Setting up Brazilian timezone
+#   import_tasks: "roles/common/tasks/debian/os/timezone.yml"
+
+# - name: Setting up Brazilian NTP Servers
+#   import_tasks: "roles/common/tasks/debian/os/ntp-servers.yml"
+
+# - name: Installing required packages
+#   import_tasks: installing-packages.yml
 
 - name: Removing unnecessary packages
-  import_tasks: 03-removing-packages.yml
+  import_tasks: removing-packages.yml
 
-- name: Setting up Brazilian timezone
-  import_tasks: 04-timezone.yml
+# - name: Adding the favorite applications in the Dock
+#   import_tasks: 06-adding-favorite-apps-to-dock.yml
 
-- name: Setting up Brazilian NTP Servers
-  import_tasks: 05-ntp-servers.yml
-
-- name: Adding the favorite applications in the Dock
-  import_tasks: 06-adding-favorite-apps-to-dock.yml
-
-- name: Setting the dark theme
-  import_tasks: 07-dark-theme.yml
+# - name: Setting the dark theme
+#   import_tasks: 07-dark-theme.yml

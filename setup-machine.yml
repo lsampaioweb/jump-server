@@ -1,5 +1,5 @@
 ---
-- name: Setting up the machine
+- name: Setting up the local machine
   hosts: "localhost"
   become: yes
 

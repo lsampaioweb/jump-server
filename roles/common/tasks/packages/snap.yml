@@ -1,8 +1,0 @@
----
-- name: Snap packages
-  snap:
-    name: "{{ item.name }}"
-    classic: "{{ item.classic | default(omit) }}"
-    channel: "{{ item.channel | default(omit) }}"
-    state: "{{ item.state | default(omit) }}"
-  loop: "{{ packages }}"

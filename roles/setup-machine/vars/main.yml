@@ -1,10 +1,10 @@
 ---
-# The git config for my user. String was encoded on base64 to avoid spammers.
-git_user_name: "THVjaWFubyBTYW1wYWlv"
-git_user_email: "bHNhbXBhaW93ZWJAZ21haWwuY29t"
-
 # All servers are located in Aracaju - Brazil. Maceio is the closest city.
 timezone: "America/Maceio"
 
 # Brazilian NTP Servers.
 ntp_servers: "0.br.pool.ntp.org 1.br.pool.ntp.org 2.br.pool.ntp.org 3.br.pool.ntp.org"
+
+# The git config for my user. String was encoded on base64 to avoid spammers.
+git_user_name: "THVjaWFubyBTYW1wYWlv"
+git_user_email: "bHNhbXBhaW93ZWJAZ21haWwuY29t"
