@@ -1,6 +1,6 @@
 ---
 - name: Removing snap applications
-  import_tasks: "roles/common/tasks/packages/snap.yml"
+  import_tasks: "roles/common/tasks/debian/packages/snap.yml"
   vars:
     packages:
       - { name: "firefox", state: "absent" }

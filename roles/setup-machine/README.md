@@ -14,16 +14,17 @@ Run the command in the terminal:
   1. Set the timezone to America/Maceio.
 
 ## 3. Setup Brazilian NTP Servers.
-  1. 0.br.pool.ntp.org 
-  2. 1.br.pool.ntp.org
+  1. 0.br.pool.ntp.org.
+  2. 1.br.pool.ntp.org.
   3. ...
 
 ## 4. Install required packages.
-  1. qemu-guest-agent
-  2. git
+  1. qemu-guest-agent.
+  2. git.
   3. ...
 
 ## 5. Remove unnecessary packages.
+  1. Firefox.
 
 ## 6. Add favorite applications in the Dock.
   1. Google Chrome.
