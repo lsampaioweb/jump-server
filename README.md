@@ -1,10 +1,5 @@
 # Setup the Ubuntu Desktop 22.04 as a jump server for my HomeLab using Ansible
 
-Run the command in the terminal:
-```bash
-  ansible-playbook site.yml -K (--ask-become-pass)
-```
-
 The playbook can setup an Ubuntu Desktop 22.04.
 
 Run the command in the terminal:
@@ -17,16 +12,19 @@ Run the command in the terminal:
 
   03 - Install Git.
   sudo apt install git
+  
+  04 - Create a Git folder and go to it.
+   mkdir Git && cd Git
 
-  04 - Download the repository.
-  git clone https://github.com/lsampaioweb/jump-server-ubuntu.git
+  05 - Download the repository.
+  git clone https://github.com/lsampaioweb/jump-server.git
 
-  05 - Install Ansible.
+  06 - Install Ansible.
   sudo -i
   python3 -m pip install ansible
 
-  06 - Execute the playbook.
-  ansible-playbook site.yml -K
+  07 - Execute the playbook.
+  ansible-playbook site.yml -K (--ask-become-pass)
 ```
 
 # Roles you can execute:
