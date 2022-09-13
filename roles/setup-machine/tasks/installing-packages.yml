@@ -18,7 +18,6 @@
       - {name: "whois"} # To enable mkpasswd command.
       - {name: "pip"}
       - {name: "git"}
-      - {name: "ansible-lint"}
       - {name: "sshpass"}
       - {name: "libsecret-tools"}
       - {name: "net-tools"}
@@ -30,6 +29,7 @@
   vars:
     packages:
       - {name: "ansible"}
+      - {name: "ansible-lint"}
       - {name: "psutil"} # Required for the community.general.dconf module.
 
 - name: Installing snap packages
