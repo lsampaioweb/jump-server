@@ -1,6 +1,6 @@
 ---
 - name: Creating the list of favorite applications
-  set_fact:
+  ansible.builtin.set_fact:
     favorite_applications:
       - 'org.gnome.Nautilus.desktop'
       - 'google-chrome.desktop'

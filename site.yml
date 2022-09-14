@@ -1,2 +1,2 @@
 ---
-- import_playbook: "setup-machine.yml"
+- import_playbook: "setup_machine.yml"

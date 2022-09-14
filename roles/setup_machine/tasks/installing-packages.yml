@@ -1,6 +1,6 @@
 ---
 - name: Upgrading full distro packages
-  apt:
+  ansible.builtin.apt:
     upgrade: "dist"
 
 - name: Installing required packages
