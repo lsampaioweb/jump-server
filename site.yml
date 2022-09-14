@@ -1,2 +1,3 @@
 ---
-- import_playbook: "setup_machine.yml"
+- name: Run the setup machine role
+  import_playbook: "setup_machine.yml"
