@@ -68,16 +68,19 @@ The playbook can setup an Ubuntu Desktop 22.04.
   exit
 
   07 - Change your git config
+  # Encode your name and email, in order to avoid spammers, encode them in base64.
+  echo "your-name" | base64
+  echo "your-email@something.com" | base64
+
+  # Add the base64 values here.
   nano roles/setup_machine/vars/main.yml
-  # These are my name and email address.
-  # You can use 'https://www.base64encode.org/' to encode your information.
   git_user_name: "change here"
   git_user_email: "change here"
 
   08 - Execute the playbook.
   cd jump-server
-  # -K or --ask-become-pass will ask your sudo password.
   ansible-playbook site.yml -K
+  # -K or --ask-become-pass will ask your sudo password.
 ```
 
 # Roles you can execute:
