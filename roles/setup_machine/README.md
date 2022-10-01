@@ -18,20 +18,23 @@ Run the command in the terminal:
   2. 1.br.pool.ntp.org.
   3. ...
 
-## 4. Install required packages.
+## 4. Create the unlock-keyring function.
+  1. Unlock the secret manager.
+
+## 5. Install required packages.
   1. qemu-guest-agent.
   2. git.
   3. ...
 
-## 5. Remove unnecessary packages.
+## 6. Remove unnecessary packages.
   1. Firefox.
 
-## 6. Add favorite applications in the Dock.
+## 7. Add favorite applications in the Dock.
   1. Google Chrome.
   2. VSCode.
   3. ...
 
-## 7. Set the dark theme.
+## 8. Set the dark theme.
   1. Set the color-scheme to 'prefer-dark'.
 
 # Created by: 

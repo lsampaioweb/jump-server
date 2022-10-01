@@ -1,0 +1,8 @@
+---
+- name: Copying the unlock-keyring function to the .bashrc file
+  become: false
+  ansible.builtin.blockinfile:
+    path: "~/.bashrc"
+    marker: "# {mark} Linux unlock gnome keyring"
+    block: "{{ lookup('file', 'keyring') }}"
+  register: "output"

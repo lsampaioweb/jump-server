@@ -8,6 +8,9 @@
 - name: Setting up Brazilian NTP Servers
   import_tasks: "roles/common/tasks/debian/os/ntp-servers.yml"
 
+- name: Copying the unlock-keyring function
+  import_tasks: "unlock-keyring.yml"
+
 - name: Installing required packages
   import_tasks: "installing-packages.yml"
 
