@@ -47,27 +47,37 @@ The playbook can setup an Ubuntu Desktop 22.04.
 3. Run these commands in the terminal of the VM:
 ```bash
   01 - Install SSH.
+  sudo apt update
   sudo apt install openssh-server
 
   02 - Install Pip.
   sudo apt install python3-pip
 
   03 - Install Git.
-  sudo apt install git
+  sudo apt install git -y
   
   04 - Create a Git folder and go to it.
-   mkdir git && cd git
+  mkdir git && cd git
 
   05 - Download the repository.
-  git clone --recurse-submodules https://github.com/lsampaioweb/homelab-datacenter.git
+  git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git
 
   06 - Install Ansible.
   sudo -i
   python3 -m pip install ansible
+  exit
 
-  07 - Execute the playbook.
-  cd 01-Jump-Server
-  ansible-playbook site.yml -K #(--ask-become-pass)
+  07 - Change your git config
+  nano roles/setup_machine/vars/main.yml
+  # These are my name and email address.
+  # You can use 'https://www.base64encode.org/' to encode your information.
+  git_user_name: "change here"
+  git_user_email: "change here"
+
+  08 - Execute the playbook.
+  cd jump-server
+  # -K or --ask-become-pass will ask your sudo password.
+  ansible-playbook site.yml -K
 ```
 
 # Roles you can execute:
