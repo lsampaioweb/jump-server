@@ -63,9 +63,7 @@ The playbook can setup an Ubuntu Desktop 22.04.
   git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git
 
   06 - Install Ansible.
-  sudo -i
   python3 -m pip install ansible
-  exit
 
   07 - Change your git config
   # Encode your name and email, in order to avoid spammers, encode them in base64.
