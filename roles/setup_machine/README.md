@@ -8,7 +8,7 @@ Run the command in the terminal:
 # Tasks:
 
 ## 1. Disable IPV6.
-  1. Set GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1".
+  1. Set GRUB_CMDLINE_LINUX="ipv6.disable=1".
 
 ## 2. Setup Brazilian timezone.
   1. Set the timezone to America/Maceio.
