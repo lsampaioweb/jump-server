@@ -1,5 +1,5 @@
 ---
-- name: Copying the unlock-keyring function to the .bashrc file
+- name: "Copying the unlock-keyring function to the .bashrc file"
   become: false
   ansible.builtin.blockinfile:
     path: "~/.bashrc"

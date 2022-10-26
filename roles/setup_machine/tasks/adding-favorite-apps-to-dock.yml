@@ -1,5 +1,5 @@
 ---
-- name: Creating the list of favorite applications
+- name: "Creating the list of favorite applications"
   ansible.builtin.set_fact:
     favorite_applications:
       - 'org.gnome.Nautilus.desktop'
@@ -11,7 +11,7 @@
       - 'gnome-control-center.desktop'
       - 'org.gnome.seahorse.Application.desktop'
 
-- name: Adding the favorite applications in the Dock
+- name: "Adding the favorite applications in the Dock"
   become: false
   community.general.dconf:
     key: "/org/gnome/shell/favorite-apps"

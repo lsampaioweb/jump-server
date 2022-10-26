@@ -1,24 +1,24 @@
 ---
-- name: Disabling IPV6 on the server
+- name: "Disabling IPV6 on the server"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/network/ipv6-disable.yml"
 
-- name: Setting up Brazilian timezone
+- name: "Setting up Brazilian timezone"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/os/timezone.yml"
 
-- name: Setting up Brazilian NTP Servers
+- name: "Setting up Brazilian NTP Servers"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/os/ntp-servers.yml"
 
-- name: Copying the unlock-keyring function
+- name: "Copying the unlock-keyring function"
   ansible.builtin.import_tasks: "unlock-keyring.yml"
 
-- name: Installing required packages
+- name: "Installing required packages"
   ansible.builtin.import_tasks: "installing-packages.yml"
 
-- name: Removing unnecessary packages
+- name: "Removing unnecessary packages"
   ansible.builtin.import_tasks: "removing-packages.yml"
 
-- name: Adding the favorite applications in the Dock
+- name: "Adding the favorite applications in the Dock"
   ansible.builtin.import_tasks: "adding-favorite-apps-to-dock.yml"
 
-- name: Setting the dark theme
+- name: "Setting the dark theme"
   ansible.builtin.import_tasks: "dark-theme.yml"

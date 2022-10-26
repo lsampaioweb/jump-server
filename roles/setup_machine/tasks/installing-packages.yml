@@ -1,10 +1,10 @@
 ---
-- name: Upgrading full distro packages
+- name: "Upgrading full distro packages"
   ansible.builtin.apt:
     update_cache: true
     upgrade: "dist"
 
-- name: Installing required packages
+- name: "Installing required packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/apt.yml"
   vars:
     packages:
@@ -26,7 +26,7 @@
       - {name: "curl"}
       - {name: "tree"}
 
-- name: Installing pip packages
+- name: "Installing pip packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/pip.yml"
   vars:
     packages:
@@ -34,26 +34,26 @@
       - {name: "ansible-lint"}
       - {name: "psutil"} # Required for the community.general.dconf module.
 
-- name: Installing snap packages
+- name: "Installing snap packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/snap.yml"
   vars:
     packages:
       - {name: "code", classic: "yes"}
       - {name: "postman"}
 
-- name: Setting up the XRDP package
+- name: "Setting up the XRDP package"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/xrdp.yml"
 
-- name: Setting up the Google packages
+- name: "Setting up the Google packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/google-chrome.yml"
 
-- name: Setting up VSCode application
+- name: "Setting up VSCode application"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/vscode.yml"
 
-- name: Setting up the HashiCorp packages
+- name: "Setting up the HashiCorp packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/hashicorp.yml"
 
-- name: Setting up the Git package
+- name: "Setting up the Git package"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/git.yml"
   vars:
     config:
