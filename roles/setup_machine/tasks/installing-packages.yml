@@ -17,6 +17,7 @@
       - {name: "nikto"} # To run vulnerabilidade scans.
       - {name: "chrome-gnome-shell"} # To enable Microsoft Remote Connection multiple logins.
       - {name: "whois"} # To enable mkpasswd command.
+      - {name: "xclip"} # Copy to clipboard.
       - {name: "python-is-python3"}
       - {name: "pip"}
       - {name: "git"}
@@ -52,6 +53,9 @@
 
 - name: "Setting up the HashiCorp packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/hashicorp.yml"
+
+- name: "Setting up the xclip (clipboard) packages"
+  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/xclip.yml"
 
 - name: "Setting up the Git package"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/git.yml"
