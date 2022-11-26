@@ -3,4 +3,9 @@ function unlock-keyring ()
   read -rsp "Password: " pass
   export $(echo -n "$pass" | gnome-keyring-daemon --replace --unlock)
   unset pass
+
+  # Packer.
+  export PKR_VAR_PROXMOX_PACKER_TOKEN=$(secret-tool lookup token "proxmox-packer-token")
+  # Terraform.
+  export PM_API_TOKEN_SECRET=$(secret-tool lookup token "proxmox-terraform-token")
 }
