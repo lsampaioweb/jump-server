@@ -47,38 +47,54 @@ The playbook can setup an Ubuntu Desktop 22.04.
 3. Run these commands in the terminal of the VM:
 ```bash
   01 - Install SSH.
-  sudo apt update
-  sudo apt install openssh-server
+    sudo apt update
+    sudo apt install openssh-server
 
   02 - Install Pip.
-  sudo apt install python3-pip
+    sudo apt install python3-pip
 
   03 - Install Git.
-  sudo apt install git -y
+    sudo apt install git -y
   
   04 - Create a Git folder and go to it.
-  mkdir git && cd git
+    mkdir git && cd git
 
   05 - Download the repository.
-  git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git
+    git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git
 
   06 - Install Ansible.
-  python3 -m pip install ansible
+    python3 -m pip install ansible
 
   07 - Change your git config
-  # Encode your name and email, in order to avoid spammers, encode them in base64.
-  echo "your-name" | base64
-  echo "your-email@something.com" | base64
+    # Encode your name and email, in order to avoid spammers, encode them in base64.
+    echo "your-name" | base64
+    echo "your-email@something.com" | base64
 
-  # Add the base64 values here.
-  nano roles/setup_machine/vars/main.yml
-  git_user_name: "change here"
-  git_user_email: "change here"
+    # Add the base64 values here.
+    nano roles/setup_machine/vars/main.yml
+    git_user_name: "change here"
+    git_user_email: "change here"
 
-  08 - Execute the playbook.
-  cd jump-server
-  ansible-playbook site.yml -K
-  # -K or --ask-become-pass will ask your sudo password.
+  08 - Add the API token of the user to the ~/.bashrc file.
+    nano ~/.bashrc
+    # Function to unlock gnome keyring for headless logins.
+    function unlock-keyring ()
+    {
+      read -rsp "Type your password: " pass
+      export $(echo -n "$pass" | gnome-keyring-daemon --replace --unlock --daemonize)
+      unset pass
+    }
+
+  09 - Run the unlock-keyring command on the terminal to unlock the secret - manager.
+    source ~/.bashrc  
+    unlock-keyring
+
+  10 - Save your password in the secret manager.
+    secret-tool store --label="local-user-password" password local-user-password
+
+  11 - Execute the playbook.
+    cd jump-server
+    ansible-playbook site.yml
 ```
 
 # Roles you can execute:
