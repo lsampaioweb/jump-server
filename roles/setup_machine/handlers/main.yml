@@ -1,0 +1,3 @@
+---
+- name: "Start gnome-keyring-daemon"
+  ansible.builtin.command: "gnome-keyring-daemon --start --components=secrets"

@@ -26,6 +26,7 @@
       - {name: "net-tools"}
       - {name: "curl"}
       - {name: "tree"}
+      - {name: "gnome-keyring"}
 
 - name: "Installing pip packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/pip.yml"

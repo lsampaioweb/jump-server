@@ -1,11 +1,9 @@
-function unlock-keyring ()
-{
-  read -rsp "Password: " pass
-  export $(echo -n "$pass" | gnome-keyring-daemon --replace --unlock --daemonize)
-  unset pass
+if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+  exec dbus-run-session -- $SHELL
+fi
 
-}
 # Packer.
 export PKR_VAR_PROXMOX_PACKER_TOKEN=$(secret-tool lookup token "proxmox-packer-token")
+
 # Terraform.
 export PM_API_TOKEN_SECRET=$(secret-tool lookup token "proxmox-terraform-token")

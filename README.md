@@ -75,24 +75,10 @@ The playbook can setup an Ubuntu Desktop 22.04.
     git_user_name: "change here"
     git_user_email: "change here"
 
-  08 - Add the API token of the user to the ~/.bashrc file.
-    nano ~/.bashrc
-    # Function to unlock gnome keyring for headless logins.
-    function unlock-keyring ()
-    {
-      read -rsp "Type your password: " pass
-      export $(echo -n "$pass" | gnome-keyring-daemon --replace --unlock --daemonize)
-      unset pass
-    }
-
-  09 - Run the unlock-keyring command on the terminal to unlock the secret - manager.
-    source ~/.bashrc  
-    unlock-keyring
-
-  10 - Save your password in the secret manager.
+  08 - Save your password in the secret manager.
     secret-tool store --label="local-user-password" password local-user-password
 
-  11 - Execute the playbook.
+  09 - Execute the playbook.
     cd jump-server
     ansible-playbook site.yml
 ```

@@ -1,8 +1,21 @@
 ---
+- name: "Adding the PAM config for the automatic unlock of the secret manager"
+  ansible.builtin.lineinfile:
+    path: "/etc/pam.d/sshd"
+    regexp: "{{ item.value }}"
+    line: "{{ item.value }}\n"
+    insertbefore: "{{ item.before }}"
+    firstmatch: true
+    state: "present"
+  loop:
+    - {value: "auth optional pam_gnome_keyring.so", before: 'authorization.$'}
+    - {value: "session optional pam_gnome_keyring.so auto_start", before: 'password updating.$'}
+  notify: "Start gnome-keyring-daemon"
+
 - name: "Copying the unlock-keyring function to the .bashrc file"
   become: false
   ansible.builtin.blockinfile:
     path: "~/.bashrc"
     marker: "# {mark} Linux unlock gnome keyring"
     block: "{{ lookup('file', 'keyring') }}"
-  register: "output"
+  notify: "Refresh ~/.bashrc"
