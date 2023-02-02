@@ -1,12 +1,9 @@
 ---
-- name: "Upgrading the packages"
-  ansible.builtin.apt:
-    update_cache: true
-    upgrade: "safe"
-
 - name: "Installing required packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/apt.yml"
   vars:
+    update_cache: true
+    upgrade: "safe"
     packages:
       - {name: "sudo"} # To enable elevated command.
       - {name: "openssh-server"} # To enable SSH.
