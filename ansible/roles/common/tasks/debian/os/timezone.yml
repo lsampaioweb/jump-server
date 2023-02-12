@@ -1,6 +1,0 @@
----
-- name: "Setting timezone to {{ timezone }}"
-  community.general.timezone:
-    name: "{{ timezone }}"
-  register: "output"
-  notify: "Reconfigure Timezone"
