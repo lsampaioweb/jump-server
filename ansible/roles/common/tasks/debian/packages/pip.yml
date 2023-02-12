@@ -1,0 +1,12 @@
+---
+- name: "Ensure the pip package is installed"
+  ansible.builtin.pip:
+    name: "pip"
+    state: "present"
+
+- name: "Python packages"
+  ansible.builtin.pip:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default(omit) }}"
+  loop: "{{ packages }}"
+  register: "output"

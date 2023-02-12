@@ -1,3 +1,3 @@
-[submodule "roles/common"]
-	path = roles/common
+[submodule "ansible/roles/common"]
+	path = ansible/roles/common
 	url = https://github.com/lsampaioweb/ansible-common-tasks.git

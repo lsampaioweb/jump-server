@@ -1,0 +1,7 @@
+---
+- name: "Preparing the virtual machine with some settings"
+  hosts: "all"
+  become: true
+
+  roles:
+    - "destroy"
