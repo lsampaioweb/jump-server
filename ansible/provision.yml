@@ -1,7 +1,6 @@
 ---
-- name: "Preparing the virtual machine with some settings"
-  hosts: "all"
-  become: true
+- name: Run the prepare machine globally role
+  ansible.builtin.import_playbook: "setup_global.yml"
 
-  roles:
-    - "provision"
+- name: Run the prepare machine to the specific user role
+  ansible.builtin.import_playbook: "setup_user.yml"

@@ -1,0 +1,52 @@
+---
+- name: "Trying to retrieve the password of '{{ user_password_id }}' in order to verify if already exists"
+  run_once: true
+  delegate_to: "{{ groups['ControlMachine'] | first }}"
+  ansible.builtin.import_tasks: "roles/common/tasks/debian/passwords/get.yml"
+  vars:
+    password_id: "{{ user_password_id }}"
+  no_log: true
+
+- name: "Creating a random password with {{ user_password_size }} characters if the password does not exist"
+  run_once: true
+  delegate_to: "{{ groups['ControlMachine'] | first }}"
+  ansible.builtin.set_fact:
+    user_password: "{{ (saved_password != '') | ternary(saved_password, new_password) }}"
+  vars:
+    size: "{{ user_password_size | string }}"
+    cut_size: "{{ (user_password_size + 1) | string }}"
+
+    saved_password: "{{ (output.rc == 1) | ternary('', output.stdout) }}"
+    new_password: "{{ lookup('pipe', 'openssl rand -base64 ' + size + ' | tr -d =+/ | colrm ' + cut_size) }}"
+  no_log: true
+
+- name: "Creating the user account"
+  ansible.builtin.user:
+    name: "{{ user_password_id }}"
+    comment: "Luciano Sampaio"
+    password: "{{ user_password | password_hash('sha512') }}"
+    update_password: "on_create"
+    shell: "/bin/bash"
+    groups:
+      - "sudo"
+    state: "present"
+  register: "creating_user_output"
+
+- name: "Saving the password in the secret manager"
+  run_once: true
+  delegate_to: "{{ groups['ControlMachine'] | first }}"
+  ansible.builtin.import_tasks: "roles/common/tasks/debian/passwords/add.yml"
+  vars:
+    password_id: "{{ user_password_id }}"
+    password: "{{ user_password }}"
+  when: creating_user_output.changed and not creating_user_output.failed
+  no_log: true
+
+- name: Allowing the user to run any commands with sudo without the need to type its password
+  community.general.sudoers:
+    name: "{{ user_password_id }}"
+    user: "{{ user_password_id }}"
+    runas: "ALL"
+    commands: "ALL"
+    nopassword: true
+    state: "present"

@@ -1,0 +1,10 @@
+---
+# Import Paths.
+path_roles_common: "roles/common"
+path_common_tasks: "{{ path_roles_common }}/tasks"
+path_tasks_debian: "{{ path_common_tasks }}/debian"
+
+# Passwords.
+path_debian_passwords: "{{ path_tasks_debian }}/passwords"
+path_debian_passwords_add: "{{ path_debian_passwords }}/add.yml"
+path_debian_passwords_get: "{{ path_debian_passwords }}/get.yml"

@@ -1,16 +1,4 @@
 ---
-- name: "Changing the hostname"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/os/hostname.yml"
-
-- name: "Disabling IPV6 on the server"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/network/ipv6-disable.yml"
-
-- name: "Setting up Brazilian timezone"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/os/timezone.yml"
-
-- name: "Setting up Brazilian NTP Servers"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/os/ntp-servers.yml"
-
 - name: "Copying the unlock-keyring function"
   ansible.builtin.import_tasks: "unlock-keyring.yml"
 
@@ -25,3 +13,7 @@
 
 - name: "Setting the dark theme"
   ansible.builtin.import_tasks: "dark-theme.yml"
+
+- name: "Cloning the default git repositories"
+  become: false
+  ansible.builtin.import_tasks: "clone-git-repositories.yml"

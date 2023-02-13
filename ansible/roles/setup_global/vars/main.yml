@@ -1,0 +1,21 @@
+---
+# The name of the root user used in VM.
+ansible_user: "usr_ansible"
+
+# The id of the password saved in the secret manager.
+root_password_id: "{{ password_id }}"
+
+# The password of the root user used in VM.
+ansible_password: "{{ lookup('pipe', 'secret-tool lookup password ' + root_password_id) }}"
+
+# The id of the password saved in the secret manager for my user.
+user_password_id: "lsampaio"
+
+# The size of the password that will be created.
+user_password_size: 30
+
+# All servers are located in Aracaju - Brazil. Maceio is the closest city.
+timezone: "America/Maceio"
+
+# Brazilian NTP Servers.
+ntp_servers: "0.br.pool.ntp.org 1.br.pool.ntp.org 2.br.pool.ntp.org 3.br.pool.ntp.org"

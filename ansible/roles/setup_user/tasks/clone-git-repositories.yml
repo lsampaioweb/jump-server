@@ -1,0 +1,47 @@
+---
+- name: "Ensure all the git directories exists"
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: "directory"
+    mode: "0744"
+  loop:
+    - {path: "{{ git_path }}"}
+    - {path: "{{ datacenter_path }}"}
+    - {path: "{{ ansible_path }}"}
+    - {path: "{{ packer_path }}"}
+    - {path: "{{ project_path }}"}
+    - {path: "{{ terraform_path }}"}
+
+- name: "Cloning my git repositories"
+  ansible.builtin.git:
+    repo: "https://github.com/lsampaioweb/{{ item.repo }}.git"
+    dest: "{{ item.dest }}"
+    clone: true
+    update: true
+  loop:
+    - {repo: "homelab-datacenter", dest: "{{ git_path }}/homelab-datacenter"}
+    - {repo: "git-template-repository", dest: "{{ git_path }}/git-template-repository"}
+    # Ansible
+    - {repo: "ansible-common-tasks", dest: "{{ ansible_path }}/ansible-common-tasks"}
+    # Packer
+    - {repo: "packer-proxmox-ubuntu-22-04-clone", dest: "{{ packer_path }}/packer-proxmox-ubuntu-22-04-clone"}
+    - {repo: "packer-proxmox-ubuntu-22-04-iso", dest: "{{ packer_path }}/packer-proxmox-ubuntu-22-04-iso"}
+    - {repo: "proxmox-ubuntu-22-04-desktop-raw", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-desktop-raw"}
+    - {repo: "proxmox-ubuntu-22-04-desktop-standard", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-desktop-standard"}
+    - {repo: "proxmox-ubuntu-22-04-server-raw", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-raw"}
+    - {repo: "proxmox-ubuntu-22-04-server-standard", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-standard"}
+    - {repo: "proxmox-ubuntu-22-04-server-std-docker", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-std-docker"}
+    # Projects
+    - {repo: "dns", dest: "{{ project_path }}/dns"}
+    - {repo: "firewall", dest: "{{ project_path }}/firewall"}
+    - {repo: "jump-server", dest: "{{ project_path }}/jump-server"}
+    - {repo: "load-balancer", dest: "{{ project_path }}/load-balancer"}
+    - {repo: "openssl-certificates", dest: "{{ project_path }}/openssl-certificates"}
+    - {repo: "proxmox-cluster", dest: "{{ project_path }}/proxmox-cluster"}
+    - {repo: "T1600G-28TS-SG2424", dest: "{{ project_path }}/T1600G-28TS-SG2424"}
+    - {repo: "tplink_router_ax1800", dest: "{{ project_path }}/tplink_router_ax1800"}
+    # Terraform
+    - {repo: "terraform-local-dynamic-inventory", dest: "{{ terraform_path }}/terraform-local-dynamic-inventory"}
+    - {repo: "terraform-proxmox-homelab-project", dest: "{{ terraform_path }}/terraform-proxmox-homelab-project"}
+    - {repo: "terraform-proxmox-vm-module", dest: "{{ terraform_path }}/terraform-proxmox-vm-module"}
+    - {repo: "terraform-random-target-node", dest: "{{ terraform_path }}/terraform-random-target-node"}
