@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": "homelab-datacenter"
+    },
+    {
+      "path": "datacenter"
+    },
+    {
+      "path": "git-template-repository"
+    }
+  ],
+  "settings": {}
+}

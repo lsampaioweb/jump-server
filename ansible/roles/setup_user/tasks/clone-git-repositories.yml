@@ -45,3 +45,9 @@
     - {repo: "terraform-proxmox-homelab-project", dest: "{{ terraform_path }}/terraform-proxmox-homelab-project"}
     - {repo: "terraform-proxmox-vm-module", dest: "{{ terraform_path }}/terraform-proxmox-vm-module"}
     - {repo: "terraform-random-target-node", dest: "{{ terraform_path }}/terraform-random-target-node"}
+
+- name: "Copying homelab VSCode workspace file to the target host"
+  ansible.builtin.copy:
+    src: "Homelab.code-workspace"
+    dest: "{{ git_path }}/"
+    mode: "664"
