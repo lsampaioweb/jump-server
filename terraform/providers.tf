@@ -6,11 +6,11 @@ terraform {
     }
     proxmox = {
       source  = "Telmate/proxmox"
-      version = "2.9.11"
+      version = "2.9.13"
     }
     local = {
       source  = "hashicorp/local"
-      version = "2.2.3"
+      version = "2.3.0"
     }
   }
 }
