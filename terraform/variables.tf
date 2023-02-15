@@ -70,7 +70,7 @@ variable "vm_instance" {
       size      = optional(string)
       format    = optional(string)
       cache     = optional(string)
-      backup    = optional(number)
+      backup    = optional(bool)
       iothread  = optional(number)
       replicate = optional(number)
       ssd       = optional(number)
