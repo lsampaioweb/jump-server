@@ -1,4 +1,4 @@
-project     = "JumpServer"
+project     = "Jump-Server"
 environment = "Production"
 
 vm_instance = {
