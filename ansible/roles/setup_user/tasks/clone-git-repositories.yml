@@ -36,6 +36,7 @@
     - {repo: "firewall", dest: "{{ project_path }}/firewall"}
     - {repo: "jump-server", dest: "{{ project_path }}/jump-server"}
     - {repo: "load-balancer", dest: "{{ project_path }}/load-balancer"}
+    - {repo: "ntp", dest: "{{ project_path }}/ntp"}
     - {repo: "openssl-certificates", dest: "{{ project_path }}/openssl-certificates"}
     - {repo: "proxmox-cluster", dest: "{{ project_path }}/proxmox-cluster"}
     - {repo: "T1600G-28TS-SG2424", dest: "{{ project_path }}/T1600G-28TS-SG2424"}
