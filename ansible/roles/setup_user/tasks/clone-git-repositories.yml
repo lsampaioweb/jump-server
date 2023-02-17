@@ -32,6 +32,7 @@
     - {repo: "proxmox-ubuntu-22-04-server-standard", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-standard"}
     - {repo: "proxmox-ubuntu-22-04-server-std-docker", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-std-docker"}
     # Projects
+    - {repo: "dhcp", dest: "{{ project_path }}/dhcp"}
     - {repo: "dns", dest: "{{ project_path }}/dns"}
     - {repo: "firewall", dest: "{{ project_path }}/firewall"}
     - {repo: "jump-server", dest: "{{ project_path }}/jump-server"}
