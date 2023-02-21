@@ -76,7 +76,7 @@ The playbook can setup an Ubuntu Desktop 22.04.
     git_user_email: "change here"
 
   08 - Save your password in the secret manager.
-    secret-tool store --label="local-user-password" password local-user-password
+    secret-tool store --label="local_user_password" password local_user_password
 
   09 - Execute the playbook.
     ansible-playbook provision.yml
