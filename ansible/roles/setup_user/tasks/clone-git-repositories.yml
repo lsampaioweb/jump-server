@@ -3,13 +3,13 @@
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: "directory"
-    mode: "0744"
+    mode: "0755"
   loop:
     - {path: "{{ git_path }}"}
     - {path: "{{ datacenter_path }}"}
     - {path: "{{ ansible_path }}"}
     - {path: "{{ packer_path }}"}
-    - {path: "{{ project_path }}"}
+    - {path: "{{ projects_path }}"}
     - {path: "{{ terraform_path }}"}
 
 - name: "Cloning my git repositories"
@@ -32,20 +32,20 @@
     - {repo: "proxmox-ubuntu-22-04-server-standard", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-standard"}
     - {repo: "proxmox-ubuntu-22-04-server-std-docker", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-std-docker"}
     # Projects
-    - {repo: "dhcp", dest: "{{ project_path }}/dhcp"}
-    - {repo: "dns", dest: "{{ project_path }}/dns"}
-    - {repo: "firewall", dest: "{{ project_path }}/firewall"}
-    - {repo: "jump-server", dest: "{{ project_path }}/jump-server"}
-    - {repo: "load-balancer", dest: "{{ project_path }}/load-balancer"}
-    - {repo: "ntp", dest: "{{ project_path }}/ntp"}
-    - {repo: "openssl-certificates", dest: "{{ project_path }}/openssl-certificates"}
-    - {repo: "proxmox-cluster", dest: "{{ project_path }}/proxmox-cluster"}
-    - {repo: "T1600G-28TS-SG2424", dest: "{{ project_path }}/T1600G-28TS-SG2424"}
-    - {repo: "tplink_router_ax1800", dest: "{{ project_path }}/tplink_router_ax1800"}
+    - {repo: "dhcp", dest: "{{ projects_path }}/dhcp"}
+    - {repo: "dns", dest: "{{ projects_path }}/dns"}
+    - {repo: "firewall", dest: "{{ projects_path }}/firewall"}
+    - {repo: "jump-server", dest: "{{ projects_path }}/jump-server"}
+    - {repo: "load-balancer", dest: "{{ projects_path }}/load-balancer"}
+    - {repo: "ntp", dest: "{{ projects_path }}/ntp"}
+    - {repo: "openssl-certificates", dest: "{{ projects_path }}/openssl-certificates"}
+    - {repo: "proxmox-cluster", dest: "{{ projects_path }}/proxmox-cluster"}
+    - {repo: "T1600G-28TS-SG2424", dest: "{{ projects_path }}/T1600G-28TS-SG2424"}
+    - {repo: "tplink_router_ax1800", dest: "{{ projects_path }}/tplink_router_ax1800"}
     # Terraform
     - {repo: "terraform-local-dynamic-inventory", dest: "{{ terraform_path }}/terraform-local-dynamic-inventory"}
     - {repo: "terraform-proxmox-homelab-project", dest: "{{ terraform_path }}/terraform-proxmox-homelab-project"}
-    - {repo: "terraform-proxmox-vm-module", dest: "{{ terraform_path }}/terraform-proxmox-vm-module"}
+    - {repo: "terraform-proxmox-vm-qemu", dest: "{{ terraform_path }}/terraform-proxmox-vm-qemu"}
     - {repo: "terraform-random-target-node", dest: "{{ terraform_path }}/terraform-random-target-node"}
 
 - name: "Copying homelab VSCode workspace file to the target host"
