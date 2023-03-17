@@ -27,6 +27,7 @@
     # Packer
     - {repo: "packer-proxmox-ubuntu-22-04-clone", dest: "{{ packer_path }}/packer-proxmox-ubuntu-22-04-clone"}
     - {repo: "packer-proxmox-ubuntu-22-04-iso", dest: "{{ packer_path }}/packer-proxmox-ubuntu-22-04-iso"}
+    - {repo: "proxmox-pfsense-CE", dest: "{{ packer_path }}/proxmox-pfsense-CE"}
     - {repo: "proxmox-ubuntu-22-04-desktop-raw", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-desktop-raw"}
     - {repo: "proxmox-ubuntu-22-04-desktop-standard", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-desktop-standard"}
     - {repo: "proxmox-ubuntu-22-04-server-raw", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-raw"}
