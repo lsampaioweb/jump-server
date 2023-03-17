@@ -23,6 +23,7 @@
     - {repo: "git-template-repository", dest: "{{ git_path }}/git-template-repository"}
     # Ansible
     - {repo: "ansible-common-tasks", dest: "{{ ansible_path }}/ansible-common-tasks"}
+    - {repo: "ansible-kvm-cloud-init", dest: "{{ ansible_path }}/ansible-kvm-cloud-init"}
     # Packer
     - {repo: "packer-proxmox-ubuntu-22-04-clone", dest: "{{ packer_path }}/packer-proxmox-ubuntu-22-04-clone"}
     - {repo: "packer-proxmox-ubuntu-22-04-iso", dest: "{{ packer_path }}/packer-proxmox-ubuntu-22-04-iso"}
