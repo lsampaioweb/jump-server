@@ -18,6 +18,8 @@
     dest: "{{ item.dest }}"
     clone: true
     update: true
+  register: "output"
+  failed_when: (output.msg is defined) and 'Local modifications exist' not in output.msg
   loop:
     - {repo: "homelab-datacenter", dest: "{{ git_path }}/homelab-datacenter"}
     - {repo: "git-template-repository", dest: "{{ git_path }}/git-template-repository"}
