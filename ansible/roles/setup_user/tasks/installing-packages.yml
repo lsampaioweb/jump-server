@@ -32,6 +32,7 @@
       - {name: "ansible"}
       - {name: "ansible-lint"}
       - {name: "psutil"} # Required for the community.general.dconf module.
+      - {name: "passlib"} # Required to use bcrypt.
 
 - name: "Setting up the XRDP package"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/xrdp.yml"
