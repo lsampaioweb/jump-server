@@ -1,6 +1,6 @@
 module "homelab_project" {
   source  = "lsampaioweb/homelab-project/proxmox"
-  version = "1.0.4"
+  version = "1.0.5"
 
   project     = var.project
   environment = var.environment
@@ -10,7 +10,7 @@ module "homelab_project" {
 
 module "dynamic_inventory" {
   source  = "lsampaioweb/dynamic-inventory/local"
-  version = "1.0.1"
+  version = "1.0.2"
 
   hosts_list = [
     for key, value in var.vm_instance :
