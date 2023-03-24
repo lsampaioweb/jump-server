@@ -5,7 +5,7 @@ module "homelab_project" {
   project     = var.project
   environment = var.environment
 
-  vm_instance = var.vm_instance
+  vm_instances = var.vm_instances
 }
 
 module "dynamic_inventory" {
@@ -13,7 +13,7 @@ module "dynamic_inventory" {
   version = "1.0.2"
 
   hosts_list = [
-    for key, value in var.vm_instance :
+    for key, value in var.vm_instances :
     {
       hostname    = module.homelab_project.vms[key].name
       public_ip   = module.homelab_project.vms[key].ipv4

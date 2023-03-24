@@ -1,7 +1,7 @@
 project     = "Jump-Server"
 environment = "Production"
 
-vm_instance = {
+vm_instances = {
   "01" = {
     # VM
     vcpus   = 3

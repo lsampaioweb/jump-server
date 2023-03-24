@@ -18,7 +18,7 @@ variable "environment" {
   }
 }
 
-variable "vm_instance" {
+variable "vm_instances" {
   description = "Specific values for this or these virtual machines."
   type = map(object({
     # VM
