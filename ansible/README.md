@@ -62,19 +62,22 @@ The playbook can setup an Ubuntu Desktop 22.04.
   05 - Install the Secret Manager.
     sudo apt install -y libsecret-tools
 
-  06 - Install Git.
+  06 - Install the sshpass to use password authentication on Ansible.
+    sudo apt install -y sshpass    
+
+  07 - Install Git.
     sudo apt install -y git
   
-  07 - Create a Git folder and go to it.
+  08 - Create a Git folder and go to it.
     mkdir git && cd git
 
-  08 - Download the repository.
+  09 - Download the repository.
     git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git
 
-  09 - Install Ansible.
+  10 - Install Ansible.
     python3 -m pip install ansible
 
-  10 - Change your git config
+  11 - Change your git config
     # Encode your name and email, in order to avoid spammers, encode them in base64.
     echo "your-name" | base64
     echo "your-email@something.com" | base64
@@ -84,13 +87,13 @@ The playbook can setup an Ubuntu Desktop 22.04.
     git_user_name: "change here"
     git_user_email: "change here"
 
-  11 - Save your password in the secret manager.
+  12 - Save your password in the secret manager.
     secret-tool store --label="local_user_password" password local_user_password
     # To retrieve the password from the secret manager. Ansible will do this, don't worry.
     # secret-tool lookup password "local_user_password"
     # If you get the error message: "secret-tool: Cannot create an item in a locked collection", you should open the Ubuntu Interface (not from the SSH terminal). This will "open/unseal/unlock" the secret manager.
 
-  12 - Execute the playbook.
+  13 - Execute the playbook.
     cd ansible
     ansible-playbook provision.yml
 ```
