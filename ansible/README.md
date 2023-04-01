@@ -46,15 +46,21 @@ The playbook can setup an Ubuntu Desktop 22.04.
 
 3. Run these commands in the terminal of the VM:
 ```bash
-  01 - Install SSH.
+  01 - Update the packages list.
     sudo apt update
-    sudo apt install openssh-server
 
-  02 - Install Pip.
-    sudo apt install python3-pip
+  02 - Install Qemu Quest Agent.
+    sudo apt install -y qemu-guest-agent
+
+  02 - Install SSH.
+    sudo apt update
+    sudo apt install -y openssh-server
+
+  03 - Install Pip.
+    sudo apt install -y python3-pip
 
   03 - Install Git.
-    sudo apt install git -y
+    sudo apt install -y git
   
   04 - Create a Git folder and go to it.
     mkdir git && cd git
