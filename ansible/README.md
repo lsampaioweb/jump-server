@@ -93,7 +93,11 @@ The playbook can setup an Ubuntu Desktop 22.04.
     # secret-tool lookup password "local_user_password"
     # If you get the error message: "secret-tool: Cannot create an item in a locked collection", you should open the Ubuntu Interface (not from the SSH terminal). This will "open/unseal/unlock" the secret manager.
 
-  13 - Execute the playbook.
+  13 - Add the fingerprint to the known_host file.
+    # Because this is the first time we connect to the server. Ansible will handle this on the future playbooks.
+    ssh <user>@<ip>
+
+  14 - Execute the playbook.
     cd ansible
     ansible-playbook provision.yml
 ```
