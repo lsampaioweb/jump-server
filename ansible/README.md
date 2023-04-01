@@ -77,7 +77,7 @@ The playbook can setup an Ubuntu Desktop 22.04.
     echo "your-email@something.com" | base64
 
     # Add the base64 values here.
-    nano roles/setup_machine/vars/main.yml
+    nano jump-server/ansible/roles/setup_user/vars/main.yml
     git_user_name: "change here"
     git_user_email: "change here"
 
