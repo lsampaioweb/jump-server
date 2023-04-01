@@ -3,10 +3,13 @@
 ansible_user: "lsampaio"
 
 # The id of the password saved in the secret manager.
-root_password_id: "{{ ansible_user }}"
+root_password_id: "{{ password_id }}"
 
 # The password of the root user used in VM.
 ansible_password: "{{ lookup('pipe', 'secret-tool lookup password ' + root_password_id) }}"
+
+# The sudo password.
+ansible_become_password: "{{ ansible_password }}"
 
 # The git config for my user. String was encoded on base64 to avoid spammers.
 git_user_name: "THVjaWFubyBTYW1wYWlv"
