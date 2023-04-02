@@ -46,39 +46,21 @@ The playbook can setup an Ubuntu Desktop 22.04.
 
 3. Run these commands in the terminal of the VM:
 ```bash
-  01 - Update the packages list.
+  01 - Update the list of packages.
     sudo apt update
 
-  02 - Install Qemu Quest Agent.
-    sudo apt install -y qemu-guest-agent
-
-  03 - Install SSH.
-    sudo apt update
-    sudo apt install -y openssh-server
-
-  04 - Install Pip.
-    sudo apt install -y python3-pip
-
-  05 - Install the Secret Manager.
-    sudo apt install -y libsecret-tools
-
-  06 - Install the sshpass to use password authentication on Ansible.
-    sudo apt install -y sshpass    
-
-  07 - Install the passlib to create a random password for the user.
-    pip3 install passlib
-
-  08 - Install Git.
+  01 - Install Git.
     sudo apt install -y git
-  
-  09 - Create a Git folder and go to it.
+
+  02 - Create a Git folder and go to it.
     mkdir git && cd git
 
-  10 - Download the repository.
+  03 - Download the repository.
     git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git
 
-  11 - Install Ansible.
-    python3 -m pip install ansible
+  04 - Run the bash script to install the required packages.
+    cd jump-server
+    ./install-requirements.sh
 
   12 - Change your git config
     # Encode your name and email, in order to avoid spammers, encode them in base64.
@@ -86,7 +68,7 @@ The playbook can setup an Ubuntu Desktop 22.04.
     echo "your-email@something.com" | base64
 
     # Add the base64 values here.
-    nano jump-server/ansible/roles/setup_user/vars/main.yml
+    nano ansible/roles/setup_user/vars/main.yml
     git_user_name: "change here"
     git_user_email: "change here"
 
