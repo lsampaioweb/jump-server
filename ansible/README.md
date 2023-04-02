@@ -5,9 +5,8 @@ The playbook can setup an Ubuntu Desktop 22.04.
 1. Create the Virtual Machine (VM) on Proxmox.
 ```bash
   # General
-  VM ID: 1000
-  # [DUD] - Development|Ubuntu|Desktop
-  Name: DUD-Jump-Server
+  VM ID: 1001
+  Name: jump-server
 
   # OS
   Storage: local
