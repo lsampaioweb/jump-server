@@ -52,39 +52,56 @@ The playbook can setup an Ubuntu Desktop 22.04.
   02 - Install Qemu Quest Agent.
     sudo apt install -y qemu-guest-agent
 
-  02 - Install SSH.
+  03 - Install SSH.
     sudo apt update
     sudo apt install -y openssh-server
 
-  03 - Install Pip.
+  04 - Install Pip.
     sudo apt install -y python3-pip
 
-  03 - Install Git.
+  05 - Install the Secret Manager.
+    sudo apt install -y libsecret-tools
+
+  06 - Install the sshpass to use password authentication on Ansible.
+    sudo apt install -y sshpass    
+
+  07 - Install the passlib to create a random password for the user.
+    pip3 install passlib
+
+  08 - Install Git.
     sudo apt install -y git
   
-  04 - Create a Git folder and go to it.
+  09 - Create a Git folder and go to it.
     mkdir git && cd git
 
-  05 - Download the repository.
+  10 - Download the repository.
     git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git
 
-  06 - Install Ansible.
+  11 - Install Ansible.
     python3 -m pip install ansible
 
-  07 - Change your git config
+  12 - Change your git config
     # Encode your name and email, in order to avoid spammers, encode them in base64.
     echo "your-name" | base64
     echo "your-email@something.com" | base64
 
     # Add the base64 values here.
-    nano roles/setup_machine/vars/main.yml
+    nano jump-server/ansible/roles/setup_user/vars/main.yml
     git_user_name: "change here"
     git_user_email: "change here"
 
-  08 - Save your password in the secret manager.
+  13 - Save your password in the secret manager.
     secret-tool store --label="local_user_password" password local_user_password
+    # To retrieve the password from the secret manager. Ansible will do this, don't worry.
+    # secret-tool lookup password "local_user_password"
+    # If you get the error message: "secret-tool: Cannot create an item in a locked collection", you should open the Ubuntu Interface (not from the SSH terminal). This will "open/unseal/unlock" the secret manager.
 
-  09 - Execute the playbook.
+  14 - Add the fingerprint to the known_host file.
+    # Because this is the first time we connect to the server. Ansible will handle this on the future playbooks.
+    ssh <user>@<ip>
+
+  15 - Execute the playbook.
+    cd ansible
     ansible-playbook provision.yml
 ```
 
