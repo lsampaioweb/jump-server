@@ -70,4 +70,5 @@
     type: "collection"
     name: "{{ item }}"
   loop:
+    - "community.general" # To work with dconf.
     - "pfsensible.core" # To work with pfsense playbooks.
