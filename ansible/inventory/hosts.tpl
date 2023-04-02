@@ -1,5 +1,5 @@
 [ControlMachine]
-localhost ansible_connection=local
+localhost ansible_connection=local password_id=local_user_password
 
 [desktop]
 %{ for item in hosts_list ~}
