@@ -47,21 +47,22 @@ The playbook can setup an Ubuntu Desktop 22.04.
 ```bash
   01 - Update the list of packages.
     sudo apt update
+    sudo apt upgrade -y
 
-  01 - Install Git.
+  02 - Install Git.
     sudo apt install -y git
 
-  02 - Create a Git folder and go to it.
+  03 - Create a Git folder and go to it.
     mkdir git && cd git
 
-  03 - Download the repository.
+  04 - Download the repository.
     git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git
 
-  04 - Run the bash script to install the required packages.
+  05 - Run the bash script to install the required packages.
     cd jump-server
     ./install-requirements.sh
 
-  12 - Change your git config
+  06 - Change your git config
     # Encode your name and email, in order to avoid spammers, encode them in base64.
     echo "your-name" | base64
     echo "your-email@something.com" | base64
@@ -71,19 +72,25 @@ The playbook can setup an Ubuntu Desktop 22.04.
     git_user_name: "change here"
     git_user_email: "change here"
 
-  13 - Save your password in the secret manager.
+  07 - Save your password in the secret manager.
     secret-tool store --label="local_user_password" password local_user_password
     # To retrieve the password from the secret manager. Ansible will do this, don't worry.
     # secret-tool lookup password "local_user_password"
     # If you get the error message: "secret-tool: Cannot create an item in a locked collection", you should open the Ubuntu Interface (not from the SSH terminal). This will "open/unseal/unlock" the secret manager.
 
-  14 - Add the fingerprint to the known_host file.
+  08 - Add the fingerprint to the known_host file.
     # Because this is the first time we connect to the server. Ansible will handle this on the future playbooks.
     ssh <user>@<ip>
 
-  15 - Execute the playbook.
-    cd ansible
+  09 - Reboot the VM.
+    sudo reboot
+  
+  10 - Execute the playbook.
+    cd ~/git/jump-server/ansible
     ansible-playbook provision.yml
+  
+  11 - Delete the created and downloaded folders.
+    rm -rf ~/git
 ```
 
 # Roles you can execute:
