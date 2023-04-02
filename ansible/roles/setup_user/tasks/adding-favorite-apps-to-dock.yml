@@ -20,7 +20,7 @@
 #     value: "{{ favorite_applications | string }}"
 #     state: "present"
 
-- name: "Setting the dark theme"
+- name: "Adding the favorite applications in the Dock"
   ansible.builtin.command: "dbus-launch dconf write /org/gnome/shell/favorite-apps [\"{{ favorite_applications | join(', ') }}\"]"
   register: "output"
   changed_when: (output.rc == 0)
