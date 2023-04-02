@@ -24,6 +24,7 @@
       - {name: "curl"}
       - {name: "tree"}
       - {name: "gnome-keyring"}
+      - {name: "dbus-x11"} # Required for the community.general.dconf module.
 
 - name: "Installing pip packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/pip.yml"

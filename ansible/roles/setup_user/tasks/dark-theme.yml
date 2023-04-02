@@ -1,7 +1,18 @@
 ---
+# https://github.com/ansible-collections/community.general/issues/6271
+# It was working but it just stopped. I opened an issue.
+# - name: "Setting the dark theme"
+#   become: false
+#   community.general.dconf:
+#     key: "/org/gnome/desktop/interface/color-scheme"
+#     value: "'prefer-dark'"
+#     state: "present"
+
 - name: "Setting the dark theme"
-  become: false
-  community.general.dconf:
-    key: "/org/gnome/desktop/interface/color-scheme"
-    value: "'prefer-dark'"
-    state: "present"
+  ansible.builtin.command: "dbus-launch dconf write /org/gnome/desktop/interface/color-scheme \"'prefer-dark'\""
+  register: "output"
+  changed_when: (output.rc == 0)
+
+# - name: "Debug"
+#   ansible.builtin.debug:
+#     var: "output"
