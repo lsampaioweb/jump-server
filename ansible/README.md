@@ -5,7 +5,7 @@ The playbook can setup an Ubuntu Desktop 22.04.
 1. Create the Virtual Machine (VM) on Proxmox.
 ```bash
   # General
-  VM ID: 1001
+  VM ID: 1000
   Name: jump-server
 
   # OS
@@ -84,11 +84,11 @@ The playbook can setup an Ubuntu Desktop 22.04.
 
   09 - Reboot the VM.
     sudo reboot
-  
+
   10 - Execute the playbook.
     cd ~/git/jump-server/ansible
     ansible-playbook provision.yml
-  
+
   11 - Delete the created and downloaded folders.
     rm -rf ~/git
 ```
@@ -100,6 +100,6 @@ The playbook can setup an Ubuntu Desktop 22.04.
 
 [MIT](LICENSE "MIT License")
 
-# Created by: 
+# Created by:
 
 1. Luciano Sampaio.

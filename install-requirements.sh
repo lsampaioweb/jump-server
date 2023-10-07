@@ -6,23 +6,23 @@ set -e # Abort if there is an issue with any build.
 
 installAptPackage() {
   echo "Installing $1"
-  
+
   sudo apt install -y $1
-  
+
   echo -e
 }
 
 installPythonPackage() {
   echo "Installing $1"
-  
-  python3 -m pip install $1
+
+  sudo python3 -m pip install $1
 
   echo -e
 }
 
 installApplications() {
   echo "Installing Applications"
-  
+
   sudo apt update
   installAptPackage qemu-guest-agent
   installAptPackage openssh-server
@@ -32,6 +32,7 @@ installApplications() {
 
   installPythonPackage passlib
   installPythonPackage ansible
+  installPythonPackage ansible-lint
 
   echo -e "Finished\n"
 }
