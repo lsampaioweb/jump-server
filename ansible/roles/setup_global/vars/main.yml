@@ -1,4 +1,7 @@
 ---
+# The domain name of the HomeLab.
+domain: "homelab"
+
 # The name of the root user used in VM.
 ansible_user: "usr_ansible"
 
@@ -13,9 +16,6 @@ ansible_become_password: "{{ ansible_password }}"
 
 # The id of the password saved in the secret manager for my user.
 user_password_id: "local_user_password"
-
-# The size of the password that will be created.
-user_password_size: 30
 
 # The name of the machine.
 hostname: "jump-server"
