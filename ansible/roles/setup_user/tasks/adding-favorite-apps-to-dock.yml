@@ -2,29 +2,17 @@
 - name: "Creating the list of favorite applications"
   ansible.builtin.set_fact:
     favorite_applications:
-      - "'org.gnome.Nautilus.desktop'"
-      - "'google-chrome.desktop'"
-      - "'code_code.desktop'"
-      - "'org.gnome.Terminal.desktop'"
-      - "'postman_postman.desktop'"
-      - "'gnome-system-monitor.desktop'"
-      - "'gnome-control-center.desktop'"
-      - "'org.gnome.seahorse.Application.desktop'"
-
-# https://github.com/ansible-collections/community.general/issues/6271
-# It was working but it just stopped. I opened an issue.
-# - name: "Adding the favorite applications in the Dock"
-#   become: false
-#   community.general.dconf:
-#     key: "/org/gnome/shell/favorite-apps"
-#     value: "{{ favorite_applications | string }}"
-#     state: "present"
+      - "org.gnome.Nautilus.desktop"
+      - "google-chrome.desktop"
+      - "code.desktop"
+      - "org.gnome.Terminal.desktop"
+      - "gnome-control-center.desktop"
+      - "org.gnome.seahorse.Application.desktop"
+      - "gnome-system-monitor.desktop"
 
 - name: "Adding the favorite applications in the Dock"
-  ansible.builtin.command: "dbus-launch dconf write /org/gnome/shell/favorite-apps [\"{{ favorite_applications | join(', ') }}\"]"
-  register: "output"
-  changed_when: (output.rc == 0)
-
-# - name: "Debug"
-#   ansible.builtin.debug:
-#     var: "output"
+  become: false
+  community.general.dconf:
+    key: "/org/gnome/shell/favorite-apps"
+    value: "{{ favorite_applications }}"
+    state: "present"
