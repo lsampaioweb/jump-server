@@ -41,16 +41,6 @@
 - name: "Setting up the Google packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/google-chrome.yml"
 
-- name: "Setting up the xclip (clipboard) packages"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/xclip.yml"
-
-- name: "Installing snap packages"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/snap.yml"
-  vars:
-    packages:
-      - {name: "code", classic: "yes"}
-      - {name: "postman"}
-
 - name: "Setting up VSCode application"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/vscode.yml"
 
@@ -72,4 +62,3 @@
     name: "{{ item }}"
   loop:
     - "community.general" # To work with dconf.
-    - "pfsensible.core" # To work with pfsense playbooks.
