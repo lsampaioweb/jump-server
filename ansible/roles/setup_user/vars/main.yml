@@ -1,6 +1,6 @@
 ---
 # The name of the root user used in VM.
-ansible_user: "lsampaio"
+ansible_user: "administrator"
 
 # The id of the password saved in the secret manager.
 root_password_id: "{{ password_id }}"
