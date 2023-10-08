@@ -10,6 +10,3 @@
 
 - name: "Setting up Brazilian NTP Servers"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/os/ntp-servers.yml"
-
-- name: "Creating the Ansible user account"
-  ansible.builtin.import_tasks: "users.yml"
