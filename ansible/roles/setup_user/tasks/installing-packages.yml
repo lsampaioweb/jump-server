@@ -43,6 +43,15 @@
 
 - name: "Setting up VSCode application"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/vscode.yml"
+  vars:
+    extentions:
+      - {name: "redhat.ansible"}
+      - {name: "redhat.vscode-yaml"}
+      - {name: "wholroyd.jinja"}
+      - {name: "HashiCorp.terraform"}
+      - {name: "4ops.packer"}
+      - {name: "ms-vscode-remote.remote-ssh"}
+      - {name: "tomoki1207.pdf"}
 
 - name: "Setting up the HashiCorp packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/hashicorp.yml"
