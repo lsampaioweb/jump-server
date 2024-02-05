@@ -1,5 +1,5 @@
 # Jump Server
-Project that will create the VMs that will work as the DNS servers of the HomeLab.
+Project that will create the VMs that will work as the Jump Servers of the HomeLab.
 
 # Scripts:
 [Terraform](terraform/ "Terraform")
@@ -14,6 +14,6 @@ Project that will create the VMs that will work as the DNS servers of the HomeLa
 
 [MIT](LICENSE "MIT License")
 
-# Created by: 
+# Created by:
 
 1. Luciano Sampaio.
