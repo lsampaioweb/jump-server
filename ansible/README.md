@@ -73,9 +73,9 @@ The playbook can setup an Ubuntu Desktop 22.04.
     git_user_email: "change here"
 
   07 - Save your password in the secret manager.
-    secret-tool store --label="local_user_password" password local_user_password
+    secret-tool store --label="local-user-password" password local-user-password
     # To retrieve the password from the secret manager. Ansible will do this, don't worry.
-    # secret-tool lookup password "local_user_password"
+    # secret-tool lookup password "local-user-password"
     # If you get the error message: "secret-tool: Cannot create an item in a locked collection", you should open the Ubuntu Interface (not from the SSH terminal). This will "open/unseal/unlock" the secret manager.
 
   08 - Add the fingerprint to the known_host file.
