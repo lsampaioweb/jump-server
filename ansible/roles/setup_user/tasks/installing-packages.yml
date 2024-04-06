@@ -25,6 +25,7 @@
       - {name: "tree"}
       - {name: "gnome-keyring"}
       - {name: "dbus-x11"} # Required for the community.general.dconf module.
+      - {name: "uuid"}
 
 - name: "Installing pip packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/pip.yml"
@@ -45,13 +46,20 @@
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/vscode.yml"
   vars:
     extentions:
-      - {name: "redhat.ansible"}
-      - {name: "redhat.vscode-yaml"}
+      - {name: "vscode-icons-team.vscode-icons"}
+      - {name: "ms-vscode-remote.remote-ssh"}
       - {name: "wholroyd.jinja"}
       - {name: "HashiCorp.terraform"}
       - {name: "4ops.packer"}
-      - {name: "ms-vscode-remote.remote-ssh"}
       - {name: "tomoki1207.pdf"}
+      - {name: "dbaeumer.vscode-eslint"}
+      - {name: "vscjava.vscode-java-pack"}
+      - {name: "vscjava.vscode-spring-initializr"}
+      - {name: "redhat.java"}
+      - {name: "redhat.ansible"}
+      - {name: "redhat.vscode-xml"}
+      - {name: "redhat.vscode-yaml"}
+      - {name: "rangav.vscode-thunder-client"}
 
 - name: "Setting up the HashiCorp packages"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/hashicorp.yml"
