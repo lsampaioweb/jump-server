@@ -55,7 +55,7 @@ The playbook can setup an Ubuntu Desktop 22.04.
   03 - Create a Git folder and go to it.
     mkdir git && cd git
 
-  04 - Download the repository.
+  04 - Download the repository and all of its submodules.
     git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git
 
   05 - Run the bash script to install the required packages.
