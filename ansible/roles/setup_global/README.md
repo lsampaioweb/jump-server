@@ -13,11 +13,9 @@ Run the command in the terminal:
 ## 2. Setup Brazilian timezone.
   1. Set the timezone to America/Maceio.
 
-## 3. Setup Brazilian NTP Servers.
-  1. 0.br.pool.ntp.org.
-  2. 1.br.pool.ntp.org.
-  3. ...
+## 3. Setup the firewall as the NTP Servers.
+  1. ntp-pool.homelab
 
-# Created by: 
+# Created by:
 
 1. Luciano Sampaio.
