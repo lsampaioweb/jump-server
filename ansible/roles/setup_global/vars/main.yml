@@ -15,7 +15,7 @@ ansible_password: "{{ lookup('pipe', 'secret-tool lookup password ' + root_passw
 ansible_become_password: "{{ ansible_password }}"
 
 # The id of the password saved in the secret manager for my user.
-user_password_id: "local_user_password"
+user_password_id: "local-user-password"
 
 # The name of the machine.
 hostname: "jump-server"
