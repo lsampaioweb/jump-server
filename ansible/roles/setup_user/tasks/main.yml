@@ -1,12 +1,9 @@
 ---
-- name: "Copying the unlock-keyring function"
-  ansible.builtin.import_tasks: "unlock-keyring.yml"
-
 - name: "Installing required packages"
   ansible.builtin.import_tasks: "installing-packages.yml"
 
-- name: "Removing unnecessary packages"
-  ansible.builtin.import_tasks: "removing-packages.yml"
+- name: "Copying the unlock-keyring function"
+  ansible.builtin.import_tasks: "unlock-keyring.yml"
 
 - name: "Adding the favorite applications in the Dock"
   ansible.builtin.import_tasks: "adding-favorite-apps-to-dock.yml"
@@ -17,6 +14,9 @@
 - name: "Cloning the default git repositories"
   become: false
   ansible.builtin.import_tasks: "clone-git-repositories.yml"
+
+- name: "Removing unnecessary packages"
+  ansible.builtin.import_tasks: "removing-packages.yml"
 
 - name: "Checking if a reboot is required"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/os/reboot-if-required.yml"

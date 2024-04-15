@@ -36,6 +36,13 @@
       - {name: "psutil"} # Required for the community.general.dconf module.
       - {name: "passlib"} # Required to use bcrypt.
 
+- name: "Installing all the required collections"
+  community.general.ansible_galaxy_install:
+    type: "collection"
+    name: "{{ item }}"
+  loop:
+    - "community.general" # To work with dconf.
+
 - name: "Setting up the XRDP package"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/xrdp.yml"
 
@@ -72,10 +79,3 @@
       - {scope: "global", name: "user.email", value: "{{ git_user_email | b64decode }}"}
       - {scope: "global", name: "pull.rebase", value: "false"}
       - {scope: "global", name: "init.defaultBranch", value: "main"}
-
-- name: "Installing all the required collections"
-  community.general.ansible_galaxy_install:
-    type: "collection"
-    name: "{{ item }}"
-  loop:
-    - "community.general" # To work with dconf.
