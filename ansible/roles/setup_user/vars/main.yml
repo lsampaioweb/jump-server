@@ -21,6 +21,7 @@ ansible_path: "{{ datacenter_path }}/ansible"
 packer_path: "{{ datacenter_path }}/packer"
 projects_path: "{{ datacenter_path }}/projects"
 terraform_path: "{{ datacenter_path }}/terraform"
+springboot_path: "{{ datacenter_path }}/spring-boot"
 
 # Path of the SSL CA Certificate.
 certificates_authority_path: "/usr/local/share/ca-certificates"

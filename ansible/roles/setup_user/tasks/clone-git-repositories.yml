@@ -10,6 +10,7 @@
     - {path: "{{ ansible_path }}"}
     - {path: "{{ packer_path }}"}
     - {path: "{{ projects_path }}"}
+    - {path: "{{ springboot_path }}"}
     - {path: "{{ terraform_path }}"}
 
 - name: "Cloning my git repositories"
@@ -44,6 +45,9 @@
     - {repo: "proxmox-cluster", dest: "{{ projects_path }}/proxmox-cluster"}
     - {repo: "T1600G-28TS-SG2424", dest: "{{ projects_path }}/T1600G-28TS-SG2424"}
     - {repo: "tplink_router_ax1800", dest: "{{ projects_path }}/tplink_router_ax1800"}
+    # Spring Boot
+    - {repo: "spring-boot-library-template", dest: "{{ springboot_path }}/library-template"}
+    - {repo: "spring-boot-web-template", dest: "{{ springboot_path }}/web-template"}
     # Terraform
     - {repo: "terraform-local-dynamic-inventory", dest: "{{ terraform_path }}/terraform-local-dynamic-inventory"}
     - {repo: "terraform-proxmox-homelab-project", dest: "{{ terraform_path }}/terraform-proxmox-homelab-project"}
