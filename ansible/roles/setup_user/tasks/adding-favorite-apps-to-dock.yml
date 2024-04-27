@@ -1,18 +1,29 @@
 ---
-- name: "Creating the list of favorite applications"
-  ansible.builtin.set_fact:
+- name: "Adding the favorite applications in the Dock"
+  become: false
+  community.general.dconf:
+    key: "/org/gnome/shell/favorite-apps"
+    value: "{{ favorite_applications | string }}"
+    state: "present"
+  vars:
     favorite_applications:
       - "org.gnome.Nautilus.desktop"
       - "google-chrome.desktop"
       - "code.desktop"
       - "org.gnome.Terminal.desktop"
-      - "gnome-control-center.desktop"
-      - "org.gnome.seahorse.Application.desktop"
+      - "org.remmina.Remmina.desktop"
       - "gnome-system-monitor.desktop"
+      - "org.gnome.seahorse.Application.desktop"
+      - "gnome-control-center.desktop"
 
-- name: "Adding the favorite applications in the Dock"
+- name: "Adjusting the Dock settings"
   become: false
   community.general.dconf:
-    key: "/org/gnome/shell/favorite-apps"
-    value: "{{ favorite_applications }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
     state: "present"
+  loop:
+    - { key: "/org/gnome/shell/extensions/dash-to-dock/dock-position", value: "'LEFT'"}
+    - { key: "/org/gnome/shell/extensions/dash-to-dock/autohide", value: "true"}
+    - { key: "/org/gnome/shell/extensions/dash-to-dock/dock-fixed", value: "false"}
+    - { key: "/org/gnome/shell/extensions/dash-to-dock/extend-height", value: "false"}

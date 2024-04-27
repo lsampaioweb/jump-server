@@ -12,7 +12,7 @@
     - {value: "session optional pam_gnome_keyring.so auto_start", before: 'password updating.$'}
   notify: "Start gnome-keyring-daemon"
 
-- name: "Copying the unlock-keyring function to the .bashrc file"
+- name: "Copying the unlock-keyring function to the ~/.bashrc file"
   become: false
   ansible.builtin.blockinfile:
     path: "~/.bashrc"

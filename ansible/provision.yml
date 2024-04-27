@@ -1,6 +1,3 @@
 ---
-- name: Run the prepare machine globally role
-  ansible.builtin.import_playbook: "setup_global.yml"
-
 - name: Run the prepare machine to the specific user role
   ansible.builtin.import_playbook: "setup_user.yml"

@@ -55,46 +55,53 @@ The playbook can setup an Ubuntu Desktop 22.04.
   03 - Create a Git folder and go to it.
     mkdir git && cd git
 
-  04 - Download the repository and all of its submodules.
+  04 - Clone the repository and all of its submodules.
     git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git
+
+    # If you have already cloned. Just initialize the tracking of the submodules.
+    git submodule --init
+    git pull --recurse-submodules
+
+    # Or in just one line:
+    git submodule update --init --recursive
 
   05 - Run the bash script to install the required packages.
     cd jump-server
     ./install-requirements.sh
 
-  06 - Change your git config
+  06 - Reboot the VM.
+    sudo reboot
+
+  07 - Change your git config
     # Encode your name and email, in order to avoid spammers, encode them in base64.
     echo "your-name" | base64
     echo "your-email@something.com" | base64
 
-    # Add the base64 values here.
     nano ansible/roles/setup_user/vars/main.yml
+    # Add your base64 values here.
     git_user_name: "change here"
     git_user_email: "change here"
 
-  07 - Save your password in the secret manager.
+  08 - Save your password in the secret manager.
+    # The Ansible playbook will need this password in order to run as privileged user.
     secret-tool store --label="local-user-password" password local-user-password
-    # To retrieve the password from the secret manager. Ansible will do this, don't worry.
-    # secret-tool lookup password "local-user-password"
-    # If you get the error message: "secret-tool: Cannot create an item in a locked collection", you should open the Ubuntu Interface (not from the SSH terminal). This will "open/unseal/unlock" the secret manager.
+    # To test if the command worked, run:
+    secret-tool lookup password "local-user-password"
+    # If you get the error message:
+    #   "secret-tool: Cannot create an item in a locked collection".
+    # Solution:
+    #   You should open the Ubuntu Interface (not from the SSH terminal). This will "open/unseal/unlock" the secret manager. This issue will soon be resolved by the Ansible Playbook.
 
-  08 - Add the fingerprint to the known_host file.
-    # Because this is the first time we connect to the server. Ansible will handle this on the future playbooks.
-    ssh <user>@<ip>
-
-  09 - Reboot the VM.
-    sudo reboot
-
-  10 - Execute the playbook.
+  09 - Execute the playbook.
     cd ~/git/jump-server/ansible
     ansible-playbook provision.yml
 
-  11 - Delete the created and downloaded folders.
+  10 - Delete the created and downloaded folders.
     rm -rf ~/git
 ```
 
 # Roles you can execute:
-1. [Setup](roles/setup-machine/README.md) the jump server with all the default applications and settings.
+1. [Setup](roles/setup_user/README.md) the jump server with all the default applications and settings.
 
 # License:
 

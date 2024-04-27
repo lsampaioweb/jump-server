@@ -1,8 +1,0 @@
----
-- name: "Preparing the virtual machine with some settings"
-  hosts: "ControlMachine"
-  # hosts: "desktop"
-  become: true
-
-  roles:
-    - "setup_global"
