@@ -29,3 +29,9 @@
       - {name: "vscjava.vscode-spring-initializr"}
       - {name: "vscjava.vscode-spring-boot-dashboard"}
       - {name: "vmware.vscode-spring-boot"}
+
+- name: "Setting up XClip"
+  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/xclip.yml"
+
+- name: "Setting up Google Chrome"
+  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/google-chrome.yml"
