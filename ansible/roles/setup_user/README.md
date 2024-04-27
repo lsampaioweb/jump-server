@@ -2,7 +2,7 @@
 
 Run the command in the terminal:
 ```bash
-  ansible-playbook provision.yml
+ansible-playbook provision.yml
 ```
 
 # Tasks:
