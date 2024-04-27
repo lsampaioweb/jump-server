@@ -21,3 +21,14 @@ ansible_path: "{{ datacenter_path }}/ansible"
 packer_path: "{{ datacenter_path }}/packer"
 projects_path: "{{ datacenter_path }}/projects"
 terraform_path: "{{ datacenter_path }}/terraform"
+
+# Path of the SSL CA Certificate.
+certificates_authority_path: "/usr/local/share/ca-certificates"
+ca_certificate_path: "{{ certificates_authority_path }}/certificate.authority.crt"
+
+# For Google Chrome to trust our Certificate Authority.
+# "C,," -> root.
+# ",,"  -> intermediate.
+nssdb_path: "$HOME/.pki/nssdb"
+nssdb_certificates:
+  - {trust: "C,,", name: "HomeLab-Certificate-Authority", path: "{{ ca_certificate_path }}"}
