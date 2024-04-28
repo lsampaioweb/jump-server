@@ -12,6 +12,7 @@
     - {path: "{{ projects_path }}"}
     - {path: "{{ springboot_path }}"}
     - {path: "{{ terraform_path }}"}
+    - {path: "{{ home_path }}"}
 
 - name: "Cloning my git repositories"
   ansible.builtin.git:
@@ -53,6 +54,16 @@
     - {repo: "terraform-proxmox-homelab-project", dest: "{{ terraform_path }}/terraform-proxmox-homelab-project"}
     - {repo: "terraform-proxmox-vm-qemu", dest: "{{ terraform_path }}/terraform-proxmox-vm-qemu"}
     - {repo: "terraform-random-target-node", dest: "{{ terraform_path }}/terraform-random-target-node"}
+    # Home
+    - {repo: "backup-restic-s3-minio", dest: "{{ home_path }}/backup-restic-s3-minio"}
+    - {repo: "home-edge-esxi", dest: "{{ home_path }}/home-edge-esxi"}
+    - {repo: "home-edge-firewall", dest: "{{ home_path }}/home-edge-firewall"}
+    - {repo: "home-edge-grafana", dest: "{{ home_path }}/home-edge-grafana"}
+    - {repo: "home-edge-k3s", dest: "{{ home_path }}/home-edge-k3s"}
+    - {repo: "home-edge-ldap", dest: "{{ home_path }}/home-edge-ldap"}
+    - {repo: "home-edge-minio", dest: "{{ home_path }}/home-edge-minio"}
+    - {repo: "home-edge-postgresql", dest: "{{ home_path }}/home-edge-postgresql"}
+    - {repo: "home-edge-zabbix", dest: "{{ home_path }}/home-edge-zabbix"}
 
 - name: "Copying homelab VSCode workspace file to the target host"
   ansible.builtin.copy:
