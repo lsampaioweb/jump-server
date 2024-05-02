@@ -5,14 +5,16 @@ Run the command in the terminal:
 ansible-playbook provision.yml
 ```
 
-# Tasks:
+#
+### Tasks:
 
-## 1. Create the function to unlock the secret manager.
+### 1. Create the function to unlock the secret manager.
 
-## 2. Add the favorite applications in the Dock.
+### 2. Add the favorite applications in the Dock.
 
-## 3. Setup the dark theme.
+### 3. Setup the dark theme.
 
-# Created by:
+#
+### Created by:
 
 1. Luciano Sampaio.

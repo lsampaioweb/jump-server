@@ -100,13 +100,16 @@ ansible-playbook provision.yml
 rm -rf ~/git/jump-server/
 ```
 
-# Roles you can execute:
+#
+### Roles you can execute:
 1. [Setup](roles/setup_user/README.md) the jump server with all the default applications and settings.
 
-# License:
+#
+### License:
 
 [MIT](LICENSE "MIT License")
 
-# Created by:
+#
+### Created by:
 
 1. Luciano Sampaio.

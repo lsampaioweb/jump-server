@@ -15,6 +15,7 @@ Run these commands on the computer that is running Terraform:
     ./tf.sh destory staging
 ```
 
-# Created by: 
+#
+### Created by:
 
 1. Luciano Sampaio.
