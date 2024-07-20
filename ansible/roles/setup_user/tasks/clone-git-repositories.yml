@@ -47,8 +47,7 @@
     - {repo: "T1600G-28TS-SG2424", dest: "{{ projects_path }}/T1600G-28TS-SG2424"}
     - {repo: "tplink_router_ax1800", dest: "{{ projects_path }}/tplink_router_ax1800"}
     # Spring Boot
-    - {repo: "spring-boot-library-template", dest: "{{ springboot_path }}/library-template"}
-    - {repo: "spring-boot-web-template", dest: "{{ springboot_path }}/web-template"}
+    - {repo: "spring-boot-tutorial", dest: "{{ springboot_path }}/spring-boot-tutorial"}
     # Terraform
     - {repo: "terraform-local-dynamic-inventory", dest: "{{ terraform_path }}/terraform-local-dynamic-inventory"}
     - {repo: "terraform-proxmox-homelab-project", dest: "{{ terraform_path }}/terraform-proxmox-homelab-project"}
