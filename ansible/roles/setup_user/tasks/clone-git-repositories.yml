@@ -38,6 +38,7 @@
     - {repo: "portainer-docker", dest: "{{ docker_path }}/portainer"}
     - {repo: "sonarqube-docker", dest: "{{ docker_path }}/sonarqube"}
     - {repo: "traefik-docker", dest: "{{ docker_path }}/traefik"}
+    - {repo: "vault-docker", dest: "{{ docker_path }}/vault"}
     # Packer
     - {repo: "packer-proxmox-ubuntu-22-04-clone", dest: "{{ packer_path }}/packer-proxmox-ubuntu-22-04-clone"}
     - {repo: "packer-proxmox-ubuntu-22-04-iso", dest: "{{ packer_path }}/packer-proxmox-ubuntu-22-04-iso"}
