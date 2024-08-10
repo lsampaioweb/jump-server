@@ -36,6 +36,7 @@
     - {repo: "nexus-docker", dest: "{{ docker_path }}/nexus"}
     - {repo: "openldap-docker", dest: "{{ docker_path }}/openldap"}
     - {repo: "portainer-docker", dest: "{{ docker_path }}/portainer"}
+    - {repo: "postgresql-docker", dest: "{{ docker_path }}/postgresql"}
     - {repo: "sonarqube-docker", dest: "{{ docker_path }}/sonarqube"}
     - {repo: "traefik-docker", dest: "{{ docker_path }}/traefik"}
     - {repo: "vault-docker", dest: "{{ docker_path }}/vault"}
