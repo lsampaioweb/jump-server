@@ -27,7 +27,7 @@ home_path: "{{ git_path }}/home"
 
 # Path of the SSL CA Certificate.
 certificates_authority_path: "/usr/local/share/ca-certificates"
-ca_certificate_path: "{{ certificates_authority_path }}/certificate-authority.lan.homelab.crt"
+ca_certificate_path: "{{ certificates_authority_path }}/ca.lan.homelab.crt"
 
 # For Google Chrome to trust our Certificate Authority.
 # "C,," -> root.
