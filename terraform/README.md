@@ -10,9 +10,10 @@ Run these commands on the computer that is running Terraform:
     terraform init
 
   02 - Run Terraform to create the VM. This bash is just a helper.
-    ./tf.sh plan staging
-    ./tf.sh apply staging -auto-approve
-    ./tf.sh destory staging
+    ./tf.sh plan home
+    ./tf.sh apply home -auto-approve
+    ./tf.sh apply homelab
+    ./tf.sh destory home
 ```
 
 #

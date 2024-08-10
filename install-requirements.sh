@@ -15,7 +15,7 @@ installAptPackage() {
 installPythonPackage() {
   echo "Installing $1"
 
-  sudo python3 -m pip install $1
+  pipx install --include-deps $1
 
   echo -e
 }
@@ -24,13 +24,12 @@ installApplications() {
   echo "Installing Applications"
 
   sudo apt update
-  installAptPackage qemu-guest-agent
-  installAptPackage openssh-server
-  installAptPackage python3-pip
   installAptPackage libsecret-tools
   installAptPackage sshpass
+  installAptPackage pipx
+  installAptPackage python3-passlib
 
-  installPythonPackage passlib
+  pipx ensurepath
   installPythonPackage ansible
   installPythonPackage ansible-lint
 

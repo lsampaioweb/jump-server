@@ -15,7 +15,7 @@ variable "vm_instances" {
 
     ## Clone
     os_type      = optional(string)
-    clone        = optional(string, "ubuntu-22-04-desktop-standard")
+    clone        = optional(string, "ubuntu-24-04-desktop-standard")
     full_clone   = optional(bool)
     force_create = optional(bool)
 
