@@ -1,5 +1,5 @@
 ---
-# - name: "Ensure the fingerprint of the VM is removed from the known_hosts file"
-#   ansible.builtin.include_tasks: "{{ path_debian_known_hosts_remove_current }}"
-#   vars:
-#     host_name: "{{ ansible_host }}"
+- name: "Ensure the fingerprint of the VM is removed from the known_hosts file"
+  ansible.builtin.include_tasks: "{{ path_debian_known_hosts_remove }}"
+  vars:
+    host: { name: "{{ ansible_host }}", state: "absent" }
