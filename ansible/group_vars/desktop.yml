@@ -1,9 +1,12 @@
 ---
 # The name of the root user used in VM.
-ansible_user: "usr_ansible"
+ansible_user: "local_admin"
 
 # The id of the password saved in the secret manager.
 root_password_id: "{{ password_id }}"
 
 # The password of the root user used in VM.
 ansible_password: "{{ lookup('pipe', 'secret-tool lookup password ' + root_password_id) }}"
+
+# The sudo password.
+ansible_become_password: "{{ ansible_password }}"

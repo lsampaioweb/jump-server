@@ -1,8 +1,0 @@
----
-- name: "Installing required packages"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/apt.yml"
-  vars:
-    update_cache: true
-    upgrade: "safe"
-    packages:
-      - {name: "curl"} # Transfer a URL.

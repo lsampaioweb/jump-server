@@ -1,16 +1,12 @@
 project     = "Jump-Server"
-environment = "Home"
+environment = "Staging"
 
 vm_instances = {
   "01" = {
     # VM
-    vcpus   = 3
+    vcpus   = 4
+    memory  = 6144
     startup = "order=10"
-    networks = {
-      "01" = {
-        tag = 101
-      }
-    }
     vga = {
       memory = 32
     }

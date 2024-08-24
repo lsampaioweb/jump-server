@@ -8,3 +8,8 @@ path_tasks_debian: "{{ path_common_tasks }}/debian"
 path_debian_passwords: "{{ path_tasks_debian }}/passwords"
 path_debian_passwords_add: "{{ path_debian_passwords }}/add.yml"
 path_debian_passwords_get: "{{ path_debian_passwords }}/get.yml"
+
+# Known_hosts.
+path_debian_known_hosts: "{{ path_tasks_debian }}/known_hosts"
+path_debian_known_hosts_add_current: "{{ path_debian_known_hosts }}/add_current.yml"
+path_debian_known_hosts_add: "{{ path_debian_known_hosts }}/add.yml"
