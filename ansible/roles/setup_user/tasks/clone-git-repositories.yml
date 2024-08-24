@@ -51,6 +51,7 @@
     - {repo: "proxmox-ubuntu-22-04-server-raw", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-raw"}
     - {repo: "proxmox-ubuntu-22-04-server-standard", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-standard"}
     - {repo: "proxmox-ubuntu-22-04-server-std-docker", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-std-docker"}
+    - {repo: "proxmox-ubuntu-22-04-server-std-k3s", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-std-k3s"}
     # Projects
     - {repo: "dhcp", dest: "{{ projects_path }}/dhcp"}
     - {repo: "dns", dest: "{{ projects_path }}/dns"}
