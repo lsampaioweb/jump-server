@@ -30,6 +30,7 @@
     - {repo: "ansible-common-tasks", dest: "{{ ansible_path }}/ansible-common-tasks"}
     - {repo: "ansible-kvm-cloud-init", dest: "{{ ansible_path }}/ansible-kvm-cloud-init"}
     # Docker
+    - {repo: "custom-docker-images", dest: "{{ docker_path }}/custom-docker-images"}
     - {repo: "gitea-docker", dest: "{{ docker_path }}/gitea"}
     - {repo: "jenkins-docker", dest: "{{ docker_path }}/jenkins"}
     - {repo: "jenkins-shared-pipeline-libraries", dest: "{{ docker_path }}/jenkins-shared-pipeline-libraries"}
