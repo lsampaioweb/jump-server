@@ -1,0 +1,23 @@
+---
+- name: "Creating a user account"
+  hosts: "target"
+  become: true
+  vars_prompt:
+    - name: "username"
+      prompt: "Enter the user name"
+      private: false
+
+    - name: "password"
+      prompt: "Enter the user password"
+      private: true
+
+    - name: "sudo_privilege_string"
+      prompt: "Should the new user have sudo privileges? (y/n)"
+      private: false
+      default: "n"
+
+  vars:
+    sudo_privilege: "{{ sudo_privilege_string | lower == 'y' }}"
+
+  roles:
+    - "create_user"

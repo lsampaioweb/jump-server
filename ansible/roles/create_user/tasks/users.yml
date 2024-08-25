@@ -1,0 +1,21 @@
+---
+- name: "Creating the local account: {{ username }}"
+  ansible.builtin.user:
+    name: "{{ username }}"
+    comment: "{{ username }}"
+    password: "{{ password | password_hash(password_hash) }}"
+    shell: "/bin/bash"
+    groups:
+      - "{{ (sudo_privilege) | ternary('sudo', '') }}"
+    state: "present"
+    password_lock: false
+
+- name: "Allowing the user to run any commands with sudo without the need to type its password"
+  community.general.sudoers:
+    name: "{{ username }}"
+    user: "{{ username }}"
+    runas: "ALL"
+    commands: "ALL"
+    nopassword: true
+    state: "present"
+  when: sudo_privilege

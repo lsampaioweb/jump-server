@@ -1,0 +1,3 @@
+---
+- name: "Creating a user account"
+  ansible.builtin.import_tasks: "users.yml"
