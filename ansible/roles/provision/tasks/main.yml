@@ -1,0 +1,9 @@
+---
+- name: "Installing required packages"
+  ansible.builtin.import_tasks: "installing-packages.yml"
+
+- name: "Removing unnecessary packages"
+  ansible.builtin.import_tasks: "removing-packages.yml"
+
+- name: "Checking if a reboot is required"
+  ansible.builtin.import_tasks: "roles/common/tasks/debian/os/reboot-if-required.yml"

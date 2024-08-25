@@ -1,3 +1,6 @@
 ---
-- name: Run all the playbooks
+- name: "Preparing the virtual machine with the initial settings"
   ansible.builtin.import_playbook: "provision.yml"
+
+- name: "Preparing the virtual machine with my user's settings"
+  ansible.builtin.import_playbook: "setup_user.yml"

@@ -1,0 +1,6 @@
+---
+- name: "Installing VSCode"
+  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/vscode.yml"
+
+- name: "Installing Google Chrome"
+  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/google-chrome.yml"

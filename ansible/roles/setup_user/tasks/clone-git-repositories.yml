@@ -53,22 +53,22 @@
     - {repo: "proxmox-ubuntu-22-04-server-std-docker", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-std-docker"}
     - {repo: "proxmox-ubuntu-22-04-server-std-k3s", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-std-k3s"}
     # Projects
-    - {repo: "dhcp", dest: "{{ projects_path }}/dhcp"}
-    - {repo: "dns", dest: "{{ projects_path }}/dns"}
-    - {repo: "jump-server", dest: "{{ projects_path }}/jump-server"}
-    - {repo: "load-balancer", dest: "{{ projects_path }}/load-balancer"}
-    - {repo: "ntp", dest: "{{ projects_path }}/ntp"}
-    - {repo: "openssl-certificates", dest: "{{ projects_path }}/openssl-certificates"}
-    - {repo: "proxmox-cluster", dest: "{{ projects_path }}/proxmox-cluster"}
-    - {repo: "T1600G-28TS-SG2424", dest: "{{ projects_path }}/T1600G-28TS-SG2424"}
-    - {repo: "tplink_router_ax1800", dest: "{{ projects_path }}/tplink_router_ax1800"}
+    - {repo: "proxmox-cluster", dest: "{{ projects_path }}/01-proxmox-cluster"}
+    - {repo: "jump-server", dest: "{{ projects_path }}/02-jump-server"}
+    - {repo: "openssl-certificates", dest: "{{ projects_path }}/03-openssl-certificates"}
+    - {repo: "T1600G-28TS-SG2424", dest: "{{ projects_path }}/04T1600G-28TS-SG2424"}
+    - {repo: "load-balancer", dest: "{{ projects_path }}/05-load-balancer"}
+    - {repo: "dhcp", dest: "{{ projects_path }}/06-dhcp"}
+    - {repo: "dns", dest: "{{ projects_path }}/07-dns"}
+    - {repo: "ntp", dest: "{{ projects_path }}/08-ntp"}
+    - {repo: "tplink_router_ax1800", dest: "{{ projects_path }}/09-tplink_router_ax1800"}
     # Spring Boot
     - {repo: "spring-boot-tutorial", dest: "{{ springboot_path }}/spring-boot-tutorial"}
     # Terraform
-    - {repo: "terraform-local-dynamic-inventory", dest: "{{ terraform_path }}/terraform-local-dynamic-inventory"}
-    - {repo: "terraform-proxmox-homelab-project", dest: "{{ terraform_path }}/terraform-proxmox-homelab-project"}
-    - {repo: "terraform-proxmox-vm-qemu", dest: "{{ terraform_path }}/terraform-proxmox-vm-qemu"}
-    - {repo: "terraform-random-target-node", dest: "{{ terraform_path }}/terraform-random-target-node"}
+    - {repo: "terraform-random-target-node", dest: "{{ terraform_path }}/01-terraform-random-target-node"}
+    - {repo: "terraform-local-dynamic-inventory", dest: "{{ terraform_path }}/02-terraform-local-dynamic-inventory"}
+    - {repo: "terraform-proxmox-vm-qemu", dest: "{{ terraform_path }}/03-terraform-proxmox-vm-qemu"}
+    - {repo: "terraform-proxmox-homelab-project", dest: "{{ terraform_path }}/04-terraform-proxmox-homelab-project"}
     # Home
     - {repo: "backup-restic-s3-minio", dest: "{{ home_path }}/backup-restic-s3-minio"}
     - {repo: "home-edge-esxi", dest: "{{ home_path }}/home-edge-esxi"}
@@ -79,9 +79,3 @@
     - {repo: "home-edge-minio", dest: "{{ home_path }}/home-edge-minio"}
     - {repo: "home-edge-postgresql", dest: "{{ home_path }}/home-edge-postgresql"}
     - {repo: "home-edge-zabbix", dest: "{{ home_path }}/home-edge-zabbix"}
-
-- name: "Copying homelab VSCode workspace file to the target host"
-  ansible.builtin.copy:
-    src: "Homelab.code-workspace"
-    dest: "{{ git_path }}/"
-    mode: "664"

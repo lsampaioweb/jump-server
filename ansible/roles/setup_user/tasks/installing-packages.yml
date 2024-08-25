@@ -8,8 +8,8 @@
       - {scope: "global", name: "pull.rebase", value: "false"}
       - {scope: "global", name: "init.defaultBranch", value: "main"}
 
-- name: "Setting up VSCode"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/vscode.yml"
+- name: "Managing vscode extentions"
+  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/vscode-extention.yml"
   vars:
     extentions:
       - {name: "redhat.ansible"}
@@ -33,5 +33,7 @@
 - name: "Setting up XClip"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/xclip.yml"
 
-- name: "Setting up Google Chrome"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/google-chrome.yml"
+- name: "Adding our self signed certificate authority to the Google Chrome trust database"
+  become: false
+  ansible.builtin.import_tasks: "roles/common/tasks/debian/os/nssdb.yml"
+  when: nssdb_path is defined

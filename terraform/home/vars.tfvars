@@ -11,5 +11,25 @@ vm_instances = {
     vga = {
       memory = 32
     }
+
+    disks = {
+      scsi = {
+        # disk0 (required)
+        scsi0 = {
+          disk = [{}]
+        }
+        # disk1 (optional)
+        scsi1 = {
+          disk = [{
+            size    = "15G"
+            storage = "Ceph_Gold"
+          }]
+        }
+        # cloud-init disk (optional)
+        # scsi10 = {
+        #   cloudinit = [{}]
+        # }
+      }
+    }
   }
 }

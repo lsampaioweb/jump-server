@@ -1,8 +1,8 @@
-# Setup Ubuntu Server 22.04
+# Setup Ubuntu Server 24.04
 
 Run the command in the terminal:
 ```bash
-ansible-playbook provision.yml
+ansible-playbook setup_user.yml
 ```
 
 #
@@ -13,6 +13,8 @@ ansible-playbook provision.yml
 ### 2. Add the favorite applications in the Dock.
 
 ### 3. Setup the dark theme.
+
+### 4. Clone my git repositories.
 
 #
 ### Created by:
