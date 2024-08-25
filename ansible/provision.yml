@@ -1,6 +1,6 @@
 ---
 - name: "Preparing the virtual machine with the initial settings"
-  hosts: "desktop"
+  hosts: "target"
   gather_facts: false
   become: true
 

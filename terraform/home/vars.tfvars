@@ -9,7 +9,7 @@ vm_instances = {
     memory  = 6144
     startup = "order=10"
     vga = {
-      memory = 32
+      memory = 128
     }
 
     disks = {
@@ -25,7 +25,7 @@ vm_instances = {
             storage = "Ceph_Gold"
           }]
         }
-        # cloud-init disk (optional)
+        # # cloud-init disk (optional)
         # scsi10 = {
         #   cloudinit = [{}]
         # }

@@ -1,4 +1,7 @@
 ---
+# - name: "Setting up the disks"
+#   ansible.builtin.import_tasks: "setup-disks.yml"
+
 - name: "Installing required packages"
   ansible.builtin.import_tasks: "installing-packages.yml"
 

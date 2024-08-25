@@ -4,6 +4,3 @@
 
 - name: "Create a user account"
   ansible.builtin.import_playbook: "create_user.yml"
-
-- name: "Preparing the virtual machine with my user's settings"
-  ansible.builtin.import_playbook: "setup_user.yml"

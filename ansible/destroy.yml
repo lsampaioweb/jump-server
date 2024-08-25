@@ -1,6 +1,6 @@
 ---
 - name: "Destroying the virtual machine"
-  hosts: "desktop"
+  hosts: "target"
   become: true
 
   roles:

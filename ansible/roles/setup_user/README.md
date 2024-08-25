@@ -2,7 +2,7 @@
 
 Run the command in the terminal:
 ```bash
-ansible-playbook setup_user.yml
+ansible-playbook setup_user.yml -u <user> -k -K
 ```
 
 #

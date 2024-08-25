@@ -1,7 +1,21 @@
 ---
 - name: "Preparing the virtual machine with my user's settings"
-  hosts: "ControlMachine"
+  hosts: "target"
+  gather_facts: false
   become: true
+
+  vars_prompt:
+    - name: "ansible_user"
+      prompt: "Enter the user name"
+      private: false
+
+    - name: "ansible_password"
+      prompt: "Enter the user password"
+      private: true
+
+  pre_tasks:
+    - name: "Gettings facts using the setup module"
+      ansible.builtin.setup:
 
   roles:
     - "setup_user"

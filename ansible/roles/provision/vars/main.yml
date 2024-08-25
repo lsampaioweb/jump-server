@@ -1,12 +1,11 @@
 ---
-# The name of the root user used in VM.
-ansible_user: "local_admin"
-
-# The id of the password saved in the secret manager.
-root_password_id: "{{ password_id }}"
-
-# The password of the root user used in VM.
-ansible_password: "{{ lookup('pipe', 'secret-tool lookup password ' + root_password_id) }}"
-
-# The sudo password.
-ansible_become_password: "{{ ansible_password }}"
+lvm:
+  - {
+    devices: "/dev/sdb",
+    volume_group: "ubuntu_vg",
+    logical_volume: [
+      { name: "root_lvm", filesystem_type: "ext4", size: "+5G" },
+      { name: "var_lvm", filesystem_type: "ext4", size: "+5G" },
+      { name: "home_lvm", filesystem_type: "ext4", size: "+5G" }
+    ]
+  }
