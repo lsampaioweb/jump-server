@@ -7,7 +7,7 @@
     flags: ["lvm"]
     state: "present"
   register: "parted_output"
-  loop: "{{ item.devices }}"
+  loop: "{{ item.device }}"
   loop_control:
     loop_var: "device"
 
@@ -18,7 +18,7 @@
   args:
     executable: "/usr/bin/bash"
   register: "disk_partitions"
-  loop: "{{ item.devices }}"
+  loop: "{{ item.device }}"
   loop_control:
     loop_var: "device"
   failed_when: disk_partitions.rc != 0 or disk_partitions.stdout == ''
@@ -44,18 +44,38 @@
     pvresize: true
   register: "lvg_output"
 
-- name: "Creating the logical volume {{ item.logical_volume }}"
+- name: "Creating the logical volume"
   community.general.lvol:
-    thinpool: "{{ item.logical_volume }}"
     vg: "{{ item.volume_group }}"
-    size: "100%FREE"
+    thinpool: "{{ lv.name }}"
+    size: "{{ lv.size }}"
     resizefs: true
     shrink: false
   register: "lvol_output"
+  loop: "{{ logical_volume }}"
+  loop_control:
+    loop_var: "lv"
 
-- name: "Creating an {{ item.filesystem_type }} filesystem on the LVM /dev/mapper/{{ item.volume_group }}-{{ item.logical_volume }}"
+- name: "Creating the filesystem on the LVM"
   community.general.filesystem:
-    fstype: "{{ item.filesystem_type }}"
-    dev: "/dev/mapper/{{ item.volume_group }}-{{ item.logical_volume }}"
+    fstype: "{{ lv.filesystem_type }}"
+    dev: "/dev/mapper/{{ item.volume_group }}-{{ lv.name }}"
   register: "filesystem_output"
+  loop: "{{ logical_volume }}"
+  loop_control:
+    loop_var: "lv"
   when: parted_output.changed or lvg_output.changed or lvol_output.changed
+
+- name: "Printing variables"
+  ansible.builtin.debug:
+    msg:
+      - "parted_output: {{ parted_output }}"
+      - "parted_output: {{ parted_output.results | map(attribute='changed') }}"
+      - "parted_output: {{ ('True' in parted_output.results | map(attribute='changed')) }}"
+      - "disk_partitions: {{ disk_partitions }}"
+      - "partition_list: {{ partition_list }}"
+      - "partitions_single_line: {{ partitions_single_line }}"
+      - "lvg_output: {{ lvg_output }}"
+      - "lvol_output: {{ lvol_output }}"
+      - "filesystem_output: {{ filesystem_output | default('') }}"
+  tags: "debug"

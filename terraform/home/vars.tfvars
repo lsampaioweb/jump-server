@@ -9,7 +9,8 @@ vm_instances = {
     memory  = 6144
     startup = "order=10"
     vga = {
-      memory = 128
+      type   = "virtio-gl"
+      memory = 256
     }
 
     disks = {

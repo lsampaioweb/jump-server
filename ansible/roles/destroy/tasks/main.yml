@@ -3,3 +3,9 @@
   ansible.builtin.include_tasks: "{{ path_debian_known_hosts_remove }}"
   vars:
     host: { name: "{{ ansible_host }}", state: "absent" }
+
+- name: "Ensure the local signed key files of the VM are removed from the SSH Signer Host"
+  delegate_to: "{{ groups['ssh_signer'] | first }}"
+  ansible.builtin.file:
+    path: "/tmp/{{ inventory_hostname }}"
+    state: "absent"

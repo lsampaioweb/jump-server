@@ -1,4 +1,6 @@
 ---
+domain: "lan.homelab"
+
 # Import Paths.
 path_roles_common: "roles/common"
 path_common_tasks: "{{ path_roles_common }}/tasks"

@@ -1,11 +1,9 @@
 ---
 lvm:
-  - {
-    devices: "/dev/sdb",
-    volume_group: "ubuntu_vg",
-    logical_volume: [
-      { name: "root_lvm", filesystem_type: "ext4", size: "+5G" },
-      { name: "var_lvm", filesystem_type: "ext4", size: "+5G" },
-      { name: "home_lvm", filesystem_type: "ext4", size: "+5G" }
-    ]
-  }
+  # - { device: "/dev/sda", volume_group: "ubuntu_vg" }
+  - { device: "/dev/sdb", volume_group: "ubuntu_vg" }
+
+logical_volume:
+  - { name: "root_lvm", volume_group: "ubuntu_vg", filesystem_type: "ext4", size: "+30%" }
+  - { name: "var_lvm", volume_group: "ubuntu_vg", filesystem_type: "ext4", size: "+30%" }
+  - { name: "home_lvm", volume_group: "ubuntu_vg", filesystem_type: "ext4", size: "+45%" }

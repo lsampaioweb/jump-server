@@ -1,0 +1,77 @@
+---
+- name: "Creating a new partition on the disk(s)"
+  community.general.parted:
+    device: "{{ item.device }}"
+    number: 1
+    label: "gpt"
+    flags: ["lvm"]
+    state: "present"
+  register: "parted_output"
+  loop: "{{ lvm }}"
+
+- name: "Getting the name of the primary partition of the disk"
+  ansible.builtin.shell: >
+    set -o pipefail && \
+    lsblk -nr {{ item.device }} | grep part | cut -d' ' -f1
+  args:
+    executable: "/usr/bin/bash"
+  register: "disk_partitions"
+  loop: "{{ lvm }}"
+  failed_when: disk_partitions.rc != 0 or disk_partitions.stdout == ''
+  changed_when: false
+
+- name: "Concatenating each partition with the '/dev/???' prefix"
+  ansible.builtin.set_fact:
+    partition_name: "/dev/{{ partition.1 }}"
+  register: "partition_list"
+  loop: "{{ disk_partitions.results | subelements('stdout_lines') }}"
+  loop_control:
+    loop_var: "partition"
+    label: "{{ partition_name }}"
+
+- name: "Converting the array to a string so it can be used to create volume groups"
+  ansible.builtin.set_fact:
+    partitions_single_line: "{{ partition_list.results | map(attribute='ansible_facts.partition_name') | join(',') }}"
+
+- name: "Creating the volume group {{ item.volume_group }}"
+  community.general.lvg:
+    vg: "{{ item.volume_group }}"
+    pvs: "{{ partitions_single_line }}"
+    pvresize: true
+  register: "lvg_output"
+
+- name: "Creating the logical volume"
+  community.general.lvol:
+    vg: "{{ item.volume_group }}"
+    thinpool: "{{ lv.name }}"
+    size: "{{ lv.size }}"
+    resizefs: true
+    shrink: false
+  register: "lvol_output"
+  loop: "{{ logical_volume }}"
+  loop_control:
+    loop_var: "lv"
+
+- name: "Creating the filesystem on the LVM"
+  community.general.filesystem:
+    fstype: "{{ lv.filesystem_type }}"
+    dev: "/dev/mapper/{{ item.volume_group }}-{{ lv.name }}"
+  register: "filesystem_output"
+  loop: "{{ logical_volume }}"
+  loop_control:
+    loop_var: "lv"
+  when: parted_output.changed or lvg_output.changed or lvol_output.changed
+
+- name: "Printing variables"
+  ansible.builtin.debug:
+    msg:
+      - "parted_output: {{ parted_output }}"
+      - "parted_output: {{ parted_output.results | map(attribute='changed') }}"
+      - "parted_output: {{ ('True' in parted_output.results | map(attribute='changed')) }}"
+      - "disk_partitions: {{ disk_partitions }}"
+      - "partition_list: {{ partition_list }}"
+      - "partitions_single_line: {{ partitions_single_line }}"
+      - "lvg_output: {{ lvg_output }}"
+      - "lvol_output: {{ lvol_output }}"
+      - "filesystem_output: {{ filesystem_output | default('') }}"
+  tags: "debug"
