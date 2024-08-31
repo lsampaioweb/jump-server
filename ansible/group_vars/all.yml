@@ -16,3 +16,7 @@ path_debian_known_hosts: "{{ path_tasks_debian }}/known_hosts"
 path_debian_known_hosts_add_current: "{{ path_debian_known_hosts }}/add_current.yml"
 path_debian_known_hosts_add: "{{ path_debian_known_hosts }}/add.yml"
 path_debian_known_hosts_remove: "{{ path_debian_known_hosts }}/remove.yml"
+
+# Packages.
+path_debian_packages: "{{ path_tasks_debian }}/packages"
+path_packages_apt: "{{ path_debian_packages }}/apt.yml"
