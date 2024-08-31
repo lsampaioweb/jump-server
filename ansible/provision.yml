@@ -1,17 +1,7 @@
 ---
 - name: "Preparing the virtual machine with the initial settings"
   hosts: "target"
-  # gather_facts: false
   become: true
-
-  # pre_tasks:
-  #   - name: "Ensure the fingerprint of the VM is present in the known_hosts file"
-  #     ansible.builtin.include_tasks: "{{ path_debian_known_hosts_add_current }}"
-  #     vars:
-  #       host_name: "{{ ansible_host }}"
-
-  #   - name: "Gettings facts using the setup module"
-  #     ansible.builtin.setup:
 
   roles:
     - "provision"
