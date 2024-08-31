@@ -22,7 +22,7 @@ vm_instances = {
         # disk1 (optional)
         scsi1 = {
           disk = [{
-            size    = "15G"
+            size    = "20G"
             storage = "Ceph_Gold"
           }]
         }

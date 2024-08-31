@@ -1,8 +1,10 @@
 ---
-vg_name: "ubuntu_vg"
-
-lvm:
-  - { name: "root_lvm", filesystem_type: "ext4", size: "12G" }
-  - { name: "var_lvm", filesystem_type: "ext4", size: "10G" }
-  - { name: "home_lvm", filesystem_type: "ext4", size: "+100%FREE" }
-  # - { name: "opt_lvm", filesystem_type: "ext4", size: "+45%VG" }
+vgs:
+  - name: "ubuntu_vg"
+    disks:
+      - "/dev/sda3"
+      - "/dev/sdb1"
+    lvm:
+      - { name: "root_lvm", size: "12G", filesystem_type: "ext4" }
+      - { name: "var_lvm", size: "10G", filesystem_type: "ext4" }
+      - { name: "home_lvm", size: "+100%FREE", filesystem_type: "ext4" }
