@@ -2,48 +2,7 @@
 
 The playbook can setup an Ubuntu Desktop 22.04.
 
-1. Create the Virtual Machine (VM) on Proxmox.
-```bash
-# General
-VM ID: 1000
-Name: jump-server
-
-# OS
-Storage: local
-ISO image: ubuntu-22.04.1-desktop-amd64.iso
-
-# System
-Qemu Agent: Cheched
-
-# Disks
-Storage: local-lvm
-Disk size (GiB): 32
-Discard: checked
-SSD Simulation: checked
-IO thread: checked
-
-# CPU
-Cores: 4
-
-# Memory
-Memory (MiB) 6144
-Minimum memory (MiB) 2048
-
-# Network
-Bridge: vmbr0
-Firewall: unchecked
-```
-
-2. Add some additional settings.
-```bash
-# Hardware
-Display: Standard VGA, memory=32
-
-# Options
-Hotplug: Disk, Network
-```
-
-3. Run these commands in the terminal of the VM:
+1. Run these commands in the terminal of the VM:
 ```bash
 # 01 - Change your git config
 # Encode your name and email, in order to avoid spammers, encode them in base64.
