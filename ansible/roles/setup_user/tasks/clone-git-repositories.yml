@@ -55,13 +55,14 @@
     # Projects
     - {repo: "proxmox-cluster", dest: "{{ projects_path }}/01-proxmox-cluster"}
     - {repo: "jump-server", dest: "{{ projects_path }}/02-jump-server"}
-    - {repo: "openssl-certificates", dest: "{{ projects_path }}/03-openssl-certificates"}
-    - {repo: "T1600G-28TS-SG2424", dest: "{{ projects_path }}/04T1600G-28TS-SG2424"}
-    - {repo: "load-balancer", dest: "{{ projects_path }}/05-load-balancer"}
-    - {repo: "dhcp", dest: "{{ projects_path }}/06-dhcp"}
-    - {repo: "dns", dest: "{{ projects_path }}/07-dns"}
-    - {repo: "ntp", dest: "{{ projects_path }}/08-ntp"}
-    - {repo: "tplink_router_ax1800", dest: "{{ projects_path }}/09-tplink_router_ax1800"}
+    - {repo: "backup-manager", dest: "{{ projects_path }}/03-backup-manager"}
+    - {repo: "dhcp", dest: "{{ projects_path }}/04-dhcp"}
+    - {repo: "dns", dest: "{{ projects_path }}/05-dns"}
+    - {repo: "ntp", dest: "{{ projects_path }}/06-ntp"}
+    - {repo: "openssl-certificates", dest: "{{ projects_path }}/07-openssl-certificates"}
+    - {repo: "load-balancer", dest: "{{ projects_path }}/08-load-balancer"}
+    - {repo: "T1600G-28TS-SG2424", dest: "{{ projects_path }}/T1600G-28TS-SG2424"}
+    - {repo: "tplink_router_ax1800", dest: "{{ projects_path }}/tplink_router_ax1800"}
     # Spring Boot
     - {repo: "spring-boot-tutorial", dest: "{{ springboot_path }}/spring-boot-tutorial"}
     # Terraform
