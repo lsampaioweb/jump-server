@@ -6,5 +6,5 @@ vgs:
       - "/dev/sdb1"
     lvm:
       - { name: "root_lvm", size: "12G", filesystem_type: "ext4" }
-      - { name: "var_lvm", size: "10G", filesystem_type: "ext4" }
+      - { name: "var_lvm", size: "12G", filesystem_type: "ext4" }
       - { name: "home_lvm", size: "+100%FREE", filesystem_type: "ext4" }

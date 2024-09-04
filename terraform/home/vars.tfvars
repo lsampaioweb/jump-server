@@ -28,9 +28,9 @@ vm_instances = {
         }
         # cloud-init disk (optional)
         # Can be removed after the VM is created.
-        scsi10 = {
-          cloudinit = [{}]
-        }
+        # scsi10 = {
+        #   cloudinit = [{}]
+        # }
       }
     }
   }
