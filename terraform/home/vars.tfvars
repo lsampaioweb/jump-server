@@ -26,10 +26,11 @@ vm_instances = {
             storage = "Ceph_Gold"
           }]
         }
-        # # cloud-init disk (optional)
-        # scsi10 = {
-        #   cloudinit = [{}]
-        # }
+        # cloud-init disk (optional)
+        # Can be removed after the VM is created.
+        scsi10 = {
+          cloudinit = [{}]
+        }
       }
     }
   }
