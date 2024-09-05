@@ -21,6 +21,7 @@
     dest: "{{ item.dest }}"
     clone: true
     update: true
+    recursive: true
   register: "output"
   failed_when: (output.msg is defined) and 'Local modifications exist' not in output.msg
   loop:
