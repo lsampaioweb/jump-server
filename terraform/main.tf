@@ -1,6 +1,6 @@
 module "homelab_project" {
   source  = "lsampaioweb/homelab-project/proxmox"
-  version = "1.0.7"
+  version = "1.0.8"
 
   project     = var.project
   environment = var.environment
