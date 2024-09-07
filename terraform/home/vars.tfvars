@@ -33,5 +33,12 @@ vm_instances = {
         # }
       }
     }
+
+    networks = {
+      "01" = {
+        bridge  = "vmbr101"
+        macaddr = "6E:4C:7C:0B:7D:79"
+      }
+    }
   }
 }
