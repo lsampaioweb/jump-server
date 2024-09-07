@@ -15,8 +15,8 @@ module "dynamic_inventory" {
   hosts_list = [
     for key, value in var.vm_instances :
     {
-      hostname    = module.homelab_project.vms[key].name
-      public_ip   = module.homelab_project.vms[key].ipv4
+      hostname = module.homelab_project.vms[key].name
+      # public_ip   = module.homelab_project.vms[key].ipv4
       password_id = module.homelab_project.vms[key].clone
     }
   ]
