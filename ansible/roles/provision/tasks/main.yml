@@ -1,6 +1,6 @@
 ---
 - name: "Setting up the disks"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/os/local-storage.yml"
+  ansible.builtin.include_tasks: "roles/common/tasks/debian/os/local-storage.yml"
   when: vgs is defined
 
 - name: "Signing the Host OpenSSH keypair with the CA key"
