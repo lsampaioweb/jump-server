@@ -13,6 +13,7 @@ vm_instances = {
       type   = "virtio-gl"
       memory = 256
     }
+    description = "Machine that I use to run my scripts (Ansible, Packer and Terraform). It has several permissions on the Firewall"
 
     disks = {
       scsi = {
