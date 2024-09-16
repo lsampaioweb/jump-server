@@ -42,7 +42,6 @@
     - {repo: "rabbitmq-docker", dest: "{{ docker_path }}/rabbitmq"}
     - {repo: "redis-docker", dest: "{{ docker_path }}/redis"}
     - {repo: "sonarqube-docker", dest: "{{ docker_path }}/sonarqube"}
-    - {repo: "traefik-docker", dest: "{{ docker_path }}/traefik"}
     - {repo: "vault-docker", dest: "{{ docker_path }}/vault"}
     # Packer
     - {repo: "packer-proxmox-ubuntu-22-04-clone", dest: "{{ packer_path }}/packer-proxmox-ubuntu-22-04-clone"}
