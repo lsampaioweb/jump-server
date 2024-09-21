@@ -1,0 +1,7 @@
+---
+- name: "Restoring the virtual machine"
+  hosts: "target"
+  become: true
+
+  roles:
+    - "restore"

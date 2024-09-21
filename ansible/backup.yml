@@ -1,0 +1,7 @@
+---
+- name: "Backing up the virtual machine data"
+  hosts: "target"
+  become: true
+
+  roles:
+    - "backup"
