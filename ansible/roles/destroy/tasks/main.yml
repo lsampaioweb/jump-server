@@ -2,6 +2,7 @@
 - name: "Ensure the fingerprint of the VM is removed from the known_hosts file"
   ansible.builtin.include_tasks: "{{ path_debian_known_hosts_remove }}"
   vars:
+    delegate_to_host: "{{ groups['ssh_signer'] | first }}"
     host: { name: "{{ ansible_host }}", state: "absent" }
 
 - name: "Ensure the local signed key files of the VM are removed from the SSH Signer Host"
