@@ -77,6 +77,5 @@
     - {repo: "home-edge-grafana", dest: "{{ home_path }}/home-edge-grafana"}
     - {repo: "home-edge-k3s", dest: "{{ home_path }}/home-edge-k3s"}
     - {repo: "home-edge-ldap", dest: "{{ home_path }}/home-edge-ldap"}
-    - {repo: "home-edge-minio", dest: "{{ home_path }}/home-edge-minio"}
     - {repo: "home-edge-postgresql", dest: "{{ home_path }}/home-edge-postgresql"}
     - {repo: "home-edge-zabbix", dest: "{{ home_path }}/home-edge-zabbix"}
