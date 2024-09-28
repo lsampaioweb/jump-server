@@ -1,15 +1,30 @@
 ---
-- name: "Adding the PAM config for the automatic unlock of the secret manager"
+- name: "Adding gnome-keyring PAM configuration for auth"
   ansible.builtin.lineinfile:
-    path: "/etc/pam.d/sshd"
+    path: "{{ item.path }}"
     regexp: "{{ item.value }}"
-    line: "{{ item.value }}\n"
-    insertbefore: "{{ item.before }}"
+    line: "{{ item.value }}"
+    insertbefore: "{{ item.before | default(omit, true) }}"
     firstmatch: true
     state: "present"
   loop:
-    - {value: "auth optional pam_gnome_keyring.so", before: 'authorization.$'}
-    - {value: "session optional pam_gnome_keyring.so auto_start", before: 'password updating.$'}
+    - { path: "/etc/pam.d/sshd", value: "auth optional pam_gnome_keyring.so", before: 'authorization.$' }
+    - { path: "/etc/pam.d/common-auth", value: "auth    optional                        pam_gnome_keyring.so",
+        before: '^# end of pam-auth' }
+  notify: "Start gnome-keyring-daemon"
+
+- name: "Adding gnome-keyring PAM configuration for session"
+  ansible.builtin.lineinfile:
+    path: "{{ item.path }}"
+    regexp: "{{ item.value }}"
+    line: "{{ item.value }}"
+    insertbefore: "{{ item.before | default(omit, true) }}"
+    firstmatch: true
+    state: "present"
+  loop:
+    - { path: "/etc/pam.d/sshd", value: "session optional pam_gnome_keyring.so auto_start", before: 'password updating.$' }
+    - { path: "/etc/pam.d/common-session", value: "session optional        pam_gnome_keyring.so auto_start",
+        before: '^# end of pam-auth' }
   notify: "Start gnome-keyring-daemon"
 
 - name: "Copying the unlock-keyring function to the ~/.bashrc file"
