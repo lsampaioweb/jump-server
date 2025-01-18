@@ -1,0 +1,6 @@
+/home/lsampaio/.local/share/keyrings
+/home/lsampaio/.local/share/remmina
+/home/lsampaio/Desktop
+/home/lsampaio/Downloads
+/home/lsampaio/Luciano
+/home/lsampaio/git

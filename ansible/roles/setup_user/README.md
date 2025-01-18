@@ -3,6 +3,7 @@
 Run the command in the terminal:
 ```bash
 ansible-playbook setup_user.yml -u <user> -k -K
+ansible-playbook setup_user.yml -u lsampaio -k -K --limit stg-jump-server-01
 ```
 
 #

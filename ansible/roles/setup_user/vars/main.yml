@@ -5,12 +5,12 @@ git_user_email: "bHNhbXBhaW93ZWJAZ21haWwuY29t"
 
 git_path: "~/git"
 datacenter_path: "{{ git_path }}/datacenter"
-ansible_path: "{{ datacenter_path }}/ansible"
-docker_path: "{{ datacenter_path }}/docker"
-packer_path: "{{ datacenter_path }}/packer"
-projects_path: "{{ datacenter_path }}/projects"
-springboot_path: "{{ datacenter_path }}/spring-boot"
-terraform_path: "{{ datacenter_path }}/terraform"
+ansible_path: "{{ datacenter_path }}/01-ansible"
+packer_path: "{{ datacenter_path }}/02-packer"
+terraform_path: "{{ datacenter_path }}/03-terraform"
+docker_path: "{{ datacenter_path }}/04-docker"
+springboot_path: "{{ datacenter_path }}/05-spring-boot"
+projects_path: "{{ datacenter_path }}/06-projects"
 home_path: "{{ git_path }}/home"
 
 # Path of the SSL CA Certificate.

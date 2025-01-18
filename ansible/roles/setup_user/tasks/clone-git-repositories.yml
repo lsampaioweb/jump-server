@@ -30,52 +30,52 @@
     # Ansible
     - {repo: "ansible-common-tasks", dest: "{{ ansible_path }}/ansible-common-tasks"}
     - {repo: "ansible-kvm-cloud-init", dest: "{{ ansible_path }}/ansible-kvm-cloud-init"}
-    # Docker
-    - {repo: "custom-docker-images", dest: "{{ docker_path }}/custom-docker-images"}
-    - {repo: "gitea-docker", dest: "{{ docker_path }}/gitea"}
-    - {repo: "jenkins-docker", dest: "{{ docker_path }}/jenkins"}
-    - {repo: "jenkins-shared-pipeline-libraries", dest: "{{ docker_path }}/jenkins-shared-pipeline-libraries"}
-    - {repo: "nexus-docker", dest: "{{ docker_path }}/nexus"}
-    - {repo: "openldap-docker", dest: "{{ docker_path }}/openldap"}
-    - {repo: "portainer-docker", dest: "{{ docker_path }}/portainer"}
-    - {repo: "postgresql-docker", dest: "{{ docker_path }}/postgresql"}
-    - {repo: "rabbitmq-docker", dest: "{{ docker_path }}/rabbitmq"}
-    - {repo: "redis-docker", dest: "{{ docker_path }}/redis"}
-    - {repo: "sonarqube-docker", dest: "{{ docker_path }}/sonarqube"}
-    - {repo: "vault-docker", dest: "{{ docker_path }}/vault"}
     # Packer
-    - {repo: "packer-proxmox-ubuntu-22-04-clone", dest: "{{ packer_path }}/packer-proxmox-ubuntu-22-04-clone"}
-    - {repo: "packer-proxmox-ubuntu-22-04-iso", dest: "{{ packer_path }}/packer-proxmox-ubuntu-22-04-iso"}
-    - {repo: "proxmox-ubuntu-22-04-desktop-raw", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-desktop-raw"}
-    - {repo: "proxmox-ubuntu-22-04-desktop-standard", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-desktop-standard"}
-    - {repo: "proxmox-ubuntu-22-04-server-raw", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-raw"}
-    - {repo: "proxmox-ubuntu-22-04-server-standard", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-standard"}
-    - {repo: "proxmox-ubuntu-22-04-server-std-docker", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-std-docker"}
-    - {repo: "proxmox-ubuntu-22-04-server-std-k3s", dest: "{{ packer_path }}/proxmox-ubuntu-22-04-server-std-k3s"}
-    # Projects
-    - {repo: "proxmox-cluster", dest: "{{ projects_path }}/01-proxmox-cluster"}
-    - {repo: "jump-server", dest: "{{ projects_path }}/02-jump-server"}
-    - {repo: "backup-manager", dest: "{{ projects_path }}/03-backup-manager"}
-    - {repo: "dhcp", dest: "{{ projects_path }}/04-dhcp"}
-    - {repo: "dns", dest: "{{ projects_path }}/05-dns"}
-    - {repo: "ntp", dest: "{{ projects_path }}/06-ntp"}
-    - {repo: "openssl-certificates", dest: "{{ projects_path }}/07-openssl-certificates"}
-    - {repo: "load-balancer", dest: "{{ projects_path }}/08-load-balancer"}
-    - {repo: "T1600G-28TS-SG2424", dest: "{{ projects_path }}/T1600G-28TS-SG2424"}
-    - {repo: "tplink_router_ax1800", dest: "{{ projects_path }}/tplink_router_ax1800"}
-    # Spring Boot
-    - {repo: "spring-boot-tutorial", dest: "{{ springboot_path }}/spring-boot-tutorial"}
+    - {repo: "packer-proxmox-ubuntu-22-04-iso", dest: "{{ packer_path }}/01-packer-proxmox-ubuntu-22-04-iso"}
+    - {repo: "packer-proxmox-ubuntu-22-04-clone", dest: "{{ packer_path }}/02-packer-proxmox-ubuntu-22-04-clone"}
+    - {repo: "proxmox-ubuntu-22-04-server-raw", dest: "{{ packer_path }}/03-proxmox-ubuntu-22-04-server-raw"}
+    - {repo: "proxmox-ubuntu-22-04-server-standard", dest: "{{ packer_path }}/04-proxmox-ubuntu-22-04-server-standard"}
+    - {repo: "proxmox-ubuntu-22-04-server-std-docker", dest: "{{ packer_path }}/05-proxmox-ubuntu-22-04-server-std-docker"}
+    - {repo: "proxmox-ubuntu-22-04-server-std-k3s", dest: "{{ packer_path }}/06-proxmox-ubuntu-22-04-server-std-k3s"}
+    - {repo: "proxmox-ubuntu-22-04-desktop-raw", dest: "{{ packer_path }}/07-proxmox-ubuntu-22-04-desktop-raw"}
+    - {repo: "proxmox-ubuntu-22-04-desktop-standard", dest: "{{ packer_path }}/08-proxmox-ubuntu-22-04-desktop-standard"}
     # Terraform
     - {repo: "terraform-random-target-node", dest: "{{ terraform_path }}/01-terraform-random-target-node"}
     - {repo: "terraform-local-dynamic-inventory", dest: "{{ terraform_path }}/02-terraform-local-dynamic-inventory"}
     - {repo: "terraform-proxmox-vm-qemu", dest: "{{ terraform_path }}/03-terraform-proxmox-vm-qemu"}
     - {repo: "terraform-proxmox-homelab-project", dest: "{{ terraform_path }}/04-terraform-proxmox-homelab-project"}
+    # Docker
+    - {repo: "custom-docker-images", dest: "{{ docker_path }}/custom-docker-images"}
+    # Spring Boot
+    - {repo: "spring-boot-tutorial", dest: "{{ springboot_path }}/spring-boot-tutorial"}
+    # Projects
+    - {repo: "jump-server", dest: "{{ projects_path }}/01-working-machine"}
+    - {repo: "openssl-certificates", dest: "{{ projects_path }}/02-openssl-certificates"}
+    - {repo: "proxmox-cluster", dest: "{{ projects_path }}/03-proxmox-cluster"}
+    - {repo: "load-balancer", dest: "{{ projects_path }}/04-load-balancer"}
+    - {repo: "backup-manager", dest: "{{ projects_path }}/05-backup-manager"}
+    - {repo: "dhcp", dest: "{{ projects_path }}/06-dhcp"}
+    - {repo: "dns", dest: "{{ projects_path }}/07-dns"}
+    - {repo: "ntp", dest: "{{ projects_path }}/08-ntp"}
+    - {repo: "gitea-docker", dest: "{{ projects_path }}/xx-gitea"}
+    - {repo: "jenkins-docker", dest: "{{ projects_path }}/xx-jenkins"}
+    - {repo: "jenkins-shared-pipeline-libraries", dest: "{{ projects_path }}/xx-jenkins-shared-pipeline-libraries"}
+    - {repo: "nexus-docker", dest: "{{ projects_path }}/xx-nexus"}
+    - {repo: "openldap-docker", dest: "{{ projects_path }}/xx-openldap"}
+    - {repo: "portainer-docker", dest: "{{ projects_path }}/xx-portainer"}
+    - {repo: "postgresql-docker", dest: "{{ projects_path }}/xx-postgresql"}
+    - {repo: "rabbitmq-docker", dest: "{{ projects_path }}/xx-rabbitmq"}
+    - {repo: "redis-docker", dest: "{{ projects_path }}/xx-redis"}
+    - {repo: "sonarqube-docker", dest: "{{ projects_path }}/xx-sonarqube"}
+    - {repo: "T1600G-28TS-SG2424", dest: "{{ projects_path }}/xx-T1600G-28TS-SG2424"}
+    - {repo: "tplink_router_ax1800", dest: "{{ projects_path }}/xx-tplink_router_ax1800"}
+    - {repo: "vault-docker", dest: "{{ projects_path }}/xx-vault"}
     # Home
-    - {repo: "backup-restic-s3-minio", dest: "{{ home_path }}/backup-restic-s3-minio"}
-    - {repo: "home-edge-esxi", dest: "{{ home_path }}/home-edge-esxi"}
-    - {repo: "home-edge-firewall", dest: "{{ home_path }}/home-edge-firewall"}
-    - {repo: "home-edge-grafana", dest: "{{ home_path }}/home-edge-grafana"}
-    - {repo: "home-edge-k3s", dest: "{{ home_path }}/home-edge-k3s"}
-    - {repo: "home-edge-ldap", dest: "{{ home_path }}/home-edge-ldap"}
-    - {repo: "home-edge-postgresql", dest: "{{ home_path }}/home-edge-postgresql"}
-    - {repo: "home-edge-zabbix", dest: "{{ home_path }}/home-edge-zabbix"}
+    - {repo: "backup-restic-s3-minio", dest: "{{ home_path }}/01-backup-restic-s3-minio"}
+    - {repo: "home-edge-esxi", dest: "{{ home_path }}/02-home-edge-esxi"}
+    - {repo: "home-edge-firewall", dest: "{{ home_path }}/03-home-edge-firewall"}
+    - {repo: "home-edge-ldap", dest: "{{ home_path }}/04-home-edge-ldap"}
+    - {repo: "home-edge-postgresql", dest: "{{ home_path }}/05-home-edge-postgresql"}
+    - {repo: "home-edge-zabbix", dest: "{{ home_path }}/06-home-edge-zabbix"}
+    - {repo: "home-edge-grafana", dest: "{{ home_path }}/07-home-edge-grafana"}
+    - {repo: "home-edge-k3s", dest: "{{ home_path }}/08-home-edge-k3s"}

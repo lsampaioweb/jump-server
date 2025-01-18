@@ -1,0 +1,12 @@
+*~
+*.o
+*.lo
+*.pyc
+~/.cache
+~/.local/share/Trash
+/var/log/*
+/run/*
+/tmp/*
+/var/cache/apt/*
+/var/tmp/*
+*.bak
