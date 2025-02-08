@@ -1,43 +1,67 @@
 # Jump Server
-Project that will create VMs that will work as the Jump Servers of the HomeLab.
 
-1. Run these commands in the terminal of your machine:
+This project automates the creation and configuration of Jump Servers for the HomeLab environment.
+
+#
+### Overview
+
+This repository provides Terraform and Ansible scripts to set up Jump Servers in your infrastructure. The setup process follows two approaches:
+
+1. **Automated Approach (Recommended)**: If your Proxmox cluster is operational, use Terraform scripts to create and configure the VM automatically.
+2. **Manual Approach**: If Proxmox is not ready, create the VM manually using the Proxmox GUI and then run the Ansible playbooks to configure it.
+
+#
+### Installation and Setup
+
+Follow the steps below to prepare **your machine** and clone the repository.
+
+### 1. Prepare the Environment
+
+Open a terminal and execute the following steps:
+
+1. Update package lists and upgrade installed packages
     ```bash
-    # 01 - Update the list of packages.
-    sudo apt update
-    sudo apt upgrade -y
+    sudo apt update && sudo apt upgrade -y
+    ```
 
-    # 02 - Install Git.
+1. Install Git
+    ```bash
     sudo apt install -y git
+    ```
 
-    # 03 - Create a Git folder and go to it.
-    mkdir git && cd git
+1. Create a Git directory and navigate to it
+    ```bash
+    mkdir -p ~/git && cd ~/git
+    ```
 
-    # 04 - Clone the repository and all of its submodules.
+1. Clone the repository and initialize submodules
+    ```bash
     git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git
+    ```
 
-    # If you have already cloned. Just initialize the tracking of the submodules.
-    git submodule --init
-    git pull --recurse-submodules
-
-    # Or in just one line:
-    git submodule update --init --recursive
-
-    # 05 - Run the bash script to install the required packages on the running machine.
+1. If the repository is already cloned, update submodules
+    ```bash
     cd jump-server
-    ./install-requirements.sh
+    git submodule update --init --recursive
+    ```
 
-    # 06 - Reboot the VM.
+1. Run the installation script for required dependencies
+    ```bash
+    ./install-requirements.sh
+    ```
+
+1. Reboot the VM to apply changes
+    ```bash
     sudo reboot
     ```
 
-1. Run Terraform scripts:
-    - [Terraform](terraform/README.md "Terraform")
+#
+### 1. Deploy the Jump Server
 
-1. Run Ansible scripts:
+Choose one of the following methods:
 
-    ** Only if not using Terraform, because Terraform will run these same scripts.
-    - [Ansible](ansible/README.md "Ansible")
+- **[Terraform](terraform/README.md "Terraform")** (Recommended) – If Proxmox is ready, use Terraform to create and configure the VM automatically.
+- **[Ansible](ansible/README.md "Ansible")** – If Proxmox is not ready, manually create a VM and then run the Ansible playbooks to configure it.
 
 #
 ### License:

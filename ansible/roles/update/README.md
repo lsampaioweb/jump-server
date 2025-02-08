@@ -1,17 +1,24 @@
-## **Setup Ubuntu Server 24.04**
+## Update Ubuntu Server 24.04
 
-To update the Ubuntu Server to the latest packages, run the following command in the terminal:
+This playbook updates all installed packages on an **Ubuntu Server 24.04**, ensuring the system is up-to-date with the latest security patches and software versions.
+
+#
+### 1. Run the Update Playbook
+
+Execute the following command in the terminal of the **target VM**:
 
 ```bash
 ansible-playbook update.yml
 ```
 
-### **Tasks Overview**
+### 2. Tasks Performed
 
-1. **Updating Packages**: This playbook will update all installed packages on the target Ubuntu Server 24.04 to ensure the system is up-to-date with the latest security patches and software versions.
+### Updating Packages
+- Updates all installed packages while keeping the system stable.
+- Refreshes the **APT cache** before upgrading packages.
+- Uses **safe upgrade mode** to prevent unnecessary package removals.
 
----
+#
+### Created by:
 
-### **Author**
-
-- Luciano Sampaio
+- **Luciano Sampaio**

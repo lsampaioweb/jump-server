@@ -1,17 +1,24 @@
-## **Setup Ubuntu Server 24.04 - Restore Role**
+## Restore Data on Ubuntu Server 24.04
 
-To restore data on the Ubuntu Server 24.04, run the following command in the terminal:
+This playbook restores **files, directories, databases, or system configurations** from the most recent backup on an **Ubuntu Server 24.04**.
+
+#
+### 1. Run the Restore Playbook
+
+Execute the following command in the terminal of the **target VM**:
 
 ```bash
 ansible-playbook restore.yml
 ```
 
-### **Tasks Overview**
+### 2. Tasks Performed
 
-1. **Restoring Data**: This task will restore the specified data to the server from the most recent backup. It could involve restoring files, directories, databases, or system configurations as required.
+### Restoring Data
+- Recovers **files and directories** from the latest backup.
+- Restores **databases** if applicable.
+- Applies **system configurations** needed for proper functionality.
 
----
+#
+### Created by:
 
-### **Author**
-
-- Luciano Sampaio
+- **Luciano Sampaio**

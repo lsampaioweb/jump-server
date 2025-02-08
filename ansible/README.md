@@ -1,42 +1,78 @@
-# Setup the Ubuntu Desktop 22.04 as a jump server for my HomeLab using Ansible
+# Setup the Ubuntu Desktop 24.04 as a Jump Server for HomeLab using Ansible
 
-The playbook can setup an Ubuntu Desktop 22.04.
+The playbook automates the setup of an **Ubuntu Desktop 24.04** to function as a Jump Server.
 
-1. Run these commands in the terminal of the VM:
+All commands should be executed **inside the VM**.
+
+#
+### 1. Configure Git User
+
+To avoid exposing your personal information, encode your **name** and **email** in Base64 before adding them to the playbook configuration.
+
 ```bash
-# 01 - Change your git config
-# Encode your name and email, in order to avoid spammers, encode them in base64.
 echo "your-name" | base64
 echo "your-email@something.com" | base64
+```
 
+Edit the Ansible variables file:
+
+```bash
 nano ansible/roles/setup_user/vars/main.yml
-# Add your base64 values here.
+```
+
+Add your encoded values:
+
+```bash
 git_user_name: "change here"
 git_user_email: "change here"
+```
 
-# 02 - Save your password in the secret manager.
-# The Ansible playbook will need this password in order to run as privileged user.
+### 2. Store Your Password in the Secret Manager
+
+The Ansible playbook requires a stored password to run privileged tasks.
+
+Save your password securely:
+
+```bash
 secret-tool store --label="local-user-password" password local-user-password
-# To test if the command worked, run:
+```
+
+To verify that the password was stored correctly:
+
+```bash
 secret-tool lookup password "local-user-password"
-# If you get the error message:
-#   "secret-tool: Cannot create an item in a locked collection".
-# Solution:
-#   You should open the Ubuntu Interface (not from the SSH terminal). This will "open/unseal/unlock" the secret manager. This issue will soon be resolved by the Ansible Playbook.
+```
 
-# 03 - Execute the playbook.
-cd ~/git/jump-server/ansible
-ansible-playbook provision.yml
+If you encounter this error:
 
-# 04 - Delete the created folders.
+```bash
+secret-tool: Cannot create an item in a locked collection.
+```
+
+### Solution:
+Open the Ubuntu Desktop **GUI interface** (not SSH) to unlock the secret manager.
+This issue will soon be handled automatically by the Ansible playbook.
+
+#
+### Roles You Can Execute
+
+1. [Provision](roles/provision/README.md) - Creates the Virtual Machine (VM).
+1. [Update](roles/update/README.md) - Updates system packages and dependencies.
+1. [Setup](roles/create_user/README.md) - Configures user accounts and default applications.
+1. [Setup User](roles/setup_user/README.md) - Applies additional user settings and configurations.
+1. [Restore](roles/restore/README.md) - Restores system configurations from a backup.
+1. [Destroy](roles/destroy/README.md) - Destroys the Virtual Machine.
+
+#
+### Cleanup (Optional)
+
+If needed, remove the cloned repository:
+
+```bash
 rm -rf ~/git/jump-server/
 ```
 
 #
-### Roles you can execute:
-1. [Setup](roles/setup_user/README.md) the jump server with all the default applications and settings.
-
-#
 ### Created by:
 
-1. Luciano Sampaio.
+- **Luciano Sampaio**

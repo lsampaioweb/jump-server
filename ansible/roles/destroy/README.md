@@ -1,15 +1,23 @@
-# Setup Ubuntu Server 22.04
+## Destroy Ubuntu Server 24.04
 
-Run the command in the terminal:
+This playbook removes the user data, applications and cleans up related configurations.
+
+#
+### 1. Run the Destroy Playbook
+
+Execute the following command in the terminal of the **target VM**:
+
 ```bash
-ansible-playbook provision.yml
+ansible-playbook destroy.yml
 ```
 
-## Tasks:
+### 2. Tasks Performed
 
-### 1. Change the hostname of the server.
-  1. Change the localhost name of the server in the /etc/hosts.
+### System Cleanup
+- Removes **user data, applications, and configurations**.
+- Cleans up **temporary files and logs**.
 
-## Author:
+#
+### Created by:
 
-Luciano Sampaio
+- **Luciano Sampaio**

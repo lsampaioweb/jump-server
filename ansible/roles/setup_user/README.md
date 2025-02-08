@@ -1,23 +1,51 @@
-# Setup Ubuntu Server 24.04
+# Configure User Settings on Ubuntu Server 24.04
 
-Run the command in the terminal:
+This playbook applies user-specific configurations on an **Ubuntu Server 24.04**, including **GNOME settings, favorite applications, Git setup, and customizations**.
+
+#
+### 1. Run the User Setup Playbook
+
+Execute the following command in the terminal of the **target VM**:
+
 ```bash
 ansible-playbook setup_user.yml -u <user> -k -K
+```
+
+To target a specific host:
+
+```bash
 ansible-playbook setup_user.yml -u lsampaio -k -K --limit stg-jump-server-01
 ```
 
-#
-### Tasks:
+### 2. Tasks Performed
 
-### 1. Create the function to unlock the secret manager.
+### System Customization
+- Creates a **function to unlock the secret manager** (GNOME Keyring).
+- Sets up the **dark theme** as the system default.
+- Adds **favorite applications to the Dock** and adjusts Dock settings.
 
-### 2. Add the favorite applications in the Dock.
+### Software and Package Management
+- Installs **Git** and configures user details from encoded Base64 values.
+- Installs and manages **VSCode extensions** for development.
+- Installs **XClip** for clipboard management.
+- Adds the **self-signed Certificate Authority (CA)** to Chrome’s trust store.
 
-### 3. Setup the dark theme.
+### Git Repository Management
+- Ensures all required **Git directories exist**.
+- Clones essential **Git repositories** for:
+  - **Homelab infrastructure**
+  - **Ansible playbooks**
+  - **Packer templates**
+  - **Terraform modules**
+  - **Spring Boot projects**
+  - **Docker images**
+  - **Custom projects and services**
 
-### 4. Clone my git repositories.
+### Cleanup and Reboot
+- Removes **unnecessary packages**.
+- Checks if a **reboot is required** and reboots if necessary.
 
 #
 ### Created by:
 
-1. Luciano Sampaio.
+- **Luciano Sampaio**
