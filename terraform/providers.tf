@@ -3,17 +3,17 @@ terraform {
     random = {
       # https://registry.terraform.io/providers/hashicorp/random/latest
       source  = "hashicorp/random"
-      version = "3.6.2"
+      version = "3.6.3"
     }
     proxmox = {
       # https://registry.terraform.io/providers/Telmate/proxmox/latest
       source  = "Telmate/proxmox"
-      version = "3.0.1-rc3"
+      version = "3.0.1-rc6"
     }
     local = {
       # https://registry.terraform.io/providers/hashicorp/local/latest
       source  = "hashicorp/local"
-      version = "2.5.1"
+      version = "2.5.2"
     }
   }
 }
