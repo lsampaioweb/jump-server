@@ -58,7 +58,7 @@ This issue will soon be handled automatically by the Ansible playbook.
 
 1. [Provision](roles/provision/README.md) - Creates the Virtual Machine (VM).
 1. [Update](roles/update/README.md) - Updates system packages and dependencies.
-1. [Setup](roles/create_user/README.md) - Configures user accounts and default applications.
+1. [Create User](roles/create_user/README.md) - Creates user accounts.
 1. [Setup User](roles/setup_user/README.md) - Applies additional user settings and configurations.
 1. [Restore](roles/restore/README.md) - Restores system configurations from a backup.
 1. [Destroy](roles/destroy/README.md) - Destroys the Virtual Machine.
