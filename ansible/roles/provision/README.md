@@ -35,4 +35,4 @@ The provisioning playbook performs the following tasks:
 #
 ### Created by:
 
-- **Luciano Sampaio**
+1. Luciano Sampaio.

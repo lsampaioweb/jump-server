@@ -56,7 +56,7 @@ Open a terminal and execute the following steps:
     ```
 
 #
-### 1. Deploy the Jump Server
+### 2. Deploy the Jump Server
 
 Choose one of the following methods:
 

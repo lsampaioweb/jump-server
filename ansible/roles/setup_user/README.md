@@ -48,4 +48,4 @@ ansible-playbook setup_user.yml -u lsampaio -k -K --limit stg-jump-server-01
 #
 ### Created by:
 
-- **Luciano Sampaio**
+1. Luciano Sampaio.

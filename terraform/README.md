@@ -44,4 +44,4 @@ The `tf.sh` script is a helper for running Terraform commands. It accepts **thre
 #
 ### Created by:
 
-- **Luciano Sampaio**
+1. Luciano Sampaio.

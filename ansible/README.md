@@ -75,4 +75,4 @@ rm -rf ~/git/jump-server/
 #
 ### Created by:
 
-- **Luciano Sampaio**
+1. Luciano Sampaio.
