@@ -58,6 +58,7 @@
     - {repo: "dns", dest: "{{ projects_path }}/07-dns"}
     - {repo: "ntp", dest: "{{ projects_path }}/08-ntp"}
     - {repo: "bitcoin-puzzle", dest: "{{ projects_path }}/09-bitcoin-puzzle"}
+    - {repo: "vault-chromium-extension", dest: "{{ projects_path }}/10-vault-chromium-extension"}
     - {repo: "gitea-docker", dest: "{{ projects_path }}/xx-gitea"}
     - {repo: "jenkins-docker", dest: "{{ projects_path }}/xx-jenkins"}
     - {repo: "jenkins-shared-pipeline-libraries", dest: "{{ projects_path }}/xx-jenkins-shared-pipeline-libraries"}
