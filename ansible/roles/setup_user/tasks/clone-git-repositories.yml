@@ -31,14 +31,15 @@
     - {repo: "ansible-common-tasks", dest: "{{ ansible_path }}/ansible-common-tasks"}
     - {repo: "ansible-kvm-cloud-init", dest: "{{ ansible_path }}/ansible-kvm-cloud-init"}
     # Packer
-    - {repo: "packer-proxmox-ubuntu-22-04-iso", dest: "{{ packer_path }}/01-packer-proxmox-ubuntu-22-04-iso"}
-    - {repo: "packer-proxmox-ubuntu-22-04-clone", dest: "{{ packer_path }}/02-packer-proxmox-ubuntu-22-04-clone"}
-    - {repo: "proxmox-ubuntu-22-04-server-raw", dest: "{{ packer_path }}/03-proxmox-ubuntu-22-04-server-raw"}
-    - {repo: "proxmox-ubuntu-22-04-server-standard", dest: "{{ packer_path }}/04-proxmox-ubuntu-22-04-server-standard"}
-    - {repo: "proxmox-ubuntu-22-04-server-std-docker", dest: "{{ packer_path }}/05-proxmox-ubuntu-22-04-server-std-docker"}
-    - {repo: "proxmox-ubuntu-22-04-server-std-k3s", dest: "{{ packer_path }}/06-proxmox-ubuntu-22-04-server-std-k3s"}
-    - {repo: "proxmox-ubuntu-22-04-desktop-raw", dest: "{{ packer_path }}/07-proxmox-ubuntu-22-04-desktop-raw"}
-    - {repo: "proxmox-ubuntu-22-04-desktop-standard", dest: "{{ packer_path }}/08-proxmox-ubuntu-22-04-desktop-standard"}
+    - {repo: "packer-proxmox-ubuntu-iso", dest: "{{ packer_path }}/01-packer-proxmox-ubuntu-iso"}
+    - {repo: "packer-proxmox-ubuntu-clone", dest: "{{ packer_path }}/02-packer-proxmox-ubuntu-clone"}
+    - {repo: "proxmox-ubuntu-server-raw", dest: "{{ packer_path }}/03-proxmox-ubuntu-server-raw"}
+    - {repo: "proxmox-ubuntu-server-standard", dest: "{{ packer_path }}/04-proxmox-ubuntu-server-standard"}
+    - {repo: "proxmox-ubuntu-server-std-docker", dest: "{{ packer_path }}/05-proxmox-ubuntu-server-std-docker"}
+    - {repo: "proxmox-ubuntu-server-docker-postgresql", dest: "{{ packer_path }}/06-proxmox-ubuntu-server-docker-postgresql"}
+    - {repo: "proxmox-ubuntu-server-std-k3s", dest: "{{ packer_path }}/07-proxmox-ubuntu-server-std-k3s"}
+    - {repo: "proxmox-ubuntu-desktop-raw", dest: "{{ packer_path }}/08-proxmox-ubuntu-desktop-raw"}
+    - {repo: "proxmox-ubuntu-desktop-standard", dest: "{{ packer_path }}/09-proxmox-ubuntu-desktop-standard"}
     # Terraform
     - {repo: "terraform-random-target-node", dest: "{{ terraform_path }}/01-terraform-random-target-node"}
     - {repo: "terraform-local-dynamic-inventory", dest: "{{ terraform_path }}/02-terraform-local-dynamic-inventory"}
