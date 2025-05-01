@@ -33,13 +33,11 @@
     # Packer
     - {repo: "packer-proxmox-ubuntu-iso", dest: "{{ packer_path }}/01-packer-proxmox-ubuntu-iso"}
     - {repo: "packer-proxmox-ubuntu-clone", dest: "{{ packer_path }}/02-packer-proxmox-ubuntu-clone"}
-    - {repo: "proxmox-ubuntu-server-raw", dest: "{{ packer_path }}/03-proxmox-ubuntu-server-raw"}
-    - {repo: "proxmox-ubuntu-server-standard", dest: "{{ packer_path }}/04-proxmox-ubuntu-server-standard"}
-    - {repo: "proxmox-ubuntu-server-std-docker", dest: "{{ packer_path }}/05-proxmox-ubuntu-server-std-docker"}
-    - {repo: "proxmox-ubuntu-server-docker-postgresql", dest: "{{ packer_path }}/06-proxmox-ubuntu-server-docker-postgresql"}
-    - {repo: "proxmox-ubuntu-server-std-k3s", dest: "{{ packer_path }}/07-proxmox-ubuntu-server-std-k3s"}
-    - {repo: "proxmox-ubuntu-desktop-raw", dest: "{{ packer_path }}/08-proxmox-ubuntu-desktop-raw"}
-    - {repo: "proxmox-ubuntu-desktop-standard", dest: "{{ packer_path }}/09-proxmox-ubuntu-desktop-standard"}
+    - {repo: "proxmox-ubuntu-server-raw", dest: "{{ packer_path }}/10-proxmox-ubuntu-server-raw"}
+    - {repo: "proxmox-ubuntu-server-standard", dest: "{{ packer_path }}/11-proxmox-ubuntu-server-standard"}
+    - {repo: "proxmox-ubuntu-server-std-docker", dest: "{{ packer_path }}/12-proxmox-ubuntu-server-std-docker"}
+    - {repo: "proxmox-ubuntu-desktop-raw", dest: "{{ packer_path }}/20-proxmox-ubuntu-desktop-raw"}
+    - {repo: "proxmox-ubuntu-desktop-standard", dest: "{{ packer_path }}/21-proxmox-ubuntu-desktop-standard"}
     # Terraform
     - {repo: "terraform-random-target-node", dest: "{{ terraform_path }}/01-terraform-random-target-node"}
     - {repo: "terraform-local-dynamic-inventory", dest: "{{ terraform_path }}/02-terraform-local-dynamic-inventory"}
