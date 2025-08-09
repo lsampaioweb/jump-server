@@ -47,7 +47,7 @@ Open a terminal and execute the following steps:
 
 1. Run the installation script for required dependencies
     ```bash
-    ./install-requirements.sh
+    sudo ./install-requirements.sh
     ```
 
 1. Reboot the VM to apply changes

@@ -3,7 +3,7 @@
 # Purpose: Prepare a new Ubuntu Desktop workstation (22.04/24.04) to be configured by Ansible automation.
 #
 # Execution:
-#   ./install-requirements.sh
+#   sudo ./install-requirements.sh
 #
 set -euo pipefail # Exit on error, undefined variables, and pipe failures
 
