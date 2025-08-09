@@ -72,6 +72,8 @@ If needed, remove the cloned repository:
 rm -rf ~/git/jump-server/
 ```
 
+[Go Back](../README.md)
+
 #
 ### Created by:
 

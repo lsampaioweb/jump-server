@@ -45,6 +45,8 @@ ansible-playbook setup_user.yml -u lsampaio -k -K --limit stg-jump-server-01
 - Removes **unnecessary packages**.
 - Checks if a **reboot is required** and reboots if necessary.
 
+[Go Back](../../README.md)
+
 #
 ### Created by:
 

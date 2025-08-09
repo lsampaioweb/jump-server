@@ -17,6 +17,8 @@ ansible-playbook destroy.yml
 - Removes **user data, applications, and configurations**.
 - Cleans up **temporary files and logs**.
 
+[Go Back](../../README.md)
+
 #
 ### Created by:
 

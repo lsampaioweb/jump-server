@@ -41,6 +41,8 @@ The `tf.sh` script is a helper for running Terraform commands. It accepts **thre
 ./tf.sh destroy home
 ```
 
+[Go Back](../README.md)
+
 #
 ### Created by:
 
