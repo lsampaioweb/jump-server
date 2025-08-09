@@ -1,8 +1,9 @@
+# Visual Studio Code settings folder.
+.vscode
+
+# Ansible temporary files.
+.ansible
+
 # Terraform hidden files should not be committed to Git.
 *.terraform*
 *.tfstate*
-
-# This project has a dynamic hosts file, so it keeps changing.
-hosts
-
-.vscode
