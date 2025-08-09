@@ -58,7 +58,7 @@ install_essential_packages() {
   # Update package lists and upgrade system
   apt-get update -y
   apt-get upgrade -y
-  apt-get install -y git
+  apt-get install -y git libsecret-tools
 
   echo "--> 2/2.1: Installing bootstrap version of pipx from apt..."
   apt-get install -y pipx
