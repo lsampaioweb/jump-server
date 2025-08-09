@@ -27,7 +27,7 @@ readonly ANSIBLE_COLLECTION=(
 # Function: Installs the CA certificates.
 #---------------------------------------------------------------------------------
 install_ca_certificates() {
-  echo "--> 1/3: Installing CA certificates..."
+  echo "--> 1/2: Installing CA certificates..."
 
   local cert_path="/usr/local/share/ca-certificates"
   mkdir -p "${cert_path}"
@@ -53,48 +53,29 @@ install_ca_certificates() {
 # Function: Installs essential packages and bootstraps a modern, system-wide pipx.
 #---------------------------------------------------------------------------------
 install_essential_packages() {
-  echo "--> 2/3: Installing essential packages..."
+  echo "--> 2/2: Installing essential packages..."
 
   # Update package lists and upgrade system
   apt-get update -y
   apt-get upgrade -y
   apt-get install -y git
 
-  echo "--> 2/3.1: Installing bootstrap version of pipx from apt..."
+  echo "--> 2/2.1: Installing bootstrap version of pipx from apt..."
   apt-get install -y pipx
 
-  echo "--> 2/3.2: Bootstrapping latest pipx version to /usr/local/bin..."
+  echo "--> 2/2.2: Bootstrapping latest pipx version to /usr/local/bin..."
   # Use the apt-installed pipx to install the latest version of itself globally.
   PIPX_HOME="/opt/pipx" PIPX_BIN_DIR="/usr/local/bin" /usr/bin/pipx install pipx --force
 
-  echo "--> 2/3.3: Removing bootstrap version of pipx..."
+  echo "--> 2/2.3: Removing bootstrap version of pipx..."
   apt-get purge --autoremove -y pipx
 
-  echo "--> 2/3.4: Installing Ansible and Ansible-Lint with the new system-wide pipx..."
+  echo "--> 2/2.4: Installing Ansible and Ansible-Lint with the new system-wide pipx..."
   /usr/local/bin/pipx install --global --include-deps ansible
   /usr/local/bin/pipx install --global ansible-lint
 
   apt-get autoremove -y --purge
   echo "--> System prerequisites and Ansible tools installed successfully."
-}
-
-#---------------------------------------------------------------------------------
-# Function: Downloads and installs Ansible collections system-wide.
-#---------------------------------------------------------------------------------
-install_ansible_collections() {
-  echo "--> 3/3: Installing system-wide Ansible Collections..."
-
-  # This is the standard path for system-wide collections.
-  local collection_path="/usr/share/ansible/collections"
-  mkdir -p "${collection_path}"
-
-  for collection_name in "${ANSIBLE_COLLECTION[@]}"; do
-    echo "Installing ${collection_name}..."
-    # We use ansible-galaxy to install the downloaded file to the system-wide path.
-    /usr/local/bin/ansible-galaxy collection install "${collection_name}"
-  done
-
-  echo "Ansible Collections installation completed."
 }
 
 #------------------------------------------------------------------------------
@@ -105,7 +86,6 @@ main() {
 
   install_ca_certificates
   install_essential_packages
-  install_ansible_collections
 
   # Refresh the terminal.
   source ~/.bashrc
