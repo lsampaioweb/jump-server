@@ -1,0 +1,43 @@
+---
+apt_packages:
+  # Desktop Essentials - Core packages for desktop functionality and remote access.
+  - {name: "sudo"} # Ensures the sudo command is present.
+  - {name: "openssh-server"} # Enables remote access via SSH.
+  - {name: "xrdp"} # Allows remote desktop connections using Microsoft RDP.
+  - {name: "libvirglrenderer1"} # Enables virtio-gl GPU acceleration.
+  - {name: "dbus-x11"} # D-Bus support for X applications; required by community.general.dconf.
+  - {name: "xclip"} # Accesses the X clipboard from the command line.
+  - {name: "chrome-gnome-shell"} # Enables GNOME Shell integration for Chrome.
+  # Security and Access - Tools for securing the VM and managing access.
+  - {name: "ufw"} # Manages firewall rules with Uncomplicated Firewall.
+  - {name: "fail2ban"} # Protects against brute-force attacks.
+  - {name: "gnupg2"} # For encryption and signing using GPG.
+  - {name: "libsecret-tools"} # Stores and retrieves passwords securely.
+  - {name: "sshpass"} # For non-interactive SSH password entry.
+  # Networking and Diagnostics - Tools for network management and diagnostics.
+  - {name: "ethtool"} # Manages network device settings, including Wake-on-LAN.
+  - {name: "net-tools"} # Networking utilities (ifconfig, netstat).
+  - {name: "traceroute"} # For diagnosing network routing issues.
+  - {name: "whois"} # Retrieves domain and IP information.
+  - {name: "curl"} # Transfers data with URLs.
+  # System Utilities and Logging - Tools for system management and logging.
+  - {name: "rsyslog"} # Provides system logging service.
+  - {name: "tree"} # Displays directory contents in a tree-like format.
+  - {name: "jq"} # Command-line JSON processor.
+  - {name: "uuid"} # Generates Universally Unique Identifiers (UUIDs).
+  # Development Tools - Tools for development and Python-related functionality.
+  - {name: "git"} # Version control system for tracking changes in source code.
+  - {name: "pipx"} # Installs and runs Python apps in isolated environments.
+  - {name: "python3-psutil"} # Retrieves system/process info; required by community.general.dconf.
+  - {name: "python3-passlib"} # Password hashing library with bcrypt support.
+  - {name: "python3-jmespath"} # Queries JSON data using JMESPath expressions.
+  # Specialized Tools - Additional tools for specific tasks.
+  - {name: "nikto"} # Web server scanner for detecting vulnerabilities.
+  - {name: "restic"} # Efficient and secure backup program.
+  - {name: "default-jdk"} # Standard Java or Java compatible Development Kit.
+  - {name: "code"} # Visual Studio Code.
+
+pipx_packages:
+  - {name: "ansible", install_deps: true, global: true}
+  - {name: "ansible-lint", global: true}
+  - {name: "ansible", state: "inject", inject_packages: ['jmespath', 'hvac', 'certifi'], include_injected: true, global: true}

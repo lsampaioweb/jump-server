@@ -1,19 +1,115 @@
 ---
-- name: "Setting up the disks"
-  ansible.builtin.include_tasks: "roles/common/tasks/debian/os/local-storage.yml"
-  when: vgs is defined
+- name: "System Base Configuration"
+  tags:
+    - "base_config"
+  block:
+    - name: "Trusting CA certificates"
+      ansible.builtin.import_role:
+        name: "common"
+        tasks_from: "debian/os/trust-ca-certificate"
 
-- name: "Signing the Host OpenSSH keypair with the CA key"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/os/sign-ssh-keypair.yml"
+    - name: "Configuring system timezone"
+      ansible.builtin.import_role:
+        name: "common"
+        tasks_from: "debian/os/timezone"
+      vars:
+        timezone: "{{ system_settings.timezone }}"
 
-- name: "Installing required packages"
-  ansible.builtin.import_tasks: "installing-packages.yml"
+    - name: "Configuring NTP server"
+      ansible.builtin.import_role:
+        name: "common"
+        tasks_from: "debian/os/ntp-servers"
+      vars:
+        ntp_service: "{{ system_settings.ntp.service }}"
+        ntp_servers: "{{ system_settings.ntp.servers }}"
 
-- name: "Setting up the Firewall UFW"
-  ansible.builtin.import_tasks: "ufw.yml"
+    - name: "Setting up the disks"
+      when: vgs is defined
+      ansible.builtin.import_role:
+        name: "common"
+        tasks_from: "debian/os/local-storage"
 
-- name: "Removing unnecessary packages"
-  ansible.builtin.import_tasks: "removing-packages.yml"
+    - name: "Updating base system packages"
+      ansible.builtin.import_tasks: "packages"
 
-- name: "Checking if a reboot is required"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/os/reboot-if-required.yml"
+- name: "Network and Boot Configuration"
+  tags:
+    - "system_tuning"
+  block:
+    - name: "Enabling Grub boot menu"
+      ansible.builtin.import_role:
+        name: "common"
+        tasks_from: "debian/os/grub-menu"
+      vars:
+        grub_timeout: "{{ system_settings.grub_timeout }}"
+
+    - name: "Setting predictable network interface names"
+      ansible.builtin.import_role:
+        name: "common"
+        tasks_from: "debian/network/default-name"
+
+    - name: "Disabling IPv6 system-wide"
+      ansible.builtin.import_role:
+        name: "common"
+        tasks_from: "debian/network/ipv6-disable"
+
+- name: "Core Application Installation"
+  tags:
+    - "apps"
+  block:
+    - name: "Installing Git dependencies"
+      ansible.builtin.import_tasks: "git"
+
+    - name: "Installing Google Chrome"
+      ansible.builtin.import_role:
+        name: "common"
+        tasks_from: "debian/packages/google-chrome"
+
+# - name: "Developer and Virtualization Tools (Optional)"
+#   tags:
+#     - "never"
+#     - "dev_tools"
+#   block:
+#     - name: "Installing xclip utility"
+#       ansible.builtin.import_role:
+#         name: "common"
+#         tasks_from: "debian/packages/xclip"
+#       tags: "xclip"
+
+#     - name: "Installing Packer and Terraform"
+#       ansible.builtin.import_role:
+#         name: "common"
+#         tasks_from: "debian/packages/hashicorp"
+
+#     - name: "Installing Kubernetes admin tools (kubectl, etc.)"
+#       ansible.builtin.import_role:
+#         name: "common"
+#         tasks_from: "debian/packages/kubernetes"
+
+#     - name: "Installing VirtualBox"
+#       ansible.builtin.import_role:
+#         name: "common"
+#         tasks_from: "debian/packages/virtualbox"
+#       vars:
+#         user: "{{ lookup('env', 'USER') }}"
+
+- name: "Remote Access Services"
+  tags:
+    - "remote_access"
+  block:
+    - name: "Installing XRDP"
+      ansible.builtin.import_role:
+        name: "common"
+        tasks_from: "debian/packages/xrdp"
+
+# - name: "Security Configuration"
+#   tags:
+#     - "security"
+#   block:
+#     - name: "Installing Fail2ban"
+#       ansible.builtin.import_tasks: "fail2ban"
+#       tags: "fail2ban"
+
+#     - name: "Configuring UFW (firewall)"
+#       ansible.builtin.import_tasks: "ufw"
+#       tags: "ufw"

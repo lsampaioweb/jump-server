@@ -1,0 +1,30 @@
+---
+- name: "Including OS-specific or default variables for global packages"
+  ansible.builtin.include_vars:
+    file: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_lsb.codename }}.yml"
+    - "default.yml"
+
+- name: "Installing global APT packages"
+  ansible.builtin.import_role:
+    name: "common"
+    tasks_from: "debian/packages/apt"
+  vars:
+    update_cache: true
+    upgrade: true
+    packages: "{{ apt_packages }}"
+    autoclean: true
+    autoremove: true
+
+- name: "Adding SSL certificates to pipx environments"
+  ansible.builtin.import_role:
+    name: "common"
+    tasks_from: "debian/packages/pipx-fix-ssl"
+
+- name: "Installing global PIPX packages"
+  ansible.builtin.import_role:
+    name: "common"
+    tasks_from: "debian/packages/pipx"
+  vars:
+    packages: "{{ pipx_packages }}"

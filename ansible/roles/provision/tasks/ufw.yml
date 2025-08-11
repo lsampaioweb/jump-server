@@ -1,12 +1,20 @@
 ---
-- name: "Adding UFW rules"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/os/ufw.yml"
-  vars:
-    rules:
-      - {
-        rule: "allow",
-        proto: "tcp",
-        to_port: "8100:8200",
-        src: "192.168.100.0/28",
-        comment: "Cloud-Init: Allow access to user-data ports (8100-8200) from Packer VLAN only"
-      }
+- name: "Ensuring UFW package is installed"
+  ansible.builtin.import_role:
+    name: "common"
+    tasks_from: "debian/os/ufw_install.yml"
+
+- name: "Ensuring IPv6 is disabled in UFW's default configuration"
+  ansible.builtin.lineinfile:
+    path: "/etc/default/ufw"
+    regexp: "^IPV6="
+    line: "IPV6=no"
+    state: "present"
+
+- name: "Applying UFW rules"
+  ansible.builtin.include_role:
+    name: "common"
+    tasks_from: "debian/os/ufw_configure_rule.yml"
+  loop: "{{ ufw.rules | default([]) }}"
+  loop_control:
+    label: "{{ item.rule | default('') }} {{ item.name | default('') }}"

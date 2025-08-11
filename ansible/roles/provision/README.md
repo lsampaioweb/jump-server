@@ -15,6 +15,28 @@ ansible-playbook provision.yml
 
 The provisioning playbook performs the following tasks:
 
+New:
+- System Base Configuration:
+  - Trusting CA certificates.
+  - Configuring system timezone.
+  - Configuring NTP server.
+  - Setting up the disks.
+  - Updating base system packages:
+    - Installing global APT packages.
+    - Adding SSL certificates to pipx environments.
+    - Installing global PIPX packages.
+- Network and Boot Configuration:
+  - Enabling Grub boot menu.
+  - Setting predictable network interface names.
+  - Disabling IPv6 system-wide.
+- Core Application Installation:
+  - Installing Git dependencies.
+  - Installing Google Chrome.
+- Remote Access Services:
+  - Installing XRDP.
+
+
+Old (to remove):
 ### System Configuration
 - Sets up **local storage** if volume groups (`vgs`) are defined.
 - Signs the **Host OpenSSH keypair** using a Certificate Authority (CA).

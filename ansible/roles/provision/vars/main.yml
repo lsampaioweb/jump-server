@@ -1,4 +1,33 @@
 ---
+## "System Base Configuration" Section.
+# Path where the certificate authority (CA) certificates are stored.
+ca_certificates_path: "/usr/local/share/ca-certificates"
+
+# Files that will be copied to the CA certificates path.
+ca_certificates:
+  - "ca.lan.homelab.crt"
+
+# SSH known hosts file.
+ssh_known_hosts: "/etc/ssh/ssh_known_hosts"
+
+# SSH CA public keys for host verification.
+ssh_host_ca_keys:
+  - "ca.lan.homelab.pub"
+
+system_settings:
+  # Sets the system's timezone.
+  timezone: "America/Maceio"
+  # NTP configuration for time synchronization.
+  ntp:
+    # Service to use: 'timesyncd' (recommended for clients) or 'chronyd' (for servers).
+    service: "timesyncd"
+    # Your Fortigate NTP server IP or hostname
+    servers:
+      - "ntp-pool.{{ domain }}"
+
+  # Sets the boot menu timeout in seconds.
+  grub_timeout: 2
+
 vgs:
   - name: "ubuntu_vg"
     disks:
@@ -8,3 +37,36 @@ vgs:
       - { name: "root_lvm", size: "12G", filesystem_type: "ext4" }
       - { name: "var_lvm", size: "12G", filesystem_type: "ext4" }
       - { name: "home_lvm", size: "+100%FREE", filesystem_type: "ext4" }
+
+# # --- Certificate Configuration ---
+# # Defines certificates to be trusted in the browser's NSSDB (for Chrome/Firefox).
+# nssdb_certificates:
+#   - { trust: "C,,", name: "BaneseCertRoot", path: "{{ paths.ca_certificates }}/BaneseCertRoot.crt" }
+
+# # --- Application-Specific URLs and Paths ---
+
+# # Fail2ban configuration path.
+# fail2ban:
+#   # The standard directory for local jail configurations.
+#   jail_config_path: "/etc/fail2ban/jail.d"
+
+# # A list of Fail2ban jail configurations to deploy.
+# # This makes it easy to add new rules in the future.
+# fail2ban_jails:
+#   - { src: "fail2ban-ssh.conf", dest: "{{ fail2ban.jail_config_path }}/ssh.conf" }
+
+# # UFW (Firewall) configuration.
+# ufw:
+#   # The default policies for incoming and outgoing traffic.
+#   default_incoming_policy: "deny"
+#   default_outgoing_policy: "allow"
+
+#   # A list of firewall rules to apply.
+#   rules:
+#     - { rule: "allow", name: "OpenSSH", comment: "Allow remote administration via SSH." }
+#     - { rule: "allow",
+#         proto: "tcp",
+#         to_port: "8100:8200",
+#         src: "192.168.100.0/28",
+#         comment: "Cloud-Init: Allow access to user-data ports (8100-8200) from Packer VLAN only"
+#     }

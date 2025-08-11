@@ -1,6 +1,6 @@
 ---
 - name: "Setting up Git"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/git.yml"
+  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/git-config.yml"
   vars:
     config:
       - {scope: "global", name: "user.name", value: "{{ git_user_name | b64decode }}"}
@@ -33,7 +33,15 @@
 - name: "Setting up XClip"
   ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/xclip.yml"
 
+# - name: "Adding our self signed certificate authority to the Google Chrome trust database"
+#   become: false
+#   ansible.builtin.import_tasks: "roles/common/tasks/debian/os/nssdb.yml"
+#   when: nssdb_path is defined
+
 - name: "Adding our self signed certificate authority to the Google Chrome trust database"
-  become: false
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/os/nssdb.yml"
   when: nssdb_path is defined
+  ansible.builtin.include_role:
+    name: "common"
+    tasks_from: "debian/os/nssdb.yml"
+    apply:
+      become: false
