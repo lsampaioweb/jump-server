@@ -20,6 +20,5 @@ ca_certificate_path: "{{ certificates_authority_path }}/ca.lan.homelab.crt"
 # For Google Chrome to trust our Certificate Authority.
 # "C,," -> root.
 # ",,"  -> intermediate.
-nssdb_path: "$HOME/.pki/nssdb"
 nssdb_certificates:
   - {trust: "C,,", name: "HomeLab-Certificate-Authority", path: "{{ ca_certificate_path }}"}

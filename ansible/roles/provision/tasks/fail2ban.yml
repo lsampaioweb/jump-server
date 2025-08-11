@@ -1,13 +1,8 @@
 ---
-- name: "Ensuring Fail2ban package is installed"
-  ansible.builtin.import_role:
-    name: "common"
-    tasks_from: "debian/packages/fail2ban_install.yml"
-
-- name: "Deploying Fail2ban jail configurations"
+- name: "Adding Fail2ban rules"
   ansible.builtin.include_role:
     name: "common"
-    tasks_from: "debian/packages/fail2ban_configure_jail.yml"
+    tasks_from: "debian/packages/fail2ban-configure-jail.yml"
   loop: "{{ fail2ban_jails | default([]) }}"
   loop_control:
     label: "{{ item.dest }}"
