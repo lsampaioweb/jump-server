@@ -2,7 +2,7 @@
 - name: "Ensuring UFW package is installed"
   ansible.builtin.import_role:
     name: "common"
-    tasks_from: "debian/os/ufw_install.yml"
+    tasks_from: "debian/os/ufw_install"
 
 - name: "Ensuring IPv6 is disabled in UFW's default configuration"
   ansible.builtin.lineinfile:
@@ -14,7 +14,7 @@
 - name: "Applying UFW rules"
   ansible.builtin.include_role:
     name: "common"
-    tasks_from: "debian/os/ufw_configure_rule.yml"
+    tasks_from: "debian/os/ufw_configure_rule"
   loop: "{{ ufw.rules | default([]) }}"
   loop_control:
     label: "{{ item.rule | default('') }} {{ item.name | default('') }}"
