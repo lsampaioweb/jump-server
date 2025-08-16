@@ -1,5 +1,0 @@
----
-- name: "Installing Lib Secret"
-  ansible.builtin.import_role:
-    name: "common"
-    tasks_from: "debian/packages/libsecret.yml"
