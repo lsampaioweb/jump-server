@@ -48,11 +48,6 @@
         name: "common"
         tasks_from: "debian/network/default-name"
 
-    - name: "Disabling IPv6 system-wide"
-      ansible.builtin.import_role:
-        name: "common"
-        tasks_from: "debian/network/ipv6-disable"
-
 - name: "Core Application Installation"
   tags:
     - "apps"
