@@ -1,0 +1,43 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "ctrl+'",
+    "command": "workbench.action.terminal.new"
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+alt+up",
+    "command": "-editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+alt+down",
+    "command": "-editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+r",
+    "command": "workbench.action.moveEditorToRightGroup"
+  },
+  {
+    "key": "shift+alt+l",
+    "command": "workbench.action.moveEditorToLeftGroup"
+  },
+  {
+    "key": "shift+alt+a",
+    "command": "workbench.action.moveEditorToAboveGroup"
+  },
+  {
+    "key": "shift+alt+b",
+    "command": "workbench.action.moveEditorToBelowGroup"
+  }
+]

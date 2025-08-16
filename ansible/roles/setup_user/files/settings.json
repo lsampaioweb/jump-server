@@ -1,0 +1,51 @@
+{
+  "workbench.startupEditor": "none",
+  "workbench.iconTheme": "vscode-icons",
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "git.autofetch": true,
+  "files.autoSave": "onFocusChange",
+  "editor.tabSize": 2,
+  "explorer.confirmPasteNative": false,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "redhat.telemetry.enabled": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "editor.wordWrap": "on",
+  "files.associations": {
+    "*.yml": "ansible",
+    "hosts": "ini"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "sonarlint.connectedMode.connections.sonarqube": [
+      {
+          "serverUrl": "https://qa.banese.com.br",
+          "connectionId": "SonarQube Banese"
+      }
+  ],
+  "sonarlint.focusOnNewCode": false,
+  "git.openRepositoryInParentFolders": "never",
+  "vsicons.dontShowNewVersionMessage": true,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "update.showReleaseNotes": false,
+  "[spring-boot-properties-yaml]": {
+
+  },
+  "cmake.showOptionsMovedNotification": false,
+  "python.createEnvironment.trigger": "off",
+  "editor.detectIndentation": false,
+  "[yaml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "keep",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    }
+  },
+  "editor.largeFileOptimizations": false
+}
