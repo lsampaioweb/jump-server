@@ -30,14 +30,6 @@
       - {name: "vscjava.vscode-spring-boot-dashboard"}
       - {name: "vmware.vscode-spring-boot"}
 
-- name: "Setting up XClip"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/xclip.yml"
-
-# - name: "Adding our self signed certificate authority to the Google Chrome trust database"
-#   become: false
-#   ansible.builtin.import_tasks: "roles/common/tasks/debian/os/nssdb.yml"
-#   when: nssdb_path is defined
-
 - name: "Adding our self signed certificate authority to the Google Chrome trust database"
   when: nssdb_path is defined
   ansible.builtin.include_role:

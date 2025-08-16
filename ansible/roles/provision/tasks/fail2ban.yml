@@ -1,8 +1,0 @@
----
-- name: "Adding Fail2ban rules"
-  ansible.builtin.include_role:
-    name: "common"
-    tasks_from: "debian/packages/fail2ban-configure-jail.yml"
-  loop: "{{ fail2ban_jails | default([]) }}"
-  loop_control:
-    label: "{{ item.dest }}"
