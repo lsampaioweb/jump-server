@@ -1,6 +1,6 @@
 ---
 - name: "Creating a user account"
-  hosts: "target"
+  hosts: "{{ inventory_hosts | default('target') }}"
   become: true
   vars_prompt:
     - name: "username"

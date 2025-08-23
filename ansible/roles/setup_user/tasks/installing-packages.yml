@@ -1,6 +1,8 @@
 ---
 - name: "Setting up Git"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/git-config.yml"
+  ansible.builtin.import_role:
+    name: "common"
+    tasks_from: "debian/packages/git-config"
   vars:
     config:
       - {scope: "global", name: "user.name", value: "{{ git_user_name | b64decode }}"}
@@ -8,10 +10,12 @@
       - {scope: "global", name: "pull.rebase", value: "false"}
       - {scope: "global", name: "init.defaultBranch", value: "main"}
 
-- name: "Managing vscode extentions"
-  ansible.builtin.import_tasks: "roles/common/tasks/debian/packages/vscode-extention.yml"
+- name: "Managing vscode extensions"
+  ansible.builtin.import_role:
+    name: "common"
+    tasks_from: "debian/packages/vscode-extensions"
   vars:
-    extentions:
+    extensions:
       - {name: "redhat.ansible"}
       - {name: "redhat.vscode-yaml"}
       - {name: "redhat.vscode-xml"}
@@ -34,6 +38,6 @@
   when: nssdb_path is defined
   ansible.builtin.include_role:
     name: "common"
-    tasks_from: "debian/os/nssdb.yml"
+    tasks_from: "debian/os/nssdb"
     apply:
       become: false

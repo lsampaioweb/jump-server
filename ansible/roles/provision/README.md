@@ -7,13 +7,8 @@ This Ansible playbook automates the provisioning of an **Ubuntu Server 24.04** w
 
 Execute the following command in the terminal of the **target VM**:
 
-Change to the ansible directory.
 ```bash
-cd ansible
-```
-
-```bash
-ansible-playbook provision.yml
+ansible-playbook provision.yml -e "inventory_hosts=desktop"
 ```
 
 ### 2. Tasks Performed

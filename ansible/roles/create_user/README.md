@@ -11,6 +11,10 @@ Execute the following command in the terminal of the **target VM**:
 ansible-playbook create_user.yml
 ```
 
+```bash
+ansible-playbook create_user.yml -e "inventory_hosts=desktop"
+```
+
 ### 2. Tasks Performed
 
 ### Creating a User Account
