@@ -11,6 +11,7 @@
     password_lock: false
 
 - name: "Allowing the user to run any commands with sudo without the need to type its password"
+  when: sudo_privilege
   community.general.sudoers:
     name: "{{ username }}"
     user: "{{ username }}"
@@ -18,4 +19,3 @@
     commands: "ALL"
     nopassword: true
     state: "present"
-  when: sudo_privilege
