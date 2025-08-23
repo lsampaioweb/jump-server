@@ -1,5 +1,5 @@
 ---
-- name: "Adding the favorite applications in the Dock"
+- name: "Setting favorite applications in the GNOME Dock"
   become: false
   community.general.dconf:
     key: "/org/gnome/shell/favorite-apps"
@@ -12,18 +12,18 @@
       - "code.desktop"
       - "org.gnome.Terminal.desktop"
       - "org.remmina.Remmina.desktop"
-      - "gnome-system-monitor.desktop"
       - "org.gnome.seahorse.Application.desktop"
-      - "gnome-control-center.desktop"
+      - "org.gnome.Settings.desktop"
+      - "org.gnome.SystemMonitor.desktop"
 
-- name: "Adjusting the Dock settings"
+- name: "Configuring GNOME Dock appearance"
   become: false
   community.general.dconf:
     key: "{{ item.key }}"
     value: "{{ item.value }}"
     state: "present"
   loop:
-    - { key: "/org/gnome/shell/extensions/dash-to-dock/dock-position", value: "'LEFT'"}
-    - { key: "/org/gnome/shell/extensions/dash-to-dock/autohide", value: "true"}
-    - { key: "/org/gnome/shell/extensions/dash-to-dock/dock-fixed", value: "false"}
-    - { key: "/org/gnome/shell/extensions/dash-to-dock/extend-height", value: "false"}
+    - {key: "/org/gnome/shell/extensions/dash-to-dock/dock-position", value: "'LEFT'"}
+    - {key: "/org/gnome/shell/extensions/dash-to-dock/autohide", value: "true"}
+    - {key: "/org/gnome/shell/extensions/dash-to-dock/dock-fixed", value: "false"}
+    - {key: "/org/gnome/shell/extensions/dash-to-dock/extend-height", value: "false"}
