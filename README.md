@@ -14,20 +14,6 @@ This project handles `user-specific` configurations such as Git settings, VS Cod
 
     If your machine was created manually in VirtualBox, you need to run the prerequisite playbooks first to establish the base system configuration, then run this project for final setup.
 
-### Quick Reference
-
-#### Proxmox VM Workflow (Recommended)
-1. Create VM using Terraform + Packer templates.
-1. Run this project's configuration.
-
-#### VirtualBox VM Workflow
-1. Create VM manually in VirtualBox.
-1. Run prerequisite projects **in this order**:
-    - **[proxmox-ubuntu-server-raw](https://github.com/lsampaioweb/proxmox-ubuntu-server-raw)**
-    - **[proxmox-ubuntu-desktop-raw](https://github.com/lsampaioweb/proxmox-ubuntu-desktop-raw)**
-    - **[proxmox-ubuntu-desktop-standard](https://github.com/lsampaioweb/proxmox-ubuntu-desktop-standard)**
-1. Run this project's configuration.
-
 ### Installation and Setup
 
 ### 1. Prepare the Environment
@@ -36,22 +22,48 @@ This project handles `user-specific` configurations such as Git settings, VS Cod
 
 Open a terminal and execute the following steps:
 
-1. Update package lists and upgrade installed packages
+1. Update package lists and upgrade installed packages.
     ```bash
     sudo apt update && sudo apt upgrade -y
     ```
 
-1. Clone the repository and initialize submodules
+1. Install Git
     ```bash
-    git clone --recurse-submodules https://github.com/lsampaioweb/working-machine.git && cd working-machine
+    sudo apt install -y git
     ```
 
-1. If the repository is already cloned, update submodules
+1. Create a Git directory and navigate to it.
+    ```bash
+    mkdir -p ~/git && cd ~/git
+    ```
+
+1. Clone the repository and initialize submodules.
+    ```bash
+    git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git working-machine && cd working-machine
+    ```
+
+1. If the repository is already cloned, update submodules.
     ```bash
     git submodule update --init --recursive
     ```
 
-### 2. Deploy the Working Machine Configuration
+### 2. Only for VirtualBox VM Workflow
+
+1. Run prerequisite projects **in this order**:
+
+    - Install required dependencies.
+      ```bash
+      sudo ./ansible/install-requirements.sh
+      ```
+
+1. Run the following playbooks:
+    - **[proxmox-ubuntu-server-raw](https://github.com/lsampaioweb/proxmox-ubuntu-server-raw)**
+    - **[proxmox-ubuntu-desktop-raw](https://github.com/lsampaioweb/proxmox-ubuntu-desktop-raw)**
+    - **[proxmox-ubuntu-desktop-standard](https://github.com/lsampaioweb/proxmox-ubuntu-desktop-standard)**
+
+1. Run step 3 of this project.
+
+### 3. Deploy the Working Machine Configuration
 
 Return to this project directory and choose one of the following methods:
 
