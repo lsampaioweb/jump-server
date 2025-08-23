@@ -39,7 +39,7 @@ Open a terminal and execute the following steps:
 
 1. Clone the repository and initialize submodules.
     ```bash
-    git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git working-machine && cd working-machine
+    git clone --recurse-submodules https://github.com/lsampaioweb/jump-server.git && cd jump-server
     ```
 
 1. If the repository is already cloned, update submodules.
