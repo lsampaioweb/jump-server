@@ -7,11 +7,6 @@ This Ansible playbook automates the provisioning of an **Ubuntu Server 24.04** w
 
 Execute the following command in the terminal of the **target VM**:
 
-Install required dependencies.
-```bash
-sudo ./install-requirements.sh
-```
-
 ```bash
 ansible-playbook provision.yml
 ```
