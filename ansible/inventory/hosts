@@ -4,3 +4,4 @@ localhost
 [desktop:vars]
 ansible_connection=local
 ansible_python_interpreter=/usr/bin/python3
+password_id=local-user-password
