@@ -8,4 +8,4 @@ pipx_packages:
   # Personal Development Environment - Ansible tools for infrastructure management.
   - {name: "ansible", install_deps: true, global: true}
   - {name: "ansible-lint", global: true}
-  - {name: "ansible", state: "inject", inject_packages: ['jmespath', 'hvac', 'certifi'], include_injected: true, global: true}
+  - {name: "ansible", state: "inject", inject_packages: ['jmespath', 'hvac', 'certifi', 'passlib'], include_injected: true, global: true}
