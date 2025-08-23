@@ -1,6 +1,6 @@
 ---
 - name: "Preparing the virtual machine with my user's settings"
-  hosts: "target"
+  hosts: "{{ inventory_hosts | default('target') }}"
   gather_facts: false
   become: true
 

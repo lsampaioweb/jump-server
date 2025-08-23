@@ -17,6 +17,14 @@ To target a specific host:
 ansible-playbook setup_user.yml -u lsampaio -k -K --limit stg-jump-server-01
 ```
 
+```bash
+ansible-playbook setup_user.yml -u lsampaio -k -K
+```
+
+```bash
+ansible-playbook setup_user.yml -e "inventory_hosts=desktop" -K
+```
+
 ### 2. Tasks Performed
 
 ### System Customization

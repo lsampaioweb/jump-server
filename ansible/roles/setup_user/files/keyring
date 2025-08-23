@@ -1,9 +1,9 @@
-# Ensure DBUS is running
+# Ensure DBUS is running.
 if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
   exec dbus-run-session -- $SHELL
 fi
 
-# Start gnome-keyring-daemon if not running and export all variables
+# Start gnome-keyring-daemon if not running and export all variables.
 if ! pgrep -f "gnome-keyring-daemon" > /dev/null; then
   gnome-keyring-daemon --start --components=secrets,ssh
 fi

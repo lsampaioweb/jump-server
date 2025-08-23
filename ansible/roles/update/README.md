@@ -11,6 +11,10 @@ Execute the following command in the terminal of the **target VM**:
 ansible-playbook update.yml
 ```
 
+```bash
+ansible-playbook update.yml -e "inventory_hosts=desktop"
+```
+
 ### 2. Tasks Performed
 
 ### Updating Packages
