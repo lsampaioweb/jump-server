@@ -4,7 +4,7 @@
     file: "{{ item }}"
   with_first_found:
     - "{{ ansible_lsb.codename }}.yml"
-    - "default.yml"
+    - "packages.yml"
 
 - name: "Installing global APT packages"
   ansible.builtin.import_role:
@@ -17,14 +17,16 @@
     autoclean: true
     autoremove: true
 
-- name: "Adding SSL certificates to pipx environments"
-  ansible.builtin.import_role:
-    name: "common"
-    tasks_from: "debian/packages/pipx-fix-ssl"
-
 - name: "Installing global PIPX packages"
   ansible.builtin.import_role:
     name: "common"
     tasks_from: "debian/packages/pipx"
   vars:
     packages: "{{ pipx_packages }}"
+
+- name: "Installing Ansible Galaxy collections"
+  ansible.builtin.import_role:
+    name: "common"
+    tasks_from: "debian/packages/ansible-galaxy"
+  vars:
+    packages: "{{ ansible_galaxy_collections }}"
