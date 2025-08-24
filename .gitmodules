@@ -1,3 +1,4 @@
 [submodule "ansible/roles/common"]
 	path = ansible/roles/common
 	url = https://github.com/lsampaioweb/ansible-common-tasks.git
+	branch = main
