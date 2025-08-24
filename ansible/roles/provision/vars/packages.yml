@@ -1,0 +1,17 @@
+---
+apt_packages:
+  # Personal Development Tools - Unique packages not in desktop-standard foundation.
+  - {name: "default-jdk"} # Java Development Kit for Java programming.
+
+pipx_packages:
+  # Personal Development Environment - Ansible tools for infrastructure management.
+  - {name: "ansible", global: true, install_deps: true}
+  - {name: "ansible-lint", global: true}
+  - {name: "ansible", global: true, state: "inject", include_injected: true, inject_packages: ['jmespath', 'hvac', 'certifi', 'passlib']}
+
+# This file lists all Ansible Galaxy collections required by this project.
+ansible_galaxy_collections:
+  - {name: community.general} # General purpose Ansible roles and collections.
+  - {name: community.hashi_vault} # HashiCorp Vault.
+  - {name: community.crypto} # Cryptography and HashiCorp Vault.
+  - {name: fortinet.fortios} # To work with Fortigate.
