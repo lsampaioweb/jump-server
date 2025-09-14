@@ -1,0 +1,262 @@
+## Project Overview
+This is a comprehensive Infrastructure as Code (IaC) project for setting up and managing Ubuntu Desktop 24.04 workstations as Jump Servers in a homelab environment. The project combines **Terraform** for VM provisioning on Proxmox, **Ansible** for configuration management, and **Bash scripts** for initial setup.
+
+## Technology Stack
+- **Infrastructure**: Terraform + Proxmox VE.
+- **Configuration Management**: Ansible (with extensive role-based architecture).
+- **Target OS**: Ubuntu Desktop 24.04 (Jammy/Noble).
+- **Shell Scripts**: Bash (for prerequisites and utilities).
+- **Version Control**: Git with specific homelab repository structure.
+
+## Architecture & Design Principles
+
+### 1. **Modular Role-Based Structure**
+- Use Ansible roles extensively with clear separation of concerns.
+- Each role has a specific purpose: `provision`, `setup_user`, `create_user`, `update`, `backup`, `restore`, `destroy`.
+- Common tasks are centralized in the `common` role for reusability.
+- Follow the pattern: `ansible.builtin.import_role` with `tasks_from` for granular task inclusion.
+
+### 2. **Environment-Specific Configuration**
+- Use `vars_files` with `first_found` lookup pattern for OS version compatibility.
+- Structure: Try specific version file (e.g., `noble.yml`) first, fallback to `default.yml`.
+- Variables are namespaced to avoid collisions (e.g., `system_settings.*`).
+
+### 3. **Security-First Approach**
+- Passwords stored in GNOME Secret Manager, accessed via `secret-tool lookup`.
+- CA certificates for internal homelab PKI infrastructure.
+- SSH keys signed by internal Certificate Authority.
+- Base64 encoding for sensitive configuration data in version control.
+
+## Code Style & Standards
+
+### **Ansible Playbooks**
+```yaml
+# Task naming: Use descriptive, action-oriented names in quotes.
+- name: "Installing CA certificates as trusted"
+
+# Module usage: Always use FQCN (Fully Qualified Collection Names).
+ansible.builtin.copy:
+ansible.builtin.import_role:
+community.general.nmcli:
+
+# Variable structure: Use nested objects for organization.
+system_settings:
+  timezone: "America/Maceio"
+  ntp:
+    service: "timesyncd"
+    servers: ["pool.ntp.lan.homelab"]
+
+# Error handling: Use failed_when instead of ignore_errors.
+failed_when:
+  - result.failed
+  - "'Permission denied' not in result.msg | default('')"
+
+# Conditional execution: Clear, readable conditions.
+when:
+  - ansible_facts.services["NetworkManager.service"] is defined
+  - ansible_facts.services["NetworkManager.service"].state == "running"
+```
+
+### **Bash Scripts**
+```bash
+#!/bin/bash
+set -euo pipefail # Always use strict error handling
+
+# Function naming: Descriptive, snake_case
+install_essential_packages() {
+  echo "Installing essential packages..."
+  # Implementation
+}
+
+# Variable naming: SCREAMING_SNAKE_CASE for constants
+readonly PROVISION_FILES_PATH="ansible/roles/provision/files/"
+
+# Use explicit paths and proper quoting
+apt-get install -y "${package_name}"
+```
+
+### **Terraform**
+```hcl
+# Variable validation with meaningful error messages
+variable "project" {
+  description = "The name of the project e.g Firewall or Load Balancer."
+  type        = string
+
+  validation {
+    condition     = length(var.project) >= 3
+    error_message = "The project name must have at least 3 characters."
+  }
+}
+
+# Use modules for reusability
+module "homelab_project" {
+  source  = "lsampaioweb/homelab-project/proxmox"
+  version = "1.0.10"
+}
+```
+
+## File Organization Patterns
+
+### **Directory Structure**
+```
+project-root/
+├── ansible/
+│   ├── roles/
+│   │   ├── common/           # Shared tasks across all roles
+│   │   ├── provision/        # Initial system setup
+│   │   ├── setup_user/       # User-specific configurations
+│   │   └── [role-name]/
+│   │       ├── tasks/main.yml
+│   │       ├── vars/main.yml
+│   │       ├── files/
+│   │       └── README.md     # Always document role purpose
+│   ├── group_vars/all.yml    # Global variables and paths
+│   └── site.yml              # Master playbook importing others
+├── terraform/
+│   ├── [environment]/vars.tfvars
+│   └── tf.sh                 # Helper script for terraform operations
+└── README.md                 # Comprehensive setup instructions
+```
+
+### **Variable Management**
+- Global paths and common settings in `group_vars/all.yml`.
+- Role-specific variables in `roles/[role]/vars/main.yml`.
+- Environment-specific overrides in OS-specific files (`jammy.yml`, `noble.yml`).
+- Use `default.yml` as fallback for OS-agnostic configurations.
+
+## Error Handling & Logging
+
+### **Ansible Error Handling**
+```yaml
+# Prefer failed_when over ignore_errors.
+failed_when:
+  - result.failed
+  - "'expected_error_string' not in result.msg | default('')"
+
+# Use handlers for state changes, not immediate execution.
+notify: "Apply sysctl configuration"
+
+# Service fact gathering when needed.
+- name: "Populating service facts"
+  ansible.builtin.service_facts:
+```
+
+### **Bash Error Handling**
+```bash
+set -euo pipefail  # Exit on error, undefined vars, pipe failures.
+
+# Explicit error checking for critical operations.
+if ! update-ca-certificates; then
+  echo "Error: Failed to update CA certificates"
+  exit 1
+fi
+```
+
+## Testing & Quality Guidelines
+
+### **Ansible Best Practices**
+- Use `ansible-lint` compliant code.
+- Test playbooks with `--check` mode before applying.
+- Use `flush_handlers` when immediate handler execution is required.
+- Implement proper idempotency (tasks should be safe to run multiple times).
+
+### **Documentation Standards**
+- Every role must have a comprehensive README.md with:
+  - Purpose and scope.
+  - Usage examples with command-line options.
+  - Tasks performed (detailed breakdown).
+  - Author attribution: "Created by: Luciano Sampaio".
+
+## Performance & Infrastructure Considerations
+
+### **Homelab-Specific Optimizations**
+- NTP configuration points to Fortigate firewall (no internet dependency).
+- CA certificates for internal PKI (no external trust dependencies).
+- Packer integration with specific VLAN restrictions (192.168.100.0/28).
+- Proxmox-optimized VM configurations with proper resource allocation.
+
+### **Package Management**
+- Use `pipx` for Python tools installation (global, isolated environments).
+- Prefer system packages over third-party repositories when possible.
+- Clean up after installations (`apt autoremove`, package cache clearing).
+
+## Security Considerations
+
+### **Certificate Management**
+- Internal CA hierarchy with proper trust chains.
+- SSH host key signing via internal CA.
+- Browser certificate trust store management (Chrome/Firefox NSSDB).
+
+### **Authentication**
+- Secret manager integration for password handling.
+- Base64 encoding for version control safe data storage.
+- SSH key-based authentication with CA-signed certificates.
+
+## Code Generation Templates
+
+### **New Ansible Role**
+```yaml
+---
+- name: "[Descriptive action in quotes]"
+  when: [clear_conditions]
+  ansible.builtin.[module_name]:
+    [parameters]
+  tags: ["specific_tag"]
+  register: "result_variable"
+  notify: "[Handler Name]"
+```
+
+### **New Terraform Module Usage**
+```hcl
+module "descriptive_name" {
+  source  = "lsampaioweb/module-name/provider"
+  version = "x.y.z"
+
+  # Required variables
+  project     = var.project
+  environment = var.environment
+
+  # Module-specific configuration
+  module_config = var.module_config
+}
+```
+
+### **New Bash Function**
+```bash
+#---------------------------------------------------------------------------------
+# Function: Brief description of what this function does.
+#---------------------------------------------------------------------------------
+function_name() {
+  echo "--> Step X/Y: Descriptive action message..."
+
+  # Implementation with proper error handling
+  if ! command_here; then
+    echo "Error: Specific error description"
+    exit 1
+  fi
+
+  echo "Success message."
+}
+```
+
+## Project-Specific Context
+
+### **Repository Structure Philosophy**
+- This is part of a larger homelab infrastructure managed under `~/git/datacenter/`.
+- Integration with other projects: Ansible playbooks, Packer templates, Terraform modules.
+- Personal development environment setup with specific tool requirements.
+
+### **Deployment Workflow**
+1. **Terraform**: VM provisioning on Proxmox (preferred).
+1. **Ansible Prerequisites**: Run `install-requirements.sh` for base system setup.
+1. **Ansible Roles**: Sequential execution via `site.yml` or individual playbooks.
+1. **User Configuration**: Personal development environment setup.
+
+### **Key Conventions**
+- Use quotes around all task names.
+- Prefer `import_role` over `include_role` for better static analysis.
+- Always use handlers for service restarts and configuration reloads.
+- Tag tasks appropriately for selective execution.
+- Document role dependencies and execution order.
+
+When generating code for this project, ensure it follows these established patterns and integrates seamlessly with the existing codebase structure and conventions.
