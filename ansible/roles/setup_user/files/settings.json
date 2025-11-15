@@ -21,8 +21,8 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "sonarlint.connectedMode.connections.sonarqube": [
       {
-          "serverUrl": "https://qa.banese.com.br",
-          "connectionId": "SonarQube Banese"
+          "serverUrl": "https://qa.lan.home",
+          "connectionId": "SonarQube"
       }
   ],
   "sonarlint.focusOnNewCode": false,
