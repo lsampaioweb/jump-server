@@ -5,7 +5,7 @@
 # Execution:
 #   sudo ./install-requirements.sh
 #
-set -euo pipefail # Exit on error, undefined variables, and pipe failures
+set -euo pipefail # Exit on error, undefined variables, and pipe failures.
 
 #---------------------------------------------------------------------------------
 # Function: Installs essential packages and bootstraps a modern, system-wide pipx.
@@ -13,14 +13,14 @@ set -euo pipefail # Exit on error, undefined variables, and pipe failures
 install_essential_packages() {
   echo "Installing essential packages..."
 
-  # Update package lists and upgrade system
+  # Update package lists and upgrade system.
+  export DEBIAN_FRONTEND=noninteractive
   apt-get update -y
   apt-get upgrade -y
-  apt-get install -y git
 
   echo "Installing bootstrap version of pipx from apt..."
   apt-get install -y pipx
-
+  
   echo "Bootstrapping latest pipx version to /usr/local/bin..."
   # Use the apt-installed pipx to install the latest version of itself globally.
   PIPX_HOME="/opt/pipx" PIPX_BIN_DIR="/usr/local/bin" /usr/bin/pipx install pipx --force
@@ -33,6 +33,11 @@ install_essential_packages() {
   /usr/local/bin/pipx install --global ansible-lint
 
   apt-get autoremove -y --purge
+  
+  # libsecret-tools provides secret-tool, required to retrieve passwords from
+  # the GNOME Secret Manager before Ansible runs (evaluated at parse time).
+  echo "Installing libsecret-tools for Ansible password retrieval..."
+  apt-get install -y libsecret-tools
   echo "--> System prerequisites and Ansible tools installed successfully."
 }
 
