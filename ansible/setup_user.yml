@@ -13,8 +13,16 @@
       prompt: "Enter the user password"
       private: true
 
+    - name: "git_user_name"
+      prompt: "Enter your Git user name"
+      private: false
+
+    - name: "git_user_email"
+      prompt: "Enter your Git user email"
+      private: false
+
   pre_tasks:
-    - name: "Gettings facts using the setup module"
+    - name: "Getting facts using the setup module"
       ansible.builtin.setup:
 
   roles:
