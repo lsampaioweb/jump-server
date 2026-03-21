@@ -1,6 +1,6 @@
 galaxy_info:
   author: Luciano Sampaio
-  description: Configures user-specific settings on an Ubuntu Server/Desktop workstation, including GNOME customization, Git setup, VSCode extensions, and cloning Git repositories.
+  description: Configures user-specific settings on an Ubuntu Server/Desktop workstation.
 
   license: MIT
 
