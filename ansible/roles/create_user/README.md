@@ -1,11 +1,11 @@
-# Create a User on Ubuntu Server 24.04
+# Create a User on Ubuntu Server/Desktop 24.04
 
-This playbook creates a **local user account** on an **Ubuntu Server 24.04** with optional **sudo privileges**.
+This role creates a **local user account** on an **Ubuntu Server/Desktop 24.04** with optional **sudo privileges**.
 
 #
 ### 1. Run the User Creation Playbook
 
-Execute the following command in the terminal of the **target VM**:
+Execute the following command in the terminal of the **target machine**:
 
 ```bash
 ansible-playbook create_user.yml

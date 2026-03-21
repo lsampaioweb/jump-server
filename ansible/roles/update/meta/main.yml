@@ -1,16 +1,20 @@
 galaxy_info:
   author: Luciano Sampaio
-  description: Updating the virtual machine.
+  description: Updates all system packages on an Ubuntu Desktop workstation to the latest version.
 
   license: MIT
 
-  min_ansible_version: "2.17"
+  min_ansible_version: "2.15"
   platforms:
     - name: Ubuntu
+      versions:
+        - noble
 
   galaxy_tags:
     - proxmox
     - ubuntu
+    - ansible
+    - desktop
 
 dependencies:
   - role: common

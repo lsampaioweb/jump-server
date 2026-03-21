@@ -1,18 +1,20 @@
 galaxy_info:
   author: Luciano Sampaio
-  description: Setup Ubuntu VM with default settings.
-  company: thecodemaster.net
+  description: Creates a local user account on an Ubuntu Desktop workstation with optional sudo privileges.
 
   license: MIT
 
-  min_ansible_version: 2.10.5
+  min_ansible_version: "2.15"
   platforms:
     - name: Ubuntu
+      versions:
+        - noble
 
   galaxy_tags:
     - proxmox
     - ubuntu
     - terraform
+    - desktop
 
 dependencies:
   - role: common

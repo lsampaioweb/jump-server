@@ -1,12 +1,11 @@
 ---
-- name: "Creating the local account: {{ username }}"
+- name: "Creating the local account: '{{ username }}'"
   ansible.builtin.user:
     name: "{{ username }}"
     comment: "{{ username }}"
     password: "{{ password | password_hash(password_hash) }}"
     shell: "/bin/bash"
-    groups:
-      - "{{ (sudo_privilege) | ternary('sudo', '') }}"
+    groups: "{{ 'sudo' if sudo_privilege else omit }}"
     state: "present"
     password_lock: false
 

@@ -1,8 +1,8 @@
 ---
-- name: "Updating packages"
-  ansible.builtin.include_role:
+- name: "Updating all system packages to the latest version"
+  ansible.builtin.import_role:
     name: "common"
-    tasks_from: "debian/packages/apt.yml"
+    tasks_from: "debian/packages/apt"
   vars:
     update_cache: true
     upgrade: "full"
