@@ -1,6 +1,6 @@
 # Working Machine
 
-This project automates the final configuration of Ubuntu Desktop `22.04` or `24.04` machines for development and administration tasks in the HomeLab environment.
+This project automates the final configuration of Ubuntu Desktop/Server `24.04` machines for development and administration tasks in the HomeLab environment.
 
 ### Overview
 
@@ -10,15 +10,13 @@ This project handles `user-specific` configurations such as Git settings, VS Cod
 
     If your machine was created using Terraform with Packer templates, it already has the base system configuration. This project handles only the final `user-specific` configurations.
 
-1. **VirtualBox VM**:
+1. **New Bare Machine (Fresh Install)**:
 
-    If your machine was created manually in VirtualBox, you need to run the prerequisite playbooks first to establish the base system configuration, then run this project for final setup.
+    If this is a fresh machine without a Packer base image, you need to bootstrap Ansible and the base configuration first, then run this project for the final setup.
 
 ### Installation and Setup
 
-### 1. Prepare the Environment
-
-**For both Proxmox VMs and VirtualBox:**
+### 1. Prepare the Environment (For all machine types)
 
 Open a terminal and execute the following steps:
 
@@ -47,28 +45,16 @@ Open a terminal and execute the following steps:
     git submodule update --init --recursive
     ```
 
-### 2. Only for VirtualBox VM Workflow
+### 2. Only for New Bare Machines (Fresh Install)
 
-1. Run prerequisite projects **in this order**:
-
-    - Install required dependencies.
-      ```bash
-      sudo ./ansible/install-requirements.sh
-      ```
-
-1. Run the following playbooks:
-    - **[proxmox-ubuntu-server-raw](https://github.com/lsampaioweb/proxmox-ubuntu-server-raw)**
-    - **[proxmox-ubuntu-desktop-raw](https://github.com/lsampaioweb/proxmox-ubuntu-desktop-raw)**
-    - **[proxmox-ubuntu-desktop-standard](https://github.com/lsampaioweb/proxmox-ubuntu-desktop-standard)**
-
-1. Run step 3 of this project.
+If the machine was **not** created from a Packer template (e.g. a laptop, a fresh VirtualBox VM, or a bare Proxmox VM), follow the setup steps in **[ansible/README.md](ansible/README.md)** to bootstrap Ansible and the base configuration before continuing.
 
 ### 3. Deploy the Working Machine Configuration
 
 Return to this project directory and choose one of the following methods:
 
 - **[Terraform](terraform/README.md "Terraform")** (Recommended for Proxmox) – Automated deployment if your Proxmox cluster is operational.
-- **[Ansible](ansible/README.md "Ansible")** – Manual configuration for VirtualBox VMs when Terraform isn't available.
+- **[Ansible](ansible/README.md "Ansible")** – Direct configuration for laptops, VirtualBox VMs, or any machine without Terraform.
 
 #
 ### License:

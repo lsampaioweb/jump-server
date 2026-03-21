@@ -2,31 +2,23 @@
 
 The playbook automates the setup of an **Ubuntu Desktop 24.04** to function as a Jump Server.
 
-All commands should be executed **inside the VM**.
+All commands should be executed **inside the machine** (VM or laptop).
 
 #
-### 1. Configure Git User
+### 1. Install Requirements
 
-To avoid exposing your personal information, encode your **name** and **email** in Base64 before adding them to the playbook configuration.
-
-```bash
-echo "your-name" | base64
-echo "your-email@something.com" | base64
-```
-
-Edit the Ansible variables file:
+Install `pipx`, `ansible`, and `ansible-lint` by running:
 
 ```bash
-nano ansible/roles/setup_user/vars/main.yml
+sudo ./ansible/install-requirements.sh
 ```
 
-Add your encoded values:
+> **VirtualBox only** — after running the script above, also run the following prerequisite Packer-based projects **in order** before continuing:
+> - **[proxmox-ubuntu-server-raw](https://github.com/lsampaioweb/proxmox-ubuntu-server-raw)**
+> - **[proxmox-ubuntu-desktop-raw](https://github.com/lsampaioweb/proxmox-ubuntu-desktop-raw)**
+> - **[proxmox-ubuntu-desktop-standard](https://github.com/lsampaioweb/proxmox-ubuntu-desktop-standard)**
 
-```bash
-git_user_name: "change here"
-git_user_email: "change here"
-```
-
+#
 ### 2. Store Your Password in the Secret Manager
 
 The Ansible playbook requires a stored password to run privileged tasks.
@@ -34,13 +26,13 @@ The Ansible playbook requires a stored password to run privileged tasks.
 Save your password securely:
 
 ```bash
-secret-tool store --label="local-user-password" password local-user-password
+secret-tool store --label="user" password user
 ```
 
 To verify that the password was stored correctly:
 
 ```bash
-secret-tool lookup password "local-user-password"
+secret-tool lookup password "user"
 ```
 
 If you encounter this error:
@@ -56,12 +48,13 @@ This issue will soon be handled automatically by the Ansible playbook.
 #
 ### Roles You Can Execute
 
-1. [Provision](roles/provision/README.md) - Creates the Virtual Machine (VM).
+1. [Provision](roles/provision/README.md) - Installs packages and applies base system configuration.
 1. [Update](roles/update/README.md) - Updates system packages and dependencies.
 1. [Create User](roles/create_user/README.md) - Creates user accounts.
-1. [Setup User](roles/setup_user/README.md) - Applies additional user settings and configurations.
-1. [Restore](roles/restore/README.md) - Restores system configurations from a backup.
-1. [Destroy](roles/destroy/README.md) - Destroys the Virtual Machine.
+1. [Setup User](roles/setup_user/README.md) - Applies personal user settings and configurations.
+1. [Restore](roles/restore/README.md) - Restores data from a backup (standalone, not part of site.yml).
+1. [Backup](roles/backup/README.md) - Backs up user data (standalone, not part of site.yml).
+1. [Destroy](roles/destroy/README.md) - Cleans up and removes the machine configuration.
 
 #
 ### Cleanup (Optional)

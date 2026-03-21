@@ -1,6 +1,6 @@
-## Restore Data on Ubuntu Server 24.04
+## Restore Data on Ubuntu Server/Desktop 24.04
 
-This playbook restores **files, directories, databases, or system configurations** from the most recent backup on an **Ubuntu Server 24.04**.
+This playbook restores **files, directories, databases, or system configurations** from the most recent backup on an **Ubuntu Server/Desktop 24.04**.
 
 #
 ### 1. Run the Restore Playbook

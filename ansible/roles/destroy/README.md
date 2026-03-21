@@ -1,4 +1,4 @@
-## Destroy Ubuntu Server 24.04
+## Destroy Ubuntu Server/Desktop 24.04
 
 This playbook removes the user data, applications and cleans up related configurations.
 

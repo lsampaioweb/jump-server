@@ -1,4 +1,4 @@
-## **Setup Ubuntu Server 24.04 - Backup Role**
+## **Setup Ubuntu Server/Desktop 24.04 - Backup Role**
 
 To perform a backup of the Ubuntu Server 24.04, run the following command in the terminal:
 
