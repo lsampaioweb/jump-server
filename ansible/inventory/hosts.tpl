@@ -1,5 +1,5 @@
 [ssh_signer]
-localhost ansible_connection=local password_id=local-user-password
+localhost ansible_connection=local password_id=user
 
 [target]
 %{ for item in hosts_list ~}

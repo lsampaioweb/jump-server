@@ -1,6 +1,6 @@
 ---
 - name: "Destroying the virtual machine"
-  hosts: "target"
+  hosts: "{{ inventory_hosts | default('target') }}"
   become: true
 
   roles:
