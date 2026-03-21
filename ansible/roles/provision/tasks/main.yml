@@ -1,13 +1,13 @@
 ---
-- name: "Personal Development Environment Setup"
+- name: "Setting up the personal development environment"
   tags:
     - "personal_config"
   block:
     - name: "Setting up the disks"
       when: vgs is defined
-      ansible.builtin.import_role:
+      ansible.builtin.include_role:
         name: "common"
         tasks_from: "debian/os/local-storage"
 
     - name: "Installing personal development packages"
-      ansible.builtin.import_tasks: "packages.yml"
+      ansible.builtin.include_tasks: "packages.yml"

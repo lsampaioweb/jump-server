@@ -1,13 +1,15 @@
 galaxy_info:
   author: Luciano Sampaio
-  description: Setup Ubuntu VM with default settings.
+  description: Provisions an Ubuntu Desktop 24.04 machine with development packages, pipx tools, and Ansible Galaxy collections.
   company: thecodemaster.net
 
   license: MIT
 
-  min_ansible_version: 2.10.5
+  min_ansible_version: "2.15"
   platforms:
     - name: Ubuntu
+      versions:
+        - noble
 
   galaxy_tags:
     - proxmox

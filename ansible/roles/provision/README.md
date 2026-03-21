@@ -1,6 +1,6 @@
-# Provisioning Ubuntu Server 24.04
+# Provisioning Ubuntu Server/Desktop 24.04
 
-This Ansible playbook automates the provisioning of an **Ubuntu Server 24.04** with essential configurations, security policies, and software installations.
+This Ansible playbook automates the provisioning of an **Ubuntu Server/Desktop 24.04** with essential configurations, security policies, and software installations.
 
 #
 ### 1. Run the Provisioning Playbook
@@ -13,45 +13,29 @@ ansible-playbook provision.yml -e "inventory_hosts=desktop"
 
 ### 2. Tasks Performed
 
-The provisioning playbook performs the following tasks:
+The provisioning playbook performs the following tasks (tagged `personal_config`):
 
-New:
-- System Base Configuration:
-  - Trusting CA certificates.
-  - Configuring system timezone.
-  - Configuring NTP server.
-  - Setting up the disks.
-  - Updating base system packages:
-    - Installing global APT packages.
-    - Adding SSL certificates to pipx environments.
-    - Installing global PIPX packages.
-- Network and Boot Configuration:
-  - Enabling Grub boot menu.
-  - Setting predictable network interface names.
-  - Disabling IPv6 system-wide.
-- Core Application Installation:
-  - Installing Git dependencies.
-  - Installing Google Chrome.
-- Remote Access Services:
-  - Installing XRDP.
-
-Old (to remove):
-### System Configuration
-- Sets up **local storage** if volume groups (`vgs`) are defined.
-- Signs the **Host OpenSSH keypair** using a Certificate Authority (CA).
-- Checks if a **reboot is required** and reboots if necessary.
-
-### Package Management
-- Installs **Visual Studio Code (VSCode)**.
-- Installs **Google Chrome**.
-- Removes **unnecessary packages** and cleans up dependencies.
-
-### Firewall (UFW) Configuration
-- Configures **UFW rules** to:
-  - Allow **TCP traffic on ports 8100-8200**.
-  - Restrict access to **192.168.100.0/28** (Packer VLAN only).
-    - This rule is required because when **Packer** runs, it creates an **HTTP service** that the VM being provisioned connects to.
-    - The service is hosted on a **random port between 8100 and 8200**.
+- **Disk Setup** *(only when `vgs` is defined)*:
+  - Extends volume groups and creates logical volumes on new disks.
+- **VS Code Repository Setup**:
+  - Downloads and installs the Microsoft GPG signing key to `/usr/share/keyrings/`.
+  - Configures the VS Code APT repository at `/etc/apt/sources.list.d/vscode.sources`.
+- **APT Packages**:
+  - Refreshes the package cache and performs a full system upgrade.
+  - Installs `apt-transport-https` (required by the VS Code repository).
+  - Installs `code` (Visual Studio Code).
+  - Installs `default-jdk`.
+  - Installs **libnss3-tools** (`certutil`) required for Chrome's certificate database.
+  - Removes unused dependencies and cleans the package cache.
+- **pipx Tools** *(system-wide via `/usr/local/bin`)*:
+  - Installs `ansible` with dependencies.
+  - Installs `ansible-lint`.
+  - Injects `jmespath`, `hvac`, `certifi`, and `passlib` into the Ansible pipx environment.
+- **Ansible Galaxy Collections**:
+  - `community.general`
+  - `community.hashi_vault`
+  - `community.crypto`
+  - `fortinet.fortios`
 
 [Go Back](../../README.md)
 

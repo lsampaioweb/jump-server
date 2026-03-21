@@ -1,10 +1,14 @@
 ---
 - name: "Including OS-specific or default variables for global packages"
   ansible.builtin.include_vars:
-    file: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_lsb.codename }}.yml"
-    - "packages.yml"
+    file: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_facts['distribution_release'] }}.yml"
+        - "packages.yml"
+      paths:
+        - "{{ role_path }}/vars"
 
 - name: "Installing global APT packages"
   ansible.builtin.import_role:
@@ -12,7 +16,7 @@
     tasks_from: "debian/packages/apt"
   vars:
     update_cache: true
-    upgrade: true
+    upgrade: "full"
     packages: "{{ apt_packages }}"
     autoclean: true
     autoremove: true
@@ -30,3 +34,8 @@
     tasks_from: "debian/packages/ansible-galaxy"
   vars:
     packages: "{{ ansible_galaxy_collections }}"
+
+- name: "Installing VS Code"
+  ansible.builtin.import_role:
+    name: "common"
+    tasks_from: "debian/packages/vscode"
