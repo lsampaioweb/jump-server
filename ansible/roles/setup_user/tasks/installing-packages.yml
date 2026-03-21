@@ -1,12 +1,14 @@
 ---
 - name: "Setting up Git"
-  ansible.builtin.import_role:
+  ansible.builtin.include_role:
     name: "common"
     tasks_from: "debian/packages/git-config"
+    apply:
+      become: false
   vars:
     config:
-      - {scope: "global", name: "user.name", value: "{{ git_user_name | b64decode }}"}
-      - {scope: "global", name: "user.email", value: "{{ git_user_email | b64decode }}"}
+      - {scope: "global", name: "user.name", value: "{{ git_user_name }}"}
+      - {scope: "global", name: "user.email", value: "{{ git_user_email }}"}
       - {scope: "global", name: "pull.rebase", value: "false"}
       - {scope: "global", name: "init.defaultBranch", value: "main"}
 

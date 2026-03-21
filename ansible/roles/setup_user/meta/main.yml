@@ -1,18 +1,21 @@
 galaxy_info:
   author: Luciano Sampaio
-  description: Setup Ubuntu VM with default settings.
-  company: thecodemaster.net
+  description: Configures user-specific settings on an Ubuntu Server/Desktop workstation, including GNOME customization, Git setup, VSCode extensions, and cloning Git repositories.
 
   license: MIT
 
-  min_ansible_version: 2.10.5
+  min_ansible_version: "2.15"
   platforms:
     - name: Ubuntu
+      versions:
+        - noble
 
   galaxy_tags:
     - proxmox
     - ubuntu
     - terraform
+    - ansible
+    - desktop
 
 dependencies:
   - role: common

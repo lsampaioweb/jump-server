@@ -12,8 +12,10 @@
   ansible.builtin.import_tasks: "dark-theme.yml"
 
 - name: "Cloning the default git repositories"
-  become: false
-  ansible.builtin.import_tasks: "clone-git-repositories.yml"
+  ansible.builtin.include_tasks:
+    file: "clone-git-repositories.yml"
+    apply:
+      become: false
 
 - name: "Removing unnecessary packages"
   ansible.builtin.import_tasks: "removing-packages.yml"
