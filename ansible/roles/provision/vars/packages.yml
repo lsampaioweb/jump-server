@@ -17,7 +17,7 @@ pipx_packages:
 
 # This file lists all Ansible Galaxy collections required by this project.
 ansible_galaxy_collections:
-  - {name: community.general} # General purpose Ansible roles and collections.
-  - {name: community.hashi_vault} # HashiCorp Vault.
-  - {name: community.crypto} # Cryptography and HashiCorp Vault.
-  - {name: fortinet.fortios} # To work with Fortigate.
+  - {name: "community.general"} # General purpose Ansible roles and collections.
+  - {name: "community.hashi_vault"} # HashiCorp Vault.
+  - {name: "community.crypto"} # Cryptography and HashiCorp Vault.
+  - {name: "fortinet.fortios"} # To work with Fortigate.
