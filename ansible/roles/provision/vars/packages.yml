@@ -6,14 +6,15 @@ apt_packages:
   - {name: "python3-psutil", state: "latest"} # Required by community.general.dconf (uses system Python).
   - {name: "default-jdk"} # Java Development Kit for Java programming.
 
-# The path to the system-wide pipx executable installed by install-requirements.sh.
-pipx_executable: "/usr/local/bin/pipx"
+# Use the interactive user's pipx launcher so the module does not fall back to
+# Ansible's own pipx-managed Python, which does not include the pipx package.
+pipx_executable: "{{ lookup('env', 'HOME') }}/.local/bin/pipx"
 
 pipx_packages:
   # Personal Development Environment - Ansible tools for infrastructure management.
-  - {name: "ansible", global: true, install_deps: true}
-  - {name: "ansible-lint", global: true}
-  - {name: "ansible", global: true, state: "inject", include_injected: true, inject_packages: ['jmespath', 'hvac', 'certifi', 'passlib']}
+  - {name: "ansible", install_deps: true}
+  - {name: "ansible-lint", install_deps: true}
+  - {name: "ansible", state: "inject", include_injected: true, inject_packages: ['jmespath', 'hvac', 'certifi', 'passlib']}
 
 # This file lists all Ansible Galaxy collections required by this project.
 ansible_galaxy_collections:

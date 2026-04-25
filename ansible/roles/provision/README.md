@@ -9,6 +9,7 @@ Execute the following command in the terminal of the **target VM**:
 
 ```bash
 ansible-playbook provision.yml -e "inventory_hosts=desktop"
+ansible-playbook provision.yml -e "inventory_hosts=desktop" -e "password_id=user"
 ```
 
 ### 2. Tasks Performed
