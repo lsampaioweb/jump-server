@@ -3,7 +3,7 @@ apt_packages:
   # Personal Development Tools - Unique packages not in desktop-standard foundation.
   - {name: "apt-transport-https"} # Ensures HTTPS APT transport is available.
   - {name: "libnss3-tools"} # For managing NSS databases (certutil).
-  - {name: "python3-psutil"} # Required by community.general.dconf (uses system Python).
+  - {name: "python3-psutil", state: "latest"} # Required by community.general.dconf (uses system Python).
   - {name: "default-jdk"} # Java Development Kit for Java programming.
 
 # The path to the system-wide pipx executable installed by install-requirements.sh.
