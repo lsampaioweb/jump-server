@@ -1,4 +1,9 @@
 ---
+- name: "Installing and configuring libsecret credential helper"
+  ansible.builtin.include_role:
+    name: "common"
+    tasks_from: "debian/packages/libsecret"
+
 - name: "Setting up Git"
   ansible.builtin.include_role:
     name: "common"
