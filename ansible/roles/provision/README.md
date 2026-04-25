@@ -26,11 +26,12 @@ The provisioning playbook performs the following tasks (tagged `personal_config`
   - Installs `apt-transport-https` (required by the VS Code repository).
   - Installs `code` (Visual Studio Code).
   - Installs `default-jdk`.
+  - Installs `python3-psutil` (required by `community.general.dconf`).
   - Installs **libnss3-tools** (`certutil`) required for Chrome's certificate database.
   - Removes unused dependencies and cleans the package cache.
-- **pipx Tools** *(system-wide via `/usr/local/bin`)*:
+- **pipx Tools** *(user-wide via `~/.local/bin`)*:
   - Installs `ansible` with dependencies.
-  - Installs `ansible-lint`.
+  - Installs `ansible-lint` with dependencies.
   - Injects `jmespath`, `hvac`, `certifi`, and `passlib` into the Ansible pipx environment.
 - **Ansible Galaxy Collections**:
   - `community.general`
